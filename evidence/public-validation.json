@@ -1,0 +1,65 @@
+{
+  "version": "0.1.0-prototype.1",
+  "hardware_revision": "A0",
+  "checked_on": "2026-09-29",
+  "status": "untested_prototype_routing_failed_not_fabrication_ready",
+  "checks": {
+    "format": "passed",
+    "typescript": "passed",
+    "firmware_motion_parser_sanitizers": "passed",
+    "firmware_power_policy_sanitizers": "passed",
+    "netlist": "passed_zero_errors_zero_warnings",
+    "placement": "passed_zero_errors_zero_warnings",
+    "routed_build": "failed_exit_1_199_errors",
+    "shorts": "failed_26_findings",
+    "routed_board_test": "failed",
+    "independent_geometry": "failed_16_drill_to_pad_violations",
+    "routed_visual_gate": "not_passed",
+    "snapshots": "not_accepted",
+    "fabrication": "blocked",
+    "physical_testing": "not_started"
+  },
+  "dependencies": {
+    "tscircuit": "0.0.2646",
+    "@tscircuit/cli": "0.1.2172",
+    "@tscircuit/core": "0.0.1971",
+    "typescript": "5.9.3",
+    "@biomejs/biome": "2.5.14"
+  },
+  "toolchain_archive_sha256": "39c44f8af42695b7b871df42e346c09fee670ea8dfc11f17083e296ea2b0d279",
+  "local_artifacts": [
+    {
+      "path": "dist/index/circuit.json",
+      "sha256": "0339d0e911b58f02e279df82cff0195a227986b4d22ec2335f53a21bedb8ffd9"
+    },
+    {
+      "path": "dist/index/pcb.png",
+      "sha256": "992f7ecc4d6b3e8b2461fa457aebe3f4029e3b2b2fcb27330830096fddc8afd4"
+    },
+    {
+      "path": "dist/index/pcb.svg",
+      "sha256": "bc9afc8ce8c19a58bb55f82e911d201cea802945d51671a84529f243a7350ad2"
+    },
+    {
+      "path": "dist/index/schematic.svg",
+      "sha256": "c063e1e7c7b1a47229ba6faf105160631a1f39ce76b8d23e48ae4dc57d8b2a48"
+    },
+    {
+      "path": "evidence/publish-build.log",
+      "sha256": "3cdc09a250770fe81c4c3c146d97333ba3765ace57e6d7e5a2e3ebe82bcc2233"
+    },
+    {
+      "path": "evidence/publish-shorts.log",
+      "sha256": "2eff47d70628f2bb87d82fabfcf8965062e5c49323f266a4674565bf35aac803"
+    },
+    {
+      "path": "evidence/publish-board-tests.log",
+      "sha256": "cbf1610452118084700bedc4100219928521038322c5dc96be02271f750d2344"
+    },
+    {
+      "path": "evidence/publish-copper-measurements.log",
+      "sha256": "bcb8e5a6d193e76337f7e10ec40c4fb2f9894028a68c578184d2665165a4eb9e"
+    }
+  ],
+  "artifact_scope": "Raw logs, rejected generated designs and downloads remain local. Hashes identify evidence; they do not signify successful validation."
+}

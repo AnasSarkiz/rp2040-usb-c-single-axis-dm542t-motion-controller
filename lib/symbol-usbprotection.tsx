@@ -1,0 +1,244 @@
+import { USBLC6_2SC6 } from "../imports/USBLC6_2SC6"
+
+// Original catalog symbol and pads, with its reference label restored.
+export function UsbProtection(props: Parameters<typeof USBLC6_2SC6>[0]) {
+  return (
+    <USBLC6_2SC6
+      {...props}
+      symbol={
+        <symbol>
+          <schematicpath
+            points={[
+              { x: -0.9, y: 1 },
+              { x: 0.9, y: 1 },
+              { x: 0.9, y: -1 },
+              { x: -0.9, y: -1 },
+              { x: -0.9, y: 1 },
+            ]}
+            strokeWidth={0.02}
+            strokeColor="#880000"
+            isFilled
+            fillColor="#FFFFFF"
+          />
+          <port
+            name="pin1"
+            pinNumber={1}
+            aliases={["1"]}
+            direction="left"
+            schX={-1.3}
+            schY={0.6}
+            schStemLength={0.4}
+          />
+          <port
+            name="pin2"
+            pinNumber={2}
+            aliases={["2"]}
+            direction="left"
+            schX={-1.3}
+            schY={0}
+            schStemLength={0.4}
+          />
+          <port
+            name="pin3"
+            pinNumber={3}
+            aliases={["3"]}
+            direction="left"
+            schX={-1.3}
+            schY={-0.6}
+            schStemLength={0.4}
+          />
+          <port
+            name="pin4"
+            pinNumber={4}
+            aliases={["4"]}
+            direction="right"
+            schX={1.3}
+            schY={-0.6}
+            schStemLength={0.4}
+          />
+          <port
+            name="pin5"
+            pinNumber={5}
+            aliases={["5"]}
+            direction="right"
+            schX={1.3}
+            schY={0}
+            schStemLength={0.4}
+          />
+          <port
+            name="pin6"
+            pinNumber={6}
+            aliases={["6"]}
+            direction="right"
+            schX={1.3}
+            schY={0.6}
+            schStemLength={0.4}
+          />
+          <schematicpath
+            points={[
+              { x: -0.9, y: 0.6 },
+              { x: 0.9, y: 0.6 },
+            ]}
+            strokeColor="#880000"
+          />
+          <schematicpath
+            points={[
+              { x: -0.9, y: -0.6 },
+              { x: 0.9, y: -0.6 },
+            ]}
+            strokeColor="#880000"
+          />
+          <schematicpath
+            points={[
+              { x: -0.9, y: 0 },
+              { x: 0.9, y: 0 },
+            ]}
+            strokeColor="#880000"
+          />
+          <schematicpath
+            svgPath="M -0.14 -0.12 L 0.06 0 L -0.14 0.14 Z"
+            strokeColor="#880000"
+            isFilled
+            fillColor="#880000"
+          />
+          <schematicpath
+            points={[
+              { x: 0.1, y: 0.16 },
+              { x: 0.06, y: 0.16 },
+              { x: 0.06, y: -0.14 },
+              { x: 0, y: -0.14 },
+            ]}
+            strokeColor="#880000"
+          />
+          <schematicpath
+            points={[
+              { x: -0.68, y: 0 },
+              { x: -0.68, y: 0.4 },
+              { x: 0.66, y: 0.4 },
+              { x: 0.66, y: -0.4 },
+              { x: -0.68, y: -0.4 },
+              { x: -0.68, y: 0 },
+            ]}
+            strokeColor="#880000"
+          />
+          <schematicpath
+            points={[
+              { x: 0, y: 0.6 },
+              { x: 0, y: 0.4 },
+            ]}
+            strokeColor="#880000"
+          />
+          <schematicpath
+            points={[
+              { x: 0, y: -0.6 },
+              { x: 0, y: -0.4 },
+            ]}
+            strokeColor="#880000"
+          />
+          <schematicpath
+            svgPath="M -0.46 0.28 L -0.26 0.4 L -0.46 0.54 Z"
+            strokeColor="#880000"
+            isFilled
+            fillColor="#880000"
+          />
+          <schematicpath
+            points={[
+              { x: -0.26, y: 0.56 },
+              { x: -0.26, y: 0.56 },
+              { x: -0.26, y: 0.26 },
+              { x: -0.26, y: 0.26 },
+            ]}
+            strokeColor="#880000"
+          />
+          <schematicpath
+            svgPath="M 0.22 0.28 L 0.42 0.4 L 0.22 0.54 Z"
+            strokeColor="#880000"
+            isFilled
+            fillColor="#880000"
+          />
+          <schematicpath
+            points={[
+              { x: 0.42, y: 0.56 },
+              { x: 0.42, y: 0.56 },
+              { x: 0.42, y: 0.26 },
+              { x: 0.42, y: 0.26 },
+            ]}
+            strokeColor="#880000"
+          />
+          <schematicpath
+            svgPath="M -0.48 -0.52 L -0.28 -0.4 L -0.48 -0.26 Z"
+            strokeColor="#880000"
+            isFilled
+            fillColor="#880000"
+          />
+          <schematicpath
+            points={[
+              { x: -0.28, y: -0.24 },
+              { x: -0.28, y: -0.24 },
+              { x: -0.28, y: -0.54 },
+              { x: -0.28, y: -0.54 },
+            ]}
+            strokeColor="#880000"
+          />
+          <schematicpath
+            svgPath="M 0.22 -0.52 L 0.42 -0.4 L 0.22 -0.26 Z"
+            strokeColor="#880000"
+            isFilled
+            fillColor="#880000"
+          />
+          <schematicpath
+            points={[
+              { x: 0.42, y: -0.24 },
+              { x: 0.42, y: -0.24 },
+              { x: 0.42, y: -0.54 },
+              { x: 0.42, y: -0.54 },
+            ]}
+            strokeColor="#880000"
+          />
+          <schematiccircle
+            center={{ x: 0, y: 0.6 }}
+            radius={0.02}
+            strokeWidth={0.02}
+            color="#880000"
+          />
+          <schematiccircle
+            center={{ x: 0, y: 0.4 }}
+            radius={0.02}
+            strokeWidth={0.02}
+            color="#880000"
+          />
+          <schematiccircle
+            center={{ x: -0.68, y: 0 }}
+            radius={0.02}
+            strokeWidth={0.02}
+            color="#880000"
+          />
+          <schematiccircle
+            center={{ x: 0.66, y: 0 }}
+            radius={0.02}
+            strokeWidth={0.02}
+            color="#880000"
+          />
+          <schematiccircle
+            center={{ x: 0, y: -0.4 }}
+            radius={0.02}
+            strokeWidth={0.02}
+            color="#880000"
+          />
+          <schematiccircle
+            center={{ x: 0, y: -0.6 }}
+            radius={0.02}
+            strokeWidth={0.02}
+            color="#880000"
+          />
+          <schematictext
+            text={props.name}
+            schX={0}
+            schY={1.2}
+            fontSize={0.18}
+          />
+        </symbol>
+      }
+    />
+  )
+}

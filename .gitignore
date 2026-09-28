@@ -1,0 +1,59 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# tscircuit cache
+.tscircuit/
+
+# Local firmware tools and generated outputs
+firmware/vendor/
+firmware/.venv/
+firmware/build-arm/
+firmware/test-motion
+firmware/test-power
+__pycache__/
+*.pyc
+checks/
+# Private task input and local copies of third-party documentation
+references/user-brief.txt
+references/*.pdf
+references/*.html
+references/*.zip
+references/*.png
+references/*.txt
+!references/Minimal-KiCAD-LICENSE.txt
+# Corrupted output and cropped third-party datasheet images remain local
+evidence/enospc-corrupt-circuit.json.txt
+evidence/inductor-drawing.png
+evidence/inductor-ratings.png
+evidence/inductor-mechanical.png
+
+# Publication scope: sources plus a concise reviewed validation record
+.npmrc
+evidence/*
+!evidence/public-validation.json
+!evidence/source-manifest-0.1.0-prototype.1.json
+references/catalog/

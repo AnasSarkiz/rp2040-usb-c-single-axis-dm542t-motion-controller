@@ -1,0 +1,42 @@
+{
+  "name": "@tsci/AnasSarkiz.rp2040-usb-c-single-axis-dm542t-motion-controller--01a0e89c",
+  "version": "0.1.0-prototype.1",
+  "description": "RP2040 USB-C Single-Axis Stepper Motion Controller for External DM542T Drivers with STEP/DIR/ENABLE Outputs and Dual Limit-Switch Inputs",
+  "main": "index.circuit.tsx",
+  "keywords": [
+    "tscircuit",
+    "circuit",
+    "pcb",
+    "electronics"
+  ],
+  "scripts": {
+    "dev": "tsci dev",
+    "build": "tsci build",
+    "snapshot": "tsci snapshot",
+    "start": "tsci dev",
+    "typecheck": "tsc --noEmit",
+    "format": "biome format --write index.circuit.tsx lib scripts/build-bom.ts package.json project.json tsconfig.json biome.json",
+    "format:check": "biome format index.circuit.tsx lib scripts/build-bom.ts package.json project.json tsconfig.json biome.json",
+    "bom": "bun scripts/build-bom.ts",
+    "test:board": "python3 tests/check-board.py --stage routed",
+    "test:firmware": "cc -std=c11 -Wall -Wextra -Werror -fsanitize=address,undefined firmware/motion.c firmware/test_motion.c -lm -o firmware/test-motion && firmware/test-motion",
+    "test": "bun run test:board && bun run test:firmware && bun run test:power",
+    "test:power": "cc -std=c11 -Wall -Wextra -Werror -fsanitize=address,undefined firmware/power_policy.c firmware/test_power_policy.c -o firmware/test-power && firmware/test-power",
+    "test:placement": "python3 tests/check-board.py --stage placement"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.14",
+    "@types/node": "22.15.30",
+    "tscircuit": "0.0.2646",
+    "typescript": "5.9.3"
+  },
+  "author": "AnasSarkiz",
+  "title": "RP2040 USB-C Single-Axis Stepper Motion Controller for External DM542T Drivers with STEP/DIR/ENABLE Outputs and Dual Limit-Switch Inputs",
+  "private": true,
+  "hardwareRevision": "A0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller.git"
+  },
+  "homepage": "https://tscircuit.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller--01a0e89c"
+}
