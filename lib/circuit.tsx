@@ -26,6 +26,12 @@ export function CircuitParts() {
   return (
     <>
       <DriverPower />
+      <trace
+        from=".U1 > .GPIO26_ADC0"
+        to=".C19 > .pin1"
+        thickness="0.15mm"
+        pcbPath={[{ x: -11.000125, y: 7.6 }, ".C19 > .pin1"]}
+      />
       <net name="GND" isGroundNet />
       <net name="VBUS" isPowerNet nominalTraceWidth="0.5mm" />
       <net name="V5" isPowerNet nominalTraceWidth="0.5mm" />
@@ -211,7 +217,7 @@ export function CircuitParts() {
       />
       <ClockCrystal
         name="Y1"
-        pcbX={-3.4}
+        pcbX={-2.9}
         pcbY={-3}
         pcbRotation={90}
         schX={-15 * 0.3}

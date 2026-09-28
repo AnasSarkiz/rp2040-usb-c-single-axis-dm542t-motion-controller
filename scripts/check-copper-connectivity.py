@@ -64,6 +64,7 @@ for part in circuit:
 net_names = {part['source_net_id']: part['name'] for part in circuit if part['type'] == 'source_net'}
 report = {}
 failures = []
+cluster_nets = defaultdict(set)
 for net, pins in net_ports.items():
     groups = set()
     missing = []
@@ -76,15 +77,21 @@ for net, pins in net_ports.items():
         if not nodes:
             missing.append(pin)
         groups.update(root(node) for node in nodes)
+    for cluster in groups:
+        cluster_nets[cluster].add(net_names[net])
     report[net_names[net]] = {'required_ports': len(pins), 'physical_clusters': len(groups), 'missing_ports': missing}
     if len(groups) != 1 or missing:
         failures.append(net_names[net])
 
+shorted_net_groups = [sorted(names) for names in cluster_nets.values() if len(names) > 1]
 Path('evidence/routed-connectivity.json').write_text(json.dumps({
     'circuit_sha256': hashlib.sha256(circuit_path.read_bytes()).hexdigest(),
     'method': 'Union physical pad, trace and pour copper per layer; join layers only at plated holes/vias. Conservative minimum endpoint width for tapered segments; geometric join tolerance 0.0000001 mm. Shorts require the separate native raster/gerber check.',
     'nets': report,
     'failed_nets': failures,
+    'shorted_net_groups': shorted_net_groups,
 }, indent=2) + '\n')
 print('Physical connectivity:', len(report), 'nets;', sum(entry['required_ports'] for entry in report.values()), 'ports; failed nets:', failures)
+print('Physical shorts:', shorted_net_groups)
+assert not shorted_net_groups, 'Different source nets share physical copper'
 assert not failures, 'Disconnected physical copper; see evidence/routed-connectivity.json'
