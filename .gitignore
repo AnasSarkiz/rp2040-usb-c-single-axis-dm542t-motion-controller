@@ -55,5 +55,5 @@ evidence/inductor-mechanical.png
 .npmrc
 evidence/*
 !evidence/public-validation.json
-!evidence/source-manifest-0.1.0-prototype.1.json
+!evidence/source-manifest-0.*.json
 references/catalog/

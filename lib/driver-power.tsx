@@ -46,8 +46,8 @@ export function DriverPower() {
       />
       <TPS3839K33DBZR
         name="U9"
-        pcbX={-21}
-        pcbY={-17.5}
+        pcbX={1}
+        pcbY={-11}
         schX={9}
         schY={11}
         connections={{

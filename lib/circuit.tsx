@@ -38,6 +38,7 @@ export function CircuitParts() {
         pinAttributes={RP2040Attributes}
         pcbX={-10}
         pcbY={0}
+        pcbRotation={90}
         schX={0 * 0.3}
         schY={0 * 0.3}
         connections={{
@@ -137,8 +138,9 @@ export function CircuitParts() {
       />
       <LM66100DCKR
         name="U5"
-        pcbX={-33}
-        pcbY={-6}
+        pcbX={-34}
+        pcbY={-4}
+        pcbRotation={90}
         schX={-25 * 0.3}
         schY={-6 * 0.3}
         connections={{
@@ -209,8 +211,9 @@ export function CircuitParts() {
       />
       <ClockCrystal
         name="Y1"
-        pcbX={-13}
-        pcbY={-6.6}
+        pcbX={-3.4}
+        pcbY={-3}
+        pcbRotation={90}
         schX={-15 * 0.3}
         schY={-11 * 0.3}
         connections={{
