@@ -1,7 +1,9 @@
-# Resume A0 / 0.1.0-prototype.3
+# Resume A0 / 0.1.0-prototype.4
 
-Continue routing placement iteration. User requires component moves after failures and pushes of every saved version to both services. Read AGENTS.md and VERSIONING.md.
+Read AGENTS.md, VERSIONING.md and VALIDATION.md. User requires component moves after routing errors and pushes of every saved version to both services.
 
-Two-layer 90x60x1 mm board, 85 parts. MCU/crystal/caps rotated 90 degrees; U5/U9/R8/C25 relocated in .2, testpoints relocated in .3. Stage-3 placement passes. .3 native route build and shorts pass (zero native errors), dimensional audit passes, but new physical-connectivity audit fails VBUS_SENSE: bottom-layer route ends at top-side U1 ADC pad without a via. 56 other nets are physically connected. Do not declare routing clear until the new audit passes. Move R24/R25/C19 toward the ADC pin and retry with unchanged DRC rules.
+Moved R24, R25 and C19 above U1 to shorten the ADC input route. This closes VBUS_SENSE but other routed copper violations recur.
 
-Raw evidence, snapshots, toolchains and private inputs remain local. Source publishing is explicitly authorized; order/physical testing has not happened.
+Latest routing: 188 native PCB errors; 34 shorts findings; 15 drill-to-pad violations; disconnected nets: [].
+
+Two-layer 90x60x1 mm board, 85 parts. Follow native DRC, shorts, dimensional AND physical-connectivity audits; native success alone missed an open ADC net in prototype.3. No DRC changes or suppression. Source publishing is authorized; no prototype order or physical testing exists.

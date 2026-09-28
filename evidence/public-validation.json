@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-prototype.3",
+  "version": "0.1.0-prototype.4",
   "hardware_revision": "A0",
   "checked_on": "2026-09-29",
   "status": "untested_prototype_routing_failed_not_fabrication_ready",
@@ -10,15 +10,15 @@
     "firmware_power_policy_sanitizers": "passed",
     "netlist": "passed_zero_errors_zero_warnings",
     "placement": "passed_zero_errors_zero_warnings",
-    "routed_build": "passed_zero_errors",
-    "shorts": "passed_zero_findings",
-    "routed_board_test": "passed",
-    "independent_geometry": "passed_zero_violations",
+    "routed_build": "failed_188_errors",
+    "shorts": "failed_34_findings",
+    "routed_board_test": "failed",
+    "independent_geometry": "failed_15_drill_to_pad_violations",
     "routed_visual_gate": "not_passed",
-    "snapshots": "generated_not_accepted_open_net",
-    "fabrication": "blocked",
+    "snapshots": "pending_current_revision",
+    "fabrication": "not_approved",
     "physical_testing": "not_started",
-    "physical_copper_connectivity": "failed_VBUS_SENSE_open"
+    "physical_copper_connectivity": "passed_all_57_nets_273_ports"
   },
   "dependencies": {
     "tscircuit": "0.0.2646",
@@ -28,7 +28,32 @@
     "@biomejs/biome": "2.5.14"
   },
   "toolchain_archive_sha256": "39c44f8af42695b7b871df42e346c09fee670ea8dfc11f17083e296ea2b0d279",
-  "local_artifacts": [],
+  "local_artifacts": [
+    {
+      "path": "evidence/routing-prototype-4/circuit.json",
+      "sha256": "8927b5e00e38faae55b1777a01c7a2177ef9f0310c3f8553519299dbc3b477ff"
+    },
+    {
+      "path": "evidence/routing-prototype-4/copper-measurements.json",
+      "sha256": "16b74600065c8bd1e920e1b6a233374c6f1ee8076fa815ece4bf5b0503665246"
+    },
+    {
+      "path": "evidence/routing-prototype-4/pcb.png",
+      "sha256": "25b018f1fa54aac14cd1f1950db8822b88cb69668a1c130cf4fa3e5fe81f2013"
+    },
+    {
+      "path": "evidence/routing-prototype-4/pcb.svg",
+      "sha256": "bdf4abda066f47e432af1feed9403af80709165fef54ad99b3900c7d04e291f4"
+    },
+    {
+      "path": "evidence/routing-prototype-4/routed-connectivity.json",
+      "sha256": "60158c324ab153a3f7fddbeb9b1ca5437c33a69a68aca84301c063c8dd452f67"
+    },
+    {
+      "path": "evidence/routing-prototype-4/schematic.svg",
+      "sha256": "c063e1e7c7b1a47229ba6faf105160631a1f39ce76b8d23e48ae4dc57d8b2a48"
+    }
+  ],
   "artifact_scope": "Raw logs, rejected generated designs and downloads remain local. Hashes identify evidence; they do not signify successful validation.",
-  "placement_changes": "Relocated STEP/DIR/ENABLE/ARM and debug test pads"
+  "placement_changes": "Moved R24, R25 and C19 above U1 to shorten the ADC input route. This closes VBUS_SENSE but other routed copper violations recur."
 }

@@ -282,8 +282,8 @@ export const passives: Passive[] = [
     code: "C25803",
     footprint: "0603",
     nets: ["V5", "VBUS_SENSE"],
-    pcbX: -25,
-    pcbY: -14,
+    pcbX: -16,
+    pcbY: 10,
     purpose: "5V measurement upper divider",
   },
   {
@@ -293,8 +293,8 @@ export const passives: Passive[] = [
     code: "C25803",
     footprint: "0603",
     nets: ["VBUS_SENSE", "GND"],
-    pcbX: -21,
-    pcbY: -14,
+    pcbX: -12,
+    pcbY: 10,
     purpose: "5V measurement lower divider",
   },
   {
@@ -516,8 +516,8 @@ export const passives: Passive[] = [
     code: "C14663",
     footprint: "0603",
     nets: ["VBUS_SENSE", "GND"],
-    pcbX: -17,
-    pcbY: -14,
+    pcbX: -8,
+    pcbY: 10,
     purpose: "Supply ADC filtering",
   },
   {

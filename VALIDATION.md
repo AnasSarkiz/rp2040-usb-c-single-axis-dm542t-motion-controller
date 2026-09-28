@@ -131,3 +131,9 @@ Moved signal/debug test pads toward their associated circuitry, reducing repeate
 A deeper layer-aware copper union audit checks all 57 nets and 273 required ports. It found one open net, VBUS_SENSE: source_net_36_mst2_0 terminates on bottom at U1 GPIO26_ADC0, whose pad is on top, without a via there. Native DRC did not report it. Therefore routing is still rejected. The new scripts/check-copper-connectivity.py reproduces this failure and is now part of the test command. Geometric pad handling is shared with the existing dimensional audit in scripts/copper_geometry.py. No check was weakened. The next placement iteration will move R24/R25/C19 toward U1's ADC pin.
 
 Reviewed local views: iteration-3-top/bottom-detail.png, top/bottom-mcu.png, top/bottom-power.png and schematic.png; local logs are iteration-3-*. Minor silkscreen label overlaps around testpoints/reference text remain a fabrication-review task. Raw snapshots remain local until their full acceptance gate passes.
+
+## Placement iteration — 0.1.0-prototype.4
+
+Moved R24, R25 and C19 above U1 to shorten the ADC input route. This closes VBUS_SENSE but other routed copper violations recur.
+
+Unrouted placement/build/invariants pass and the placement overview was inspected. Routing results: 188 native PCB errors; 34 shorts findings; 15 drill-to-pad violations; disconnected nets: []. This routing candidate is rejected. No manufacturing rule was weakened. Logs: local evidence/iteration-4-*. Generated geometry and audits are preserved in evidence/routing-prototype-4/.
