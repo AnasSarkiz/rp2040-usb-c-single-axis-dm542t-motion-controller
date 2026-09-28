@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-prototype.7",
+  "version": "0.1.0-prototype.8",
   "hardware_revision": "A0",
   "checked_on": "2026-09-29",
   "status": "untested_prototype_routing_failed_not_fabrication_ready",
@@ -10,15 +10,15 @@
     "firmware_power_policy_sanitizers": "passed",
     "netlist": "passed_zero_errors_zero_warnings",
     "placement": "passed_zero_errors_zero_warnings",
-    "routed_build": "failed_1_errors",
-    "shorts": "passed_zero_findings",
+    "routed_build": "failed_147_errors",
+    "shorts": "failed_18_findings",
     "routed_board_test": "failed",
-    "independent_geometry": "passed_zero_violations",
+    "independent_geometry": "failed_7_drill_to_pad_violations",
     "routed_visual_gate": "not_passed",
     "snapshots": "pending_current_revision",
     "fabrication": "not_approved",
     "physical_testing": "not_started",
-    "physical_copper_connectivity": "failed_VBUS_SENSE"
+    "physical_copper_connectivity": "failed_short_groups"
   },
   "dependencies": {
     "tscircuit": "0.0.2646",
@@ -30,30 +30,30 @@
   "toolchain_archive_sha256": "39c44f8af42695b7b871df42e346c09fee670ea8dfc11f17083e296ea2b0d279",
   "local_artifacts": [
     {
-      "path": "evidence/routing-prototype-7/circuit.json",
-      "sha256": "74768b34845a4ad81bdb82caa668d5587260b17862a900663c0903c83ab45102"
+      "path": "evidence/routing-prototype-8/circuit.json",
+      "sha256": "876d3fd1e04beda81ba4a1f2bfcd6074207022e596f29abc843cf712fae46bd8"
     },
     {
-      "path": "evidence/routing-prototype-7/copper-measurements.json",
-      "sha256": "901d53562583f9ca679d15ad3bb065e9bdb7db9f2d5d6fce22e20699d663704a"
+      "path": "evidence/routing-prototype-8/copper-measurements.json",
+      "sha256": "04cc9049621ac8579f59d5fc1e77c0a512c60679ad27297c4467fab2cd21ea4a"
     },
     {
-      "path": "evidence/routing-prototype-7/pcb.png",
-      "sha256": "daf06d124adff26279c5f2a22f457fe0479c9ffe3da092b34eb3f012ceb4f6d7"
+      "path": "evidence/routing-prototype-8/pcb.png",
+      "sha256": "a1c490fae75485766859e1d016de31a47de83cc73a6fa0d203a0f41938d003a4"
     },
     {
-      "path": "evidence/routing-prototype-7/pcb.svg",
-      "sha256": "d3f40f309a6ad470f75a927010228ac64f53667b20aed2b6c1d42fc40fb3da95"
+      "path": "evidence/routing-prototype-8/pcb.svg",
+      "sha256": "3e46c325ba8a7a3ec462408b41c2c7419ab301a2133bad50e0b519c7d630dcab"
     },
     {
-      "path": "evidence/routing-prototype-7/routed-connectivity.json",
-      "sha256": "c2af5e1f78e5aaa8c88c586031834ed2ca0550e07d68a1344bfba68b6edb5513"
+      "path": "evidence/routing-prototype-8/routed-connectivity.json",
+      "sha256": "21a1c9e4fcdcfe964087888702e119bae754780afe5ce05f8d49fe5f3ffc6e21"
     },
     {
-      "path": "evidence/routing-prototype-7/schematic.svg",
+      "path": "evidence/routing-prototype-8/schematic.svg",
       "sha256": "5128c35b69bfaeb5f68879e5d00c4221689d0f9c78f9a69ad5011ef44136bfce"
     }
   ],
   "artifact_scope": "Raw logs, rejected generated designs and downloads remain local. Hashes identify evidence; they do not signify successful validation.",
-  "placement_changes": "Moved C19 to (-10.5, 9.1) and removed the incorrect numeric PCB waypoint. Native routing leaves one ADC connection open; no shorts or drill violations were detected."
+  "placement_changes": "Moved C19 to (-10.5, 9.4) and added a direct pad-to-pad top-layer ADC trace. All 57 nets are connected, but native routing creates new shorts and clearance violations elsewhere; candidate rejected."
 }

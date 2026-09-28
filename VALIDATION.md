@@ -155,3 +155,9 @@ Unrouted placement/build/invariants pass and the placement overview was inspecte
 Moved C19 to (-10.5, 9.1) and removed the incorrect numeric PCB waypoint. Native routing leaves one ADC connection open; no shorts or drill violations were detected.
 
 Unrouted placement/build/invariants pass and the placement overview was inspected. Routing results: 1 native PCB errors; 0 shorts findings; 0 drill-to-pad violations; disconnected nets: ['VBUS_SENSE']. This routing candidate is rejected. No manufacturing rule was weakened. Logs: local evidence/iteration-7-*. Generated geometry and audits are preserved in evidence/routing-prototype-7/.
+
+## Placement iteration — 0.1.0-prototype.8
+
+Moved C19 to (-10.5, 9.4) and added a direct pad-to-pad top-layer ADC trace. All 57 nets are connected, but native routing creates new shorts and clearance violations elsewhere; candidate rejected.
+
+Unrouted placement/build/invariants pass and the placement overview was inspected. Routing results: 147 native PCB errors; 18 shorts findings; 7 drill-to-pad violations; disconnected nets: []. This routing candidate is rejected. No manufacturing rule was weakened. Logs: local evidence/iteration-8-*. Generated geometry and audits are preserved in evidence/routing-prototype-8/.

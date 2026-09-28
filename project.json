@@ -28,7 +28,7 @@
     }
   },
   "publication_status": "public_prototype_source_project",
-  "source_version": "0.1.0-prototype.7",
+  "source_version": "0.1.0-prototype.8",
   "github_repository": "https://github.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller",
   "tscircuit_package": "https://tscircuit.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller--01a0e89c"
 }
