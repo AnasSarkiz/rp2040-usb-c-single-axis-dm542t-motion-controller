@@ -161,3 +161,9 @@ Unrouted placement/build/invariants pass and the placement overview was inspecte
 Moved C19 to (-10.5, 9.4) and added a direct pad-to-pad top-layer ADC trace. All 57 nets are connected, but native routing creates new shorts and clearance violations elsewhere; candidate rejected.
 
 Unrouted placement/build/invariants pass and the placement overview was inspected. Routing results: 147 native PCB errors; 18 shorts findings; 7 drill-to-pad violations; disconnected nets: []. This routing candidate is rejected. No manufacturing rule was weakened. Logs: local evidence/iteration-8-*. Generated geometry and audits are preserved in evidence/routing-prototype-8/.
+
+## Placement iteration — 0.1.0-prototype.9
+
+Moved and rotated C19 adjacent to the MCU ADC pin and spread C4, C5, C10 and C11 for courtyard clearance. Native build reports zero errors and all nets connect, but independent copper and native shorts audits reject the route.
+
+Unrouted placement/build/invariants pass and the placement overview was inspected. Routing results: 0 native PCB errors; 10 shorts findings; 5 drill-to-pad violations; disconnected nets: []. This routing candidate is rejected. No manufacturing rule was weakened. Logs: local evidence/iteration-9-*. Generated geometry and audits are preserved in evidence/routing-prototype-9/.
