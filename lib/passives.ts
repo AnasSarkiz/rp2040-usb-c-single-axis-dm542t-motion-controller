@@ -517,7 +517,7 @@ export const passives: Passive[] = [
     footprint: "0603",
     nets: ["VBUS_SENSE", "GND"],
     pcbX: -10.5,
-    pcbY: 8.8,
+    pcbY: 9.1,
     purpose: "Supply ADC filtering",
   },
   {

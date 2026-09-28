@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-prototype.6",
+  "version": "0.1.0-prototype.7",
   "hardware_revision": "A0",
   "checked_on": "2026-09-29",
   "status": "untested_prototype_routing_failed_not_fabrication_ready",
@@ -10,15 +10,15 @@
     "firmware_power_policy_sanitizers": "passed",
     "netlist": "passed_zero_errors_zero_warnings",
     "placement": "passed_zero_errors_zero_warnings",
-    "routed_build": "failed_290_errors",
-    "shorts": "failed_16_findings",
+    "routed_build": "failed_1_errors",
+    "shorts": "passed_zero_findings",
     "routed_board_test": "failed",
     "independent_geometry": "passed_zero_violations",
     "routed_visual_gate": "not_passed",
     "snapshots": "pending_current_revision",
     "fabrication": "not_approved",
     "physical_testing": "not_started",
-    "physical_copper_connectivity": "failed_VDRV,BOOST_L2,GND,BOOST_L1,DRIVER_VIN,DRIVER_REG_ENABLE,DRIVER_FB,V5,DRIVER_POWER,DRIVER_FAULT,DRIVER_ILIM,SUPERVISOR_RESET,V3V3,V1V1,XIN,XOUT,SWCLK,SWDIO,RUN,MCU_DM,MCU_DP,QSPI_D3,QSPI_CLK,QSPI_D0,QSPI_D2,QSPI_D1,QSPI_CS,STEP,DIR,ENABLE,ARM,LIMIT_MIN,LIMIT_MAX,STATUS,VBUS_SENSE,USB_DP,USB_DM,VBUS,FUSED_VBUS,LIMIT_MIN_WIRE,LIMIT_MAX_WIRE,CC1,CC2,XTAL_OUT,BOOT_SW,LED_PWR,LED_STATUS,STEP_GATE,PUL_MINUS,STEP_RETURN,ARM_GATE,DIR_GATE,DIR_MINUS,DISABLE_GATE,ENA_MINUS,ENABLE_GATE,DRIVER_FB_SERIES"
+    "physical_copper_connectivity": "failed_VBUS_SENSE"
   },
   "dependencies": {
     "tscircuit": "0.0.2646",
@@ -30,30 +30,30 @@
   "toolchain_archive_sha256": "39c44f8af42695b7b871df42e346c09fee670ea8dfc11f17083e296ea2b0d279",
   "local_artifacts": [
     {
-      "path": "evidence/routing-prototype-6/circuit.json",
-      "sha256": "19294a807a2d1187e41e98be8cd11878276a86dcd720a166d3044e8259d0ab12"
+      "path": "evidence/routing-prototype-7/circuit.json",
+      "sha256": "74768b34845a4ad81bdb82caa668d5587260b17862a900663c0903c83ab45102"
     },
     {
-      "path": "evidence/routing-prototype-6/copper-measurements.json",
-      "sha256": "b6a5c4a203022ab824a99d0ef14051e759c5c940d14f2b2a7b2b2a8acd97e753"
+      "path": "evidence/routing-prototype-7/copper-measurements.json",
+      "sha256": "901d53562583f9ca679d15ad3bb065e9bdb7db9f2d5d6fce22e20699d663704a"
     },
     {
-      "path": "evidence/routing-prototype-6/pcb.png",
-      "sha256": "b741cb77a646b557c3023ccfd8d1512b10a58f47544ee1df7d67ee2b50b89811"
+      "path": "evidence/routing-prototype-7/pcb.png",
+      "sha256": "daf06d124adff26279c5f2a22f457fe0479c9ffe3da092b34eb3f012ceb4f6d7"
     },
     {
-      "path": "evidence/routing-prototype-6/pcb.svg",
-      "sha256": "6dbb2a153148ce110a706399f1b55afd8cb7e169e948e8fc282b087e6591fc0a"
+      "path": "evidence/routing-prototype-7/pcb.svg",
+      "sha256": "d3f40f309a6ad470f75a927010228ac64f53667b20aed2b6c1d42fc40fb3da95"
     },
     {
-      "path": "evidence/routing-prototype-6/routed-connectivity.json",
-      "sha256": "ff9373adec2ed3524b0e598bd37e82f422c69dee423b626b4e7085443af197b0"
+      "path": "evidence/routing-prototype-7/routed-connectivity.json",
+      "sha256": "c2af5e1f78e5aaa8c88c586031834ed2ca0550e07d68a1344bfba68b6edb5513"
     },
     {
-      "path": "evidence/routing-prototype-6/schematic.svg",
+      "path": "evidence/routing-prototype-7/schematic.svg",
       "sha256": "5128c35b69bfaeb5f68879e5d00c4221689d0f9c78f9a69ad5011ef44136bfce"
     }
   ],
   "artifact_scope": "Raw logs, rejected generated designs and downloads remain local. Hashes identify evidence; they do not signify successful validation.",
-  "placement_changes": "Moved C13, C19 and the crystal network and introduced an explicit ADC trace. Review found pcbPath waypoint coordinates are relative to the rotated source component; the initial board-coordinate waypoint was wrong, so this routing is rejected and corrected in the next revision."
+  "placement_changes": "Moved C19 to (-10.5, 9.1) and removed the incorrect numeric PCB waypoint. Native routing leaves one ADC connection open; no shorts or drill violations were detected."
 }

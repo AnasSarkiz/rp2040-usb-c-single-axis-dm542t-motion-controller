@@ -26,12 +26,7 @@ export function CircuitParts() {
   return (
     <>
       <DriverPower />
-      <trace
-        from=".U1 > .GPIO26_ADC0"
-        to=".C19 > .pin1"
-        thickness="0.15mm"
-        pcbPath={[{ x: -11.000125, y: 7.6 }, ".C19 > .pin1"]}
-      />
+      <trace from=".U1 > .GPIO26_ADC0" to=".C19 > .pin1" thickness="0.15mm" />
       <net name="GND" isGroundNet />
       <net name="VBUS" isPowerNet nominalTraceWidth="0.5mm" />
       <net name="V5" isPowerNet nominalTraceWidth="0.5mm" />
