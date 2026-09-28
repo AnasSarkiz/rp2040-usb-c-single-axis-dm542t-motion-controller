@@ -1,6 +1,6 @@
 {
   "name": "@tsci/AnasSarkiz.rp2040-usb-c-single-axis-dm542t-motion-controller--01a0e89c",
-  "version": "0.1.0-prototype.4",
+  "version": "0.1.0-prototype.5",
   "description": "RP2040 USB-C Single-Axis Stepper Motion Controller for External DM542T Drivers with STEP/DIR/ENABLE Outputs and Dual Limit-Switch Inputs",
   "main": "index.circuit.tsx",
   "keywords": [

@@ -137,3 +137,9 @@ Reviewed local views: iteration-3-top/bottom-detail.png, top/bottom-mcu.png, top
 Moved R24, R25 and C19 above U1 to shorten the ADC input route. This closes VBUS_SENSE but other routed copper violations recur.
 
 Unrouted placement/build/invariants pass and the placement overview was inspected. Routing results: 188 native PCB errors; 34 shorts findings; 15 drill-to-pad violations; disconnected nets: []. This routing candidate is rejected. No manufacturing rule was weakened. Logs: local evidence/iteration-4-*. Generated geometry and audits are preserved in evidence/routing-prototype-4/.
+
+## Placement iteration — 0.1.0-prototype.5
+
+Tightened R24/R25/C19 spacing above the MCU; native DRC reports zero errors, but separate shorts/geometry/connectivity checks still fail, including the ADC bottom-layer endpoint.
+
+Unrouted placement/build/invariants pass and the placement overview was inspected. Routing results: 0 native PCB errors; 20 shorts findings; 3 drill-to-pad violations; disconnected nets: ['VBUS_SENSE']. This routing candidate is rejected. No manufacturing rule was weakened. Logs: local evidence/iteration-5-*. Generated geometry and audits are preserved in evidence/routing-prototype-5/.
