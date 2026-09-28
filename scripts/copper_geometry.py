@@ -17,7 +17,7 @@ def geometry(part, drill=False):
     width,height=part[prefix+'width'],part[prefix+'height']
     if shape in ['rect','rotated_rect']:
         local=box(-width/2,-height/2,width/2,height/2)
-    elif shape=='pill':
+    elif shape in ['pill', 'rotated_pill']:
         radius=min(width,height)/2
         if width>=height: ends=[(-(width-height)/2,0),((width-height)/2,0)]
         else: ends=[(0,-(height-width)/2),(0,(height-width)/2)]

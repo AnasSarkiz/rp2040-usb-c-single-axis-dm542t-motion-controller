@@ -85,7 +85,8 @@ export function CircuitParts() {
       <W25Q16JVSSIQ
         name="U2"
         pcbX={-22}
-        pcbY={3.5}
+        pcbY={-4.5}
+        pcbRotation={90}
         schX={-5.5}
         schY={7}
         connections={{

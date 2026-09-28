@@ -1,8 +1,8 @@
 {
-  "version": "0.1.0-prototype.9",
+  "version": "0.1.0-prototype.10",
   "hardware_revision": "A0",
   "checked_on": "2026-09-29",
-  "status": "untested_prototype_routing_failed_not_fabrication_ready",
+  "status": "routing_checks_passed_untested_prototype",
   "checks": {
     "format": "passed",
     "typescript": "passed",
@@ -11,14 +11,15 @@
     "netlist": "passed_zero_errors_zero_warnings",
     "placement": "passed_zero_errors_zero_warnings",
     "routed_build": "passed_zero_errors",
-    "shorts": "failed_10_findings",
+    "shorts": "passed_zero_findings",
     "routed_board_test": "passed",
-    "independent_geometry": "failed_5_drill_to_pad_violations",
-    "routed_visual_gate": "not_passed",
+    "independent_geometry": "passed_zero_violations",
+    "routed_visual_gate": "copper_layers_reviewed_silkscreen_cleanup_pending",
     "snapshots": "pending_current_revision",
     "fabrication": "not_approved",
     "physical_testing": "not_started",
-    "physical_copper_connectivity": "failed_short_groups"
+    "physical_copper_connectivity": "passed_all_57_nets_273_ports",
+    "geometry_regression": "passed_rotated_pill_bounds_area"
   },
   "dependencies": {
     "tscircuit": "0.0.2646",
@@ -30,30 +31,30 @@
   "toolchain_archive_sha256": "39c44f8af42695b7b871df42e346c09fee670ea8dfc11f17083e296ea2b0d279",
   "local_artifacts": [
     {
-      "path": "evidence/routing-prototype-9/circuit.json",
-      "sha256": "f354c88841622e0fff88b2cae0f48ce0da2381bcaddba759be439ca91b567b32"
+      "path": "evidence/routing-prototype-10/circuit.json",
+      "sha256": "73c2e0e97d17fdc586b1530757d949a5da4a3247d3897a9e82209517277a304f"
     },
     {
-      "path": "evidence/routing-prototype-9/copper-measurements.json",
-      "sha256": "b66ce0dbd3d28a2b2cd8096e5f91a23d1163df8655aa20eaffb01a8718ac03ef"
+      "path": "evidence/routing-prototype-10/copper-measurements.json",
+      "sha256": "b8dcf9920cb122afa5ad5a173b0324b08f1945462972a9ce656d4c243d89fe04"
     },
     {
-      "path": "evidence/routing-prototype-9/pcb.png",
-      "sha256": "40db886712c8fad348106d93922ca9685248075dda7892df479fa6cf39ec0947"
+      "path": "evidence/routing-prototype-10/pcb.png",
+      "sha256": "4021296f7af81add0d9b343fd450092c486c4d443296a7fc612ed066998367d0"
     },
     {
-      "path": "evidence/routing-prototype-9/pcb.svg",
-      "sha256": "248e023107e98eb2c9465204b628556f9e279eb0202b2c7851aa45cb1297e56c"
+      "path": "evidence/routing-prototype-10/pcb.svg",
+      "sha256": "f41fb5973f9c7a84384e06d78c27d73309c9f7548972e1bebe349ef5d837268f"
     },
     {
-      "path": "evidence/routing-prototype-9/routed-connectivity.json",
-      "sha256": "118369f242711f1a22f3344e9ab988ab8eef7c1f6f4ce43db4ec142f01167d7e"
+      "path": "evidence/routing-prototype-10/routed-connectivity.json",
+      "sha256": "a2b2344a83879e86dacc2cb23a9953414bb483676b8f4e0d4c5e1b49f53bb853"
     },
     {
-      "path": "evidence/routing-prototype-9/schematic.svg",
+      "path": "evidence/routing-prototype-10/schematic.svg",
       "sha256": "c063e1e7c7b1a47229ba6faf105160631a1f39ce76b8d23e48ae4dc57d8b2a48"
     }
   ],
   "artifact_scope": "Raw logs, rejected generated designs and downloads remain local. Hashes identify evidence; they do not signify successful validation.",
-  "placement_changes": "Moved and rotated C19 adjacent to the MCU ADC pin and spread C4, C5, C10 and C11 for courtyard clearance. Native build reports zero errors and all nets connect, but independent copper and native shorts audits reject the route."
+  "placement_changes": "Rotated U2 by 90 degrees and moved it to (-22, -4.5), moved its bypass C14 to (-28.5, -4.5), and moved C6, C8 and C23 away from prior via conflicts. Unrouted placement passes with zero errors/warnings. Native routed build, native shorts, independent dimensions/drills and independent 57-net/273-port physical connectivity all pass. Added rotated-pill geometry support with a bounds/area regression test; no audit limits changed."
 }

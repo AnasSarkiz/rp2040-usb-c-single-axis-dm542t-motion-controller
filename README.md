@@ -1,8 +1,8 @@
 # RP2040 USB-C Single-Axis Stepper Motion Controller for External DM542T Drivers with STEP/DIR/ENABLE Outputs and Dual Limit-Switch Inputs
 
-**Revision A0 — incomplete, untested prototype. Routing blocked; not ready to fabricate or connect to machinery.**
+**Revision A0 — untested prototype. Routing checks pass; final fabrication review and physical testing remain pending.**
 
-USB-C powers an RP2040 and connects a computer to one external STEPPERONLINE DM542T V4.0. The external driver supplies motor current from its own supply. This board carries control signals only. The public package includes circuit sources, the complete sourcing BOM, firmware sources and tests. Detailed investigation artifacts and compiled firmware remain local. Routing has been attempted but fails copper validation. Fabrication files and a store release are gated by the unresolved items in [VALIDATION.md](VALIDATION.md).
+USB-C powers an RP2040 and connects a computer to one external STEPPERONLINE DM542T V4.0. The external driver supplies motor current from its own supply. This board carries control signals only. The public package includes circuit sources, the complete sourcing BOM, firmware sources and tests. Detailed investigation artifacts and compiled firmware remain local. The current routed revision passes native DRC, shorts and independent physical-connectivity and dimensional audits. Fabrication files and a store release are gated by the unresolved items in [VALIDATION.md](VALIDATION.md).
 
 The storage failure has been resolved for the current tools. All 85 fitted components have exact JLCPCB mappings in [BOM.md](BOM.md) and [bom.csv](bom.csv). These are sourced parts, not an approved assembly package.
 
@@ -82,19 +82,19 @@ The exact product name is also in project metadata and the prototype [store list
 
 ## Reproduce and review
 
-Run board commands from this directory only. Use Bun 1.3.9 and `bun install --frozen-lockfile`, then `bun run format:check`, `bun run typecheck`, `bun run bom`, and `bun run test:firmware`. `bun run test:placement` checks an unrouted placement build. `bun run test:board` checks routed connectivity and rejects emitted PCB errors. Full staged tscircuit commands and their actual results are in [VALIDATION.md](VALIDATION.md). `dist/index/pcb.png` is a **rejected routing preview**, not a photograph or fabrication proof.
+Run board commands from this directory only. Use Bun 1.3.9 and `bun install --frozen-lockfile`, then `bun run format:check`, `bun run typecheck`, `bun run bom`, and `bun run test:firmware`. `bun run test:placement` checks an unrouted placement build. `bun run test:board` checks routed connectivity and rejects emitted PCB errors. Full staged tscircuit commands and their actual results are in [VALIDATION.md](VALIDATION.md). `dist/index/pcb.png` is a routed design render, not a photograph or physical-test result.
 
-USB suspend handling, regulated driver power and overload monitoring are implemented. Routed-copper validation, fabrication review and all physical measurements remain pending. No Gerbers or placement file is approved. No fabrication order has been placed. Use [BRING-UP.md](BRING-UP.md) after all pre-fabrication gates pass.
+USB suspend handling, regulated driver power and overload monitoring are implemented. Routed-copper checks pass. Final fabrication review and all physical measurements remain pending. No Gerbers or placement file is approved. No fabrication order has been placed. Use [BRING-UP.md](BRING-UP.md) after all pre-fabrication gates pass.
 
-Storage recovered on 2026-09-29. The earlier corrupted output remains quarantined locally; complete rejected candidates are preserved as historical evidence. Current source remains two-layer. Copper errors must be resolved before issuing Gerbers or placement files.
+Storage recovered on 2026-09-29. The earlier corrupted output remains quarantined locally; complete rejected candidates are preserved as historical evidence. Current source remains two-layer. Earlier rejected routes remain historical evidence. The current route has zero detected opens, shorts or ordinary drill-to-pad violations.
 
 ## Repositories and versions
 
-Source version **0.1.0-prototype.9**, hardware revision **A0**. Public source publication was authorized on 2026-09-29; it does not approve fabrication or hardware operation.
+Source version **0.1.0-prototype.10**, hardware revision **A0**. Public source publication was authorized on 2026-09-29; it does not approve fabrication or hardware operation.
 
 - [GitHub repository](https://github.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller)
 - [tscircuit project](https://tscircuit.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller--01a0e89c)
 
 Each meaningful saved revision is committed and tagged in GitHub and pushed to tscircuit with the same version. See [VERSIONING.md](VERSIONING.md). Historical manifests and rejected routing artifacts predate Git history and remain in the local investigation archive; they are not reconstructed or relabeled as validated releases. Public check results and hashes are in [evidence/public-validation.json](evidence/public-validation.json). Local toolchains, downloaded manufacturer PDFs, private task input and corrupted output are excluded from publication.
 
-The independent physical-connectivity audit requires Shapely 2.1.2 (`python3 -m venv firmware/.venv`, then `firmware/.venv/bin/pip install shapely==2.1.2`). Run `bun run test:connectivity` after routing. Prototype.3 passes native DRC and shorts but this additional audit finds one open VBUS_SENSE connection; routing remains blocked.
+The independent physical-connectivity audit requires Shapely 2.1.2 (`python3 -m venv firmware/.venv`, then `firmware/.venv/bin/pip install shapely==2.1.2`). Run `bun run test:connectivity` after routing. Prototype.3 passed native DRC and shorts but this additional audit found an open VBUS_SENSE connection. Prototype.10 resolves that open and passes all four copper checks. Final silkscreen and manufacturing review remain pending.

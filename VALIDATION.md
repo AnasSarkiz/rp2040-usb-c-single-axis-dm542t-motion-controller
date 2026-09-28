@@ -11,8 +11,8 @@ Reviewed 2026-09-29 local time. **Untested prototype; fabrication blocked.** Git
 | 1. Confirm requirements | passed | Driver/manual and user-authorized new mechanics below. |
 | 2. Review schematic and BOM | passed | DESIGN-REVIEW.md; 85 exact sourced components; regulated driver voltage/current budgets, supervisor, USB sequencing/suspend and overload handling reviewed. Physical electrical limits remain unmeasured. |
 | 3. Validate placement before routing | passed | Final unrouted build/test pass; placement 0 errors/0 warnings; schematic has only the accepted F1 style suggestion. PCB and schematic images inspected. Preserved in evidence/unrouted-A0/. |
-| 4. Route and validate copper | blocked | Native routing candidates fail copper checks. Storage recovered; fresh build has 199 PCB errors, shorts and drill/pad violations. |
-| 5. Automated and visual routed checks | blocked | Routed build, shorts, layer review and snapshots required. Source/native firmware tests already pass. |
+| 4. Route and validate copper | passed | 0.1.0-prototype.10: 0 native PCB errors; 0 shorts findings; 0 drill-to-pad violations; disconnected nets: []. See latest iteration below. |
+| 5. Automated and visual routed checks | in progress | Prototype.10 build, shorts, TypeScript, firmware and copper audits pass. Top/bottom layers, MCU and power details and schematic overview inspected. Snapshot changes reviewed; final silkscreen cleanup remains. |
 | 6. Approve prototype fabrication | blocked | Gerber/drill/CPL, stackup/mask/paste/orientation and assembler review follow gates 4–5. |
 | 7. Test physical prototype | not started | No physical hardware. BRING-UP.md defines required measurements. |
 | 8. Prepare store release | in progress | Exact name and revision in README, metadata and prototype source listing. GitHub/tscircuit projects created; source publication authorized. Sale-ready release remains incomplete. |
@@ -167,3 +167,13 @@ Unrouted placement/build/invariants pass and the placement overview was inspecte
 Moved and rotated C19 adjacent to the MCU ADC pin and spread C4, C5, C10 and C11 for courtyard clearance. Native build reports zero errors and all nets connect, but independent copper and native shorts audits reject the route.
 
 Unrouted placement/build/invariants pass and the placement overview was inspected. Routing results: 0 native PCB errors; 10 shorts findings; 5 drill-to-pad violations; disconnected nets: []. This routing candidate is rejected. No manufacturing rule was weakened. Logs: local evidence/iteration-9-*. Generated geometry and audits are preserved in evidence/routing-prototype-9/.
+
+## Placement iteration — 0.1.0-prototype.10
+
+Rotated U2 by 90 degrees and moved it to (-22, -4.5), moved its bypass C14 to (-28.5, -4.5), and moved C6, C8 and C23 away from prior via conflicts. Unrouted placement passes with zero errors/warnings. Native routed build, native shorts, independent dimensions/drills and independent 57-net/273-port physical connectivity all pass. Added rotated-pill geometry support with a bounds/area regression test; no audit limits changed.
+
+Unrouted placement/build/invariants pass and the placement overview was inspected. Routing results: 0 native PCB errors; 0 shorts findings; 0 drill-to-pad violations; disconnected nets: []. All four copper checks pass; remaining visual/fabrication gates still apply. Logs: local evidence/iteration-10-*. Generated geometry and audits are preserved in evidence/routing-prototype-10/.
+
+### Prototype.10 visual review and limits
+
+Reviewed dist/index/pcb.png and schematic.svg plus evidence/iteration-10-top-mcu.png, iteration-10-top-power.png, iteration-10-bottom.png and iteration-10-schematic.png. Copper routing checks pass without changed tolerances. Component-reference labels overlap in the MCU/power regions, and TP6 DIR overlaps R15. These silkscreen items still need cleanup before fabrication approval. The initial snapshot mismatch is expected from the documented placement/copper changes; it is not hidden or accepted as a fabrication gate. Firmware motion and power-policy sanitizer tests and TypeScript pass. Earlier schematic/BOM review remains applicable because connectivity and fitted components are unchanged. Generic imported-part pin warnings and F1 schematic style suggestion remain accepted for the previously recorded reasons.
