@@ -57,3 +57,6 @@ evidence/*
 !evidence/public-validation.json
 !evidence/source-manifest-0.*.json
 references/catalog/
+
+# Snapshots remain local pending full validation and visual acceptance
+__snapshots__/

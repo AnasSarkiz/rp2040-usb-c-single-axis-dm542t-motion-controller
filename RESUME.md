@@ -1,9 +1,7 @@
-# Resume A0 / source 0.1.0-prototype.2
+# Resume A0 / 0.1.0-prototype.3
 
-Read VALIDATION.md, DESIGN-REVIEW.md and VERSIONING.md. Disk space recovered on 2026-09-29. User now explicitly requires a GitHub repository, tscircuit project and a push to both for every meaningful saved version. Projects are created under AnasSarkiz; use the package repository/homepage URLs. GitHub app linkage at tscircuit was denied for this repository; direct CLI publishing remains the workflow.
+Continue routing placement iteration. User requires component moves after failures and pushes of every saved version to both services. Read AGENTS.md and VERSIONING.md.
 
-Current sources are two-layer, 85 components, native routing enabled, 4.03 mm circular keepouts, bottom GND pour. No four-layer trial has run. Requirements, schematic/BOM and unrouted placement passed; routed geometry remains blocked. Current iteration 2 rotates the MCU/crystal/decoupling cluster and relocates U5/U9/R8/C25. Unrouted gates pass. Native routing still has 199 errors, 24 shorts findings and 14 independent drill/pad violations. Source/firmware tests pass. Preserve rejected candidates and do not issue Gerbers or fabrication-ready claims.
+Two-layer 90x60x1 mm board, 85 parts. MCU/crystal/caps rotated 90 degrees; U5/U9/R8/C25 relocated in .2, testpoints relocated in .3. Stage-3 placement passes. .3 native route build and shorts pass (zero native errors), dimensional audit passes, but new physical-connectivity audit fails VBUS_SENSE: bottom-layer route ends at top-side U1 ADC pad without a via. 56 other nets are physically connected. Do not declare routing clear until the new audit passes. Move R24/R25/C19 toward the ADC pin and retry with unchanged DRC rules.
 
-See routing investigation in VALIDATION.md. Candidate 1 had only two native via/drill errors plus two independently found U5 same-net drill-to-pad overlaps; later explicit-route and phase experiments worsened results. Correct phase assignment uses net routingPhaseIndex, not net-name selectors in phase connections. No tool internals or DRC thresholds were bypassed.
-
-Evaluate four layers if necessary (brief permits it), review exact manufacturer's stackup and all inner copper, and revalidate. Do not upload local toolchains or private inputs. Each subsequent source version must be committed, tagged and pushed to both services per VERSIONING.md. No physical hardware or prototype order exists.
+Raw evidence, snapshots, toolchains and private inputs remain local. Source publishing is explicitly authorized; order/physical testing has not happened.

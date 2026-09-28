@@ -1,6 +1,6 @@
 {
   "name": "@tsci/AnasSarkiz.rp2040-usb-c-single-axis-dm542t-motion-controller--01a0e89c",
-  "version": "0.1.0-prototype.2",
+  "version": "0.1.0-prototype.3",
   "description": "RP2040 USB-C Single-Axis Stepper Motion Controller for External DM542T Drivers with STEP/DIR/ENABLE Outputs and Dual Limit-Switch Inputs",
   "main": "index.circuit.tsx",
   "keywords": [
@@ -20,9 +20,10 @@
     "bom": "bun scripts/build-bom.ts",
     "test:board": "python3 tests/check-board.py --stage routed",
     "test:firmware": "cc -std=c11 -Wall -Wextra -Werror -fsanitize=address,undefined firmware/motion.c firmware/test_motion.c -lm -o firmware/test-motion && firmware/test-motion",
-    "test": "bun run test:board && bun run test:firmware && bun run test:power",
+    "test": "bun run test:board && bun run test:connectivity && bun run test:firmware && bun run test:power",
     "test:power": "cc -std=c11 -Wall -Wextra -Werror -fsanitize=address,undefined firmware/power_policy.c firmware/test_power_policy.c -o firmware/test-power && firmware/test-power",
-    "test:placement": "python3 tests/check-board.py --stage placement"
+    "test:placement": "python3 tests/check-board.py --stage placement",
+    "test:connectivity": "firmware/.venv/bin/python scripts/check-copper-connectivity.py"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.14",

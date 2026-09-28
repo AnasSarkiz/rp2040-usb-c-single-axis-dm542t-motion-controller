@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-prototype.2",
+  "version": "0.1.0-prototype.3",
   "hardware_revision": "A0",
   "checked_on": "2026-09-29",
   "status": "untested_prototype_routing_failed_not_fabrication_ready",
@@ -10,14 +10,15 @@
     "firmware_power_policy_sanitizers": "passed",
     "netlist": "passed_zero_errors_zero_warnings",
     "placement": "passed_zero_errors_zero_warnings",
-    "routed_build": "failed_exit_1_199_errors",
-    "shorts": "failed_24_findings",
-    "routed_board_test": "failed",
-    "independent_geometry": "failed_14_drill_to_pad_violations",
+    "routed_build": "passed_zero_errors",
+    "shorts": "passed_zero_findings",
+    "routed_board_test": "passed",
+    "independent_geometry": "passed_zero_violations",
     "routed_visual_gate": "not_passed",
-    "snapshots": "not_accepted",
+    "snapshots": "generated_not_accepted_open_net",
     "fabrication": "blocked",
-    "physical_testing": "not_started"
+    "physical_testing": "not_started",
+    "physical_copper_connectivity": "failed_VBUS_SENSE_open"
   },
   "dependencies": {
     "tscircuit": "0.0.2646",
@@ -27,28 +28,7 @@
     "@biomejs/biome": "2.5.14"
   },
   "toolchain_archive_sha256": "39c44f8af42695b7b871df42e346c09fee670ea8dfc11f17083e296ea2b0d279",
-  "local_artifacts": [
-    {
-      "path": "evidence/routing-prototype-2/circuit.json",
-      "sha256": "9e543044d4b2e7ab325e6ee5d8f8cce41bac11e5a5846e34bb89957d15a9c07e"
-    },
-    {
-      "path": "evidence/routing-prototype-2/copper-measurements.json",
-      "sha256": "a05db710728c86e7ea2b350cbfa471b7501f1158c1e740f1cfcba7525ae03969"
-    },
-    {
-      "path": "evidence/routing-prototype-2/pcb.png",
-      "sha256": "5879454eb4121f485ea87b9056d49f87894b18c637f62d43495cf88cf984e441"
-    },
-    {
-      "path": "evidence/routing-prototype-2/pcb.svg",
-      "sha256": "7c2a7cef49f15e1c0372c60a1d5a77201a3669b106602bb5a1b911409930ee54"
-    },
-    {
-      "path": "evidence/routing-prototype-2/schematic.svg",
-      "sha256": "c063e1e7c7b1a47229ba6faf105160631a1f39ce76b8d23e48ae4dc57d8b2a48"
-    }
-  ],
+  "local_artifacts": [],
   "artifact_scope": "Raw logs, rejected generated designs and downloads remain local. Hashes identify evidence; they do not signify successful validation.",
-  "placement_changes": "MCU/crystal/decoupling rotated 90 degrees; U5 rotated/moved; U9/C25 and R8 relocated"
+  "placement_changes": "Relocated STEP/DIR/ENABLE/ARM and debug test pads"
 }

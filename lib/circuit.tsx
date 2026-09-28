@@ -437,25 +437,25 @@ export function CircuitParts() {
         return <PassiveComponent key={part.name} {...layout} />
       })}
       {[
-        "V5",
-        "V3V3",
-        "V1V1",
-        "GND",
-        "STEP",
-        "DIR",
-        "ENABLE",
-        "ARM",
-        "SWCLK",
-        "SWDIO",
-        "RUN",
-      ].map((rail, index) => (
+        { rail: "V5", x: -13, y: 16 },
+        { rail: "V3V3", x: -9, y: 16 },
+        { rail: "V1V1", x: -5, y: 16 },
+        { rail: "GND", x: -1, y: 16 },
+        { rail: "STEP", x: 9, y: 11 },
+        { rail: "DIR", x: 0, y: 11 },
+        { rail: "ENABLE", x: 23, y: 2 },
+        { rail: "ARM", x: 9, y: -4 },
+        { rail: "SWCLK", x: 2, y: -2 },
+        { rail: "SWDIO", x: 2, y: 1 },
+        { rail: "RUN", x: 5, y: -4 },
+      ].map(({ rail, x, y }, index) => (
         <group key={rail} pcbX={0} pcbY={0}>
           <testpoint
             name={`TP${index + 1}`}
             footprintVariant="pad"
             padDiameter="1.4mm"
-            pcbX={-13 + (index % 4) * 4}
-            pcbY={12 + Math.floor(index / 4) * 4}
+            pcbX={x}
+            pcbY={y}
             schX={(-35 + index * 7) * 0.3}
             schY={-21}
             connections={{ pin1: `net.${rail}` }}
@@ -463,8 +463,8 @@ export function CircuitParts() {
           <silkscreentext
             text={rail}
             fontSize="0.65mm"
-            pcbX={-13 + (index % 4) * 4}
-            pcbY={10.6 + Math.floor(index / 4) * 4}
+            pcbX={x}
+            pcbY={y - 1.4}
           />
         </group>
       ))}
