@@ -108,3 +108,7 @@ The schematic includes function and voltage/current notes beside all nine ICs. E
 ![Rejected A0 four-layer routing candidate](previews/A0-prototype.14/pcb.png)
 
 [Schematic preview](previews/A0-prototype.14/schematic.svg) · [Inner ground-layer diagnostic](previews/A0-prototype.14/inner1.svg) · [Current blockers](VALIDATION.md). No prototype.14 manufacturing export exists. Historical exports are withdrawn from ordering. These are generated design views, not physical prototype photographs.
+
+## Cloud build timeout
+
+Source release `0.1.0-prototype.15` sets `build.workerTimeoutMs` to `1800000` (30 minutes) in `tscircuit.config.json`. The prototype.14 cloud worker was terminated at its previous 600000 ms limit while routing was still advancing. An environment-level `TSCIRCUIT_BUILD_WORKER_TIMEOUT_MS` overrides this config if the host sets one; the host may also impose a separate overall deadline. Hosted completion with the increased limit remains unverified. PCB sources and dependencies are unchanged, so the rejected prototype.14 routing evidence still applies.

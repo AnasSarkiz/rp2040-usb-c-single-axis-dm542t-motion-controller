@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-prototype.14",
+  "version": "0.1.0-prototype.15",
   "hardware_revision": "A0",
   "checked_on": "2026-09-29",
   "status": "four_layer_routing_failed_not_fabrication_ready",
@@ -110,5 +110,13 @@
       "archive": "tooling/packages/tscircuit-alphabet-0.0.25-a0.1.tgz",
       "sha256": "350ef4b9cc2afc316e20e0037a40329bd8366bb221408e99d4ee95725d00e0c0"
     }
-  ]
+  ],
+  "routing_evidence_version": "0.1.0-prototype.14",
+  "build_timeout": {
+    "worker_timeout_ms": 1800000,
+    "previous_hosted_timeout_ms": 600000,
+    "config_validation": "passed_installed_cli_schema_and_worker_call_path",
+    "hosted_build": "unverified",
+    "pcb_source_changes": false
+  }
 }
