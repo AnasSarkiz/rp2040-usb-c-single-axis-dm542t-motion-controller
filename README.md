@@ -2,7 +2,7 @@
 
 **Revision A0 — untested prototype. Four-layer candidate fails routing validation. Not fabrication ready; do not order the historical exports.**
 
-USB-C powers an RP2040 and connects a computer to one external STEPPERONLINE DM542T V4.0. The external driver supplies motor current from its own supply. This board carries control signals only. The public package includes circuit sources, the complete sourcing BOM, firmware sources and tests. Detailed investigation artifacts and compiled firmware remain local. The prototype.13 audit missed two via-to-via copper clearance violations. The four-layer candidate still fails routing, via clearance and ground-plane enforcement; see the recorded toolchain fix and remaining blockers. Historical manufacturing exports are retained for traceability and are not approved for ordering. See [VALIDATION.md](VALIDATION.md).
+USB-C powers an RP2040 and connects a computer to one external STEPPERONLINE DM542T V4.0. The external driver supplies motor current from its own supply. This board carries control signals only. The public package includes circuit sources, the complete sourcing BOM, firmware sources and tests. Detailed investigation artifacts and compiled firmware remain local. The prototype.13 audit missed two via-to-via copper clearance violations. The latest four-layer candidate has no detected shorts and all required connections are routed, but still fails four via-spacing checks and ground-plane enforcement; see the recorded toolchain fix and remaining blockers. Historical manufacturing exports are retained for traceability and are not approved for ordering. See [VALIDATION.md](VALIDATION.md).
 
 All 85 fitted components have exact JLCPCB mappings in [BOM.md](BOM.md) and [bom.csv](bom.csv). These are sourced parts, not an approved assembly package.
 
@@ -116,3 +116,7 @@ Source release `0.1.0-prototype.17` sets `build.workerTimeoutMs` to `3600000` (6
 ## Bottom evaluation notice
 
 Source release `0.1.0-prototype.16` adds “For evaluation only; not FCC approved for resale.” to the bottom silkscreen in two centered lines at 1.8 mm font size. The [bottom placement preview](previews/A0-prototype.16/bottom-silkscreen-unrouted.png) is an unrouted render for reviewing the notice, not a fabrication-approved layout. The native layer render uses top-view coordinates, so bottom lettering appears mirrored and reads normally from the underside. The 60-minute build-worker timeout is configured in prototype.17.
+
+## Included local build — prototype.18
+
+This release includes fresh native routed output under `dist/`, uploaded with `--include-dist`. It is a **rejected diagnostic build, not a fabrication package**: four via-spacing errors and 28 non-GND traces on the reserved inner1 plane remain. Native shorts and independent physical-connectivity checks pass (57 nets, 273 required ports); ordinary drill-to-pad clearance also passes. See [build status](dist/build-status.json) and [dist notes](dist/README.md). Publishing dist does not establish that the service skips its cloud rebuild or changes the overall hosted timeout.

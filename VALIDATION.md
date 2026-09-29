@@ -10,10 +10,10 @@ Reviewed 2026-09-29 local time. **Untested prototype; via-spacing audit failed f
 |---|---|---|
 | 1. Confirm requirements | in progress | Four-layer 90×60×1 mm candidate; 1 oz outer/0.5 oz inner copper target. Exact manufacturer dielectric stackup and acceptance remain unconfirmed. |
 | 2. Review schematic and BOM | passed | DESIGN-REVIEW.md; 85 exact sourced components; regulated driver voltage/current budgets, supervisor, USB sequencing/suspend and overload handling reviewed. Physical electrical limits remain unmeasured. |
-| 3. Validate placement before routing | passed | Candidate 14c unrouted native build and board invariants pass; zero placement DRC errors/warnings; reviewed PCB image. R5/C2 rotation heuristics accepted as optimization suggestions. |
-| 4. Route and validate copper | blocked | 0.1.0-prototype.14: 57 native PCB errors; 10 shorts findings; 4 drill-to-pad violations; disconnected nets: []. See latest iteration below. |
-| 5. Automated and visual routed checks | blocked | Prototype.14 route rejected: native/shorts/via/plane checks fail. No routed snapshot accepted. Current workspace additionally requires A4 sheet organization; existing large schematic sheet still needs conversion. |
-| 6. Approve prototype fabrication | blocked | No fabrication package generated for rejected prototype.14. Historical prototype.13 exports are withdrawn from ordering because of via-spacing failures. Manufacturer acceptance remains pending. |
+| 3. Validate placement before routing | passed | Candidate 18: native unrouted build and board invariants pass; zero placement DRC errors/warnings; reviewed PCB. R5/C2 rotation optimization suggestions remain accepted. |
+| 4. Route and validate copper | blocked | Prototype.18: 4 via-spacing errors; 28 non-GND traces on reserved inner1 plane. No detected shorts; all 57 nets / 273 required ports connected; zero ordinary drill-to-pad violations. |
+| 5. Automated and visual routed checks | blocked | Prototype.18 routing rejected. Four copper-layer previews inspected; no snapshot accepted. A4 sheet conversion remains pending. |
+| 6. Approve prototype fabrication | blocked | No prototype.18 manufacturing export; dist is rejected diagnostic output only. Historical exports remain withdrawn from ordering. |
 | 7. Test physical prototype | not started | No physical hardware. BRING-UP.md defines required measurements. |
 | 8. Prepare store release | in progress | Exact name and revision in README, metadata and prototype source listing. GitHub/tscircuit projects created; source publication authorized. Sale-ready release remains incomplete. |
 
@@ -267,3 +267,13 @@ The user reported “Build timed out after 30 minutes”. Increased native `buil
 Configuration and release metadata only: electrical design, PCB placement, silkscreen, routing settings and dependency versions are unchanged from prototype.16. No new routing attempt or component move was made. Formatting and TypeScript checks passed. Existing routing, A4 sheet, stackup and fabrication blockers remain unchanged.
 
 Readback of prototype.16 from `package_releases/get` confirms `user_code_job_error.error_code=user_code_job_timeout` and message “Build timed out after 30 minutes”. This is a hosted-job timeout report, not the CLI worker timeout message. No supported project setting for the overall hosted deadline was found in the installed config schema. The worker limit change is published as requested, but resolution of the reported platform timeout is not claimed; the service operator may need to increase that deadline.
+
+## Source release 0.1.0-prototype.18 — routed dist publication
+
+Moved C8 from (-3.6, 1.7) to (-4.4, 2.0) mm beside the previous RP2040 pin22/via congestion before rerouting. Native netlist, pin-specification, source and schematic-placement commands exited 0. Placement has zero DRC errors/warnings; exit 1 represents the previously accepted R5/C2 rotation suggestions. Native unrouted build and placement invariants passed, and the placement image was inspected. Electrical connectivity, component ratings and BOM are unchanged.
+
+Fresh native routed build generated 217 traces and 152 vias, then exited 1 with four pcb_via_clearance_error entries. Native shorts check passes; the independent physical audit passes all 57 nets and 273 required ports with no shorted groups. Ordinary drill-to-pad violations: zero; minimum clearance 0.1800019 mm. Via-pair audit still rejects four pairs: minimum different-net ring gap 0.1 mm versus required 0.15 mm, minimum drill gap 0.213322 mm versus required 0.46 mm. Reserved-plane audit rejects 28 non-GND traces on inner1. These continue the documented native multilayer-routing blockers.
+
+Format and TypeScript checks pass. Top, bottom, inner1 and inner2 diagnostic previews were inspected; inner1 still contains signal cuts. Bottom notice is present, but final routed silkscreen-to-via clearance and Gerber review remain pending. No snapshots were accepted and no fabrication export was generated. A4 conversion, stackup acceptance and hardware tests remain pending.
+
+User requested --include-dist. Fresh native circuit JSON and PCB/schematic renders are included with the exact tagged source, build-status record, source/output hashes and full independent audit reports. Historical dist/debug files were archived locally before building. Native errors are preserved in circuit JSON; no rules or checks were relaxed. Including rejected dist does not mean build success, fabrication readiness or verified cloud timeout resolution. Logs: evidence/iteration-18-*.log; raw evidence: evidence/routing-prototype-18/.

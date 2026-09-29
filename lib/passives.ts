@@ -386,8 +386,8 @@ export const passives: Passive[] = [
     code: "C1525",
     footprint: "0402",
     nets: ["V3V3", "GND"],
-    pcbX: -3.6,
-    pcbY: 1.7,
+    pcbX: -4.4,
+    pcbY: 2,
     purpose: "U1 IOVDD pin22 bypass",
   },
   {

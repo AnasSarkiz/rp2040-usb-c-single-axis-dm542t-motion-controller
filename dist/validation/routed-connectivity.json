@@ -1,0 +1,293 @@
+{
+  "circuit_sha256": "c01006f5916422e1fb6a2ae3884c46f84c55da5db58b02822d198b90b07f367d",
+  "method": "Union physical pad, trace and pour copper per layer; join layers only at plated holes/vias. Conservative minimum endpoint width for tapered segments; geometric join tolerance 0.0000001 mm. Shorts require the separate native raster/gerber check.",
+  "nets": {
+    "VDRV": {
+      "required_ports": 9,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "BOOST_L2": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "GND": {
+      "required_ports": 71,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "BOOST_L1": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "DRIVER_VIN": {
+      "required_ports": 6,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "DRIVER_REG_ENABLE": {
+      "required_ports": 3,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "DRIVER_FB": {
+      "required_ports": 3,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "V5": {
+      "required_ports": 9,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "DRIVER_POWER": {
+      "required_ports": 3,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "DRIVER_FAULT": {
+      "required_ports": 3,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "DRIVER_ILIM": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "SUPERVISOR_RESET": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "V3V3": {
+      "required_ports": 29,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "V1V1": {
+      "required_ports": 7,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "XIN": {
+      "required_ports": 3,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "XOUT": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "SWCLK": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "SWDIO": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "RUN": {
+      "required_ports": 5,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "MCU_DM": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "MCU_DP": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "QSPI_D3": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "QSPI_CLK": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "QSPI_D0": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "QSPI_D2": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "QSPI_D1": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "QSPI_CS": {
+      "required_ports": 4,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "STEP": {
+      "required_ports": 3,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "DIR": {
+      "required_ports": 3,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "ENABLE": {
+      "required_ports": 3,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "ARM": {
+      "required_ports": 3,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "LIMIT_MIN": {
+      "required_ports": 4,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "LIMIT_MAX": {
+      "required_ports": 4,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "STATUS": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "VBUS_SENSE": {
+      "required_ports": 4,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "USB_DP": {
+      "required_ports": 5,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "USB_DM": {
+      "required_ports": 5,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "VBUS": {
+      "required_ports": 5,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "FUSED_VBUS": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "LIMIT_MIN_WIRE": {
+      "required_ports": 4,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "LIMIT_MAX_WIRE": {
+      "required_ports": 4,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "CC1": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "CC2": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "XTAL_OUT": {
+      "required_ports": 3,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "BOOT_SW": {
+      "required_ports": 3,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "LED_PWR": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "LED_STATUS": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "STEP_GATE": {
+      "required_ports": 3,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "PUL_MINUS": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "STEP_RETURN": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "ARM_GATE": {
+      "required_ports": 3,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "DIR_GATE": {
+      "required_ports": 3,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "DIR_MINUS": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "DISABLE_GATE": {
+      "required_ports": 3,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "ENA_MINUS": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "ENABLE_GATE": {
+      "required_ports": 3,
+      "physical_clusters": 1,
+      "missing_ports": []
+    },
+    "DRIVER_FB_SERIES": {
+      "required_ports": 2,
+      "physical_clusters": 1,
+      "missing_ports": []
+    }
+  },
+  "failed_nets": [],
+  "shorted_net_groups": []
+}

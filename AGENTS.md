@@ -7,3 +7,5 @@ The user explicitly requested both a tscircuit project and a GitHub repository a
 Never upload the whole development directory to tscircuit: the installed CLI does not honor .gitignore. Publish a reviewed Git archive from a task-local .tscircuit/publish directory. Keep private task input, credentials, caches, downloaded toolchains and corrupt output out of both repositories.
 
 For routing failures, the user requires an actual component placement adjustment before each new routing attempt. Inspect error locations and move/rotate the relevant parts; rerun unrouted placement checks and inspect the placement before routing again. Continue until routing checks are clear or a demonstrated tooling blocker prevents progress. Do not relax manufacturing constraints or hide failures.
+
+The user requests `tsci push index.circuit.tsx --include-dist` for publication. Include freshly generated, reviewed output matching the tagged source; exclude stale placement previews and historical debug output. Preserve failures explicitly when publishing a rejected prototype. Follow VERSIONING.md for source/output hashes and Git-archive publication.

@@ -9,3 +9,5 @@ fabrication/**/assembly.svg -text -diff
 tooling/regression-tests/**/*.svg -text -diff
 # Unified patch context lines intentionally contain one leading space.
 tooling/patches/*.patch whitespace=-blank-at-eol
+# Native dist SVGs retain generator bytes and are reviewed visually.
+dist/**/*.svg -text -diff
