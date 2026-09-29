@@ -58,5 +58,4 @@ evidence/*
 !evidence/source-manifest-0.*.json
 references/catalog/
 
-# Snapshots remain local pending full validation and visual acceptance
-__snapshots__/
+# Reviewed PCB/schematic snapshots are versioned.

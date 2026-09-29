@@ -84,17 +84,23 @@ The exact product name is also in project metadata and the prototype [store list
 
 Run board commands from this directory only. Use Bun 1.3.9 and `bun install --frozen-lockfile`, then `bun run format:check`, `bun run typecheck`, `bun run bom`, and `bun run test:firmware`. `bun run test:placement` checks an unrouted placement build. `bun run test:board` checks routed connectivity and rejects emitted PCB errors. Full staged tscircuit commands and their actual results are in [VALIDATION.md](VALIDATION.md). `dist/index/pcb.png` is a routed design render, not a photograph or physical-test result.
 
-USB suspend handling, regulated driver power and overload monitoring are implemented. Routed-copper checks pass. Final fabrication review and all physical measurements remain pending. No Gerbers or placement file is approved. No fabrication order has been placed. Use [BRING-UP.md](BRING-UP.md) after all pre-fabrication gates pass.
+USB suspend handling, regulated driver power and overload monitoring are implemented. Routed-copper checks pass. Final fabrication review and all physical measurements remain pending. Gerbers, drills and an 85-part placement file are included for review; they are not approved for ordering. No fabrication order has been placed. Use [BRING-UP.md](BRING-UP.md) after all pre-fabrication gates pass.
 
 Storage recovered on 2026-09-29. The earlier corrupted output remains quarantined locally; complete rejected candidates are preserved as historical evidence. Current source remains two-layer. Earlier rejected routes remain historical evidence. The current route has zero detected opens, shorts or ordinary drill-to-pad violations.
 
 ## Repositories and versions
 
-Source version **0.1.0-prototype.10**, hardware revision **A0**. Public source publication was authorized on 2026-09-29; it does not approve fabrication or hardware operation.
+Source version **0.1.0-prototype.11**, hardware revision **A0**. Public source publication was authorized on 2026-09-29; it does not approve fabrication or hardware operation.
 
 - [GitHub repository](https://github.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller)
 - [tscircuit project](https://tscircuit.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller--01a0e89c)
 
 Each meaningful saved revision is committed and tagged in GitHub and pushed to tscircuit with the same version. See [VERSIONING.md](VERSIONING.md). Historical manifests and rejected routing artifacts predate Git history and remain in the local investigation archive; they are not reconstructed or relabeled as validated releases. Public check results and hashes are in [evidence/public-validation.json](evidence/public-validation.json). Local toolchains, downloaded manufacturer PDFs, private task input and corrupted output are excluded from publication.
 
-The independent physical-connectivity audit requires Shapely 2.1.2 (`python3 -m venv firmware/.venv`, then `firmware/.venv/bin/pip install shapely==2.1.2`). Run `bun run test:connectivity` after routing. Prototype.3 passed native DRC and shorts but this additional audit found an open VBUS_SENSE connection. Prototype.10 resolves that open and passes all four copper checks. Final silkscreen and manufacturing review remain pending.
+The independent physical-connectivity audit requires Shapely 2.1.2 (`python3 -m venv firmware/.venv`, then `firmware/.venv/bin/pip install shapely==2.1.2`). Run `bun run test:connectivity` after routing. Prototype.3 passed native DRC and shorts but this additional audit found an open VBUS_SENSE connection. Prototype.10 resolves that open and passes all four copper checks. The labels were cleaned up in prototype.11. Manufacturing approval remains blocked by the native through-hole stencil output and missing subtitle bullet glyphs; see the fabrication review package.
+
+## Current preview and manufacturing review
+
+![A0 routed board render](previews/A0-prototype.11/pcb.png)
+
+[Schematic preview](previews/A0-prototype.11/schematic.svg) · [Manufacturing package and blockers](fabrication/A0-prototype.11/README.md). These are generated design views, not physical prototype photographs.

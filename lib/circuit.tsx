@@ -1,3 +1,4 @@
+import { ReferenceLabels, referenceLabels } from "./silkscreen"
 import { DriverPower } from "./driver-power"
 import { TerminalFootprint } from "./terminal-footprint"
 import { passiveSchematicPosition } from "./schematic-layout"
@@ -26,6 +27,7 @@ export function CircuitParts() {
   return (
     <>
       <DriverPower />
+      <ReferenceLabels />
       <net name="GND" isGroundNet />
       <net name="VBUS" isPowerNet nominalTraceWidth="0.5mm" />
       <net name="V5" isPowerNet nominalTraceWidth="0.5mm" />
@@ -34,6 +36,7 @@ export function CircuitParts() {
       <net name="FUSED_VBUS" isPowerNet nominalTraceWidth="0.5mm" />
       <RP2040
         name="U1"
+        pcbStyle={{ silkscreenTextVisibility: "hidden" }}
         schHeight={5.8}
         pinAttributes={RP2040Attributes}
         pcbX={-10}
@@ -102,6 +105,7 @@ export function CircuitParts() {
       />
       <AP2112K_3_3TRG1
         name="U3"
+        pcbStyle={{ silkscreenTextVisibility: "hidden" }}
         schHeight={0.6}
         pcbX={-27}
         pcbY={-10}
@@ -413,6 +417,11 @@ export function CircuitParts() {
           pcbX: part.pcbX,
           pcbY: part.pcbY,
           pcbRotation: part.pcbRotation,
+          pcbStyle: {
+            silkscreenTextVisibility: referenceLabels[part.name]
+              ? ("hidden" as const)
+              : ("inherit" as const),
+          },
           schRotation: part.nets.some((net) =>
             [
               "GND",
@@ -455,6 +464,16 @@ export function CircuitParts() {
             name={`TP${index + 1}`}
             footprintVariant="pad"
             padDiameter="1.4mm"
+            footprint={
+              <footprint>
+                <smtpad
+                  shape="circle"
+                  radius="0.7mm"
+                  portHints={["pin1"]}
+                  solderPasteMargin="-0.7mm"
+                />
+              </footprint>
+            }
             pcbX={x}
             pcbY={y}
             schX={(-35 + index * 7) * 0.3}
@@ -464,8 +483,16 @@ export function CircuitParts() {
           <silkscreentext
             text={rail}
             fontSize="0.65mm"
-            pcbX={x}
-            pcbY={y - 1.4}
+            pcbX={
+              rail === "DIR" || rail === "STEP"
+                ? x + 1.8
+                : rail === "ARM"
+                  ? x - 1.8
+                  : x
+            }
+            pcbY={
+              rail === "DIR" || rail === "STEP" || rail === "ARM" ? y : y - 1.4
+            }
           />
         </group>
       ))}

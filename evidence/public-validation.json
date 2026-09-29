@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-prototype.10",
+  "version": "0.1.0-prototype.11",
   "hardware_revision": "A0",
   "checked_on": "2026-09-29",
   "status": "routing_checks_passed_untested_prototype",
@@ -14,9 +14,9 @@
     "shorts": "passed_zero_findings",
     "routed_board_test": "passed",
     "independent_geometry": "passed_zero_violations",
-    "routed_visual_gate": "copper_layers_reviewed_silkscreen_cleanup_pending",
-    "snapshots": "pending_current_revision",
-    "fabrication": "not_approved",
+    "routed_visual_gate": "passed_copper_and_schematic_review",
+    "snapshots": "passed_reviewed_pcb_and_schematic_ci",
+    "fabrication": "blocked_terminal_paste_and_subtitle_bullet_export",
     "physical_testing": "not_started",
     "physical_copper_connectivity": "passed_all_57_nets_273_ports",
     "geometry_regression": "passed_rotated_pill_bounds_area"
@@ -31,30 +31,38 @@
   "toolchain_archive_sha256": "39c44f8af42695b7b871df42e346c09fee670ea8dfc11f17083e296ea2b0d279",
   "local_artifacts": [
     {
-      "path": "evidence/routing-prototype-10/circuit.json",
-      "sha256": "73c2e0e97d17fdc586b1530757d949a5da4a3247d3897a9e82209517277a304f"
+      "path": "evidence/routing-prototype-11/circuit.json",
+      "sha256": "2c6677bb2808b9309ed45a463ab2ff047f34ebe0befc1f0e37961bf91ed7af67"
     },
     {
-      "path": "evidence/routing-prototype-10/copper-measurements.json",
-      "sha256": "b8dcf9920cb122afa5ad5a173b0324b08f1945462972a9ce656d4c243d89fe04"
+      "path": "evidence/routing-prototype-11/copper-measurements.json",
+      "sha256": "d6b4aaf4c110fae15fdac043702c3f40f9b53fb1fc1cac6a449661ad83e94f1e"
     },
     {
-      "path": "evidence/routing-prototype-10/pcb.png",
-      "sha256": "4021296f7af81add0d9b343fd450092c486c4d443296a7fc612ed066998367d0"
+      "path": "evidence/routing-prototype-11/pcb.png",
+      "sha256": "2b29d002344ac8443dde25e49f8328d52e723a31118b719ea3cc5ef7977fc67b"
     },
     {
-      "path": "evidence/routing-prototype-10/pcb.svg",
-      "sha256": "f41fb5973f9c7a84384e06d78c27d73309c9f7548972e1bebe349ef5d837268f"
+      "path": "evidence/routing-prototype-11/pcb.svg",
+      "sha256": "c11d100831e29b972c8c1978fe17245d642953c66dd04292f29c0f3cd175168f"
     },
     {
-      "path": "evidence/routing-prototype-10/routed-connectivity.json",
-      "sha256": "a2b2344a83879e86dacc2cb23a9953414bb483676b8f4e0d4c5e1b49f53bb853"
+      "path": "evidence/routing-prototype-11/routed-connectivity.json",
+      "sha256": "99f9cdb5f6554d3cf18e00b36f6f4ffd3f390eac7ebad990d9b824eb056e23ab"
     },
     {
-      "path": "evidence/routing-prototype-10/schematic.svg",
+      "path": "evidence/routing-prototype-11/schematic.svg",
       "sha256": "c063e1e7c7b1a47229ba6faf105160631a1f39ce76b8d23e48ae4dc57d8b2a48"
     }
   ],
   "artifact_scope": "Raw logs, rejected generated designs and downloads remain local. Hashes identify evidence; they do not signify successful validation.",
-  "placement_changes": "Rotated U2 by 90 degrees and moved it to (-22, -4.5), moved its bypass C14 to (-28.5, -4.5), and moved C6, C8 and C23 away from prior via conflicts. Unrouted placement passes with zero errors/warnings. Native routed build, native shorts, independent dimensions/drills and independent 57-net/273-port physical connectivity all pass. Added rotated-pill geometry support with a bounds/area regression test; no audit limits changed."
+  "placement_changes": "Cleaned overlapping component and signal labels. Preserved all physical copper, holes, mounting clearances and component positions from prototype.10; only test-pad port-hint spelling changes from 1 to pin1. Replaced implied probe footprints with identical 1.4 mm copper pads and explicitly zero stencil paste using the supported solderPasteMargin property. All routed checks and software tests pass. Gerber export review identifies unavoidable through-hole terminal paste in the installed core; fabrication approval remains blocked.",
+  "measurements": {
+    "minimum_trace_width_mm": 0.15,
+    "via_drill_mm": 0.3,
+    "via_pad_mm": 0.6,
+    "minimum_drill_to_smd_mm": 0.1548845,
+    "copper_to_board_edge_mm": 0.5,
+    "minimum_mount_center_to_copper_mm": 4.010594
+  }
 }

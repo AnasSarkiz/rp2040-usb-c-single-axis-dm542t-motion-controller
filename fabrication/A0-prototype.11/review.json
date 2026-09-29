@@ -1,0 +1,99 @@
+{
+  "circuit_sha256": "2c6677bb2808b9309ed45a463ab2ff047f34ebe0befc1f0e37961bf91ed7af67",
+  "fitted_placements": 85,
+  "status": "blocked",
+  "unwanted_paste": [
+    {
+      "component": "J2",
+      "x_mm": 7.75,
+      "y_mm": 17,
+      "paste_ids": [
+        "pcb_solder_paste_151",
+        "pcb_solder_paste_152"
+      ]
+    },
+    {
+      "component": "J2",
+      "x_mm": 4.25,
+      "y_mm": 17,
+      "paste_ids": [
+        "pcb_solder_paste_153",
+        "pcb_solder_paste_154"
+      ]
+    },
+    {
+      "component": "J3",
+      "x_mm": 19.75,
+      "y_mm": 17,
+      "paste_ids": [
+        "pcb_solder_paste_155",
+        "pcb_solder_paste_156"
+      ]
+    },
+    {
+      "component": "J3",
+      "x_mm": 16.25,
+      "y_mm": 17,
+      "paste_ids": [
+        "pcb_solder_paste_157",
+        "pcb_solder_paste_158"
+      ]
+    },
+    {
+      "component": "J4",
+      "x_mm": 31.75,
+      "y_mm": 20,
+      "paste_ids": [
+        "pcb_solder_paste_159",
+        "pcb_solder_paste_160"
+      ]
+    },
+    {
+      "component": "J4",
+      "x_mm": 28.25,
+      "y_mm": 20,
+      "paste_ids": [
+        "pcb_solder_paste_161",
+        "pcb_solder_paste_162"
+      ]
+    },
+    {
+      "component": "J5",
+      "x_mm": 9.25,
+      "y_mm": -25,
+      "paste_ids": [
+        "pcb_solder_paste_163",
+        "pcb_solder_paste_164"
+      ]
+    },
+    {
+      "component": "J5",
+      "x_mm": 12.75,
+      "y_mm": -25,
+      "paste_ids": [
+        "pcb_solder_paste_165",
+        "pcb_solder_paste_166"
+      ]
+    },
+    {
+      "component": "J6",
+      "x_mm": 21.25,
+      "y_mm": -25,
+      "paste_ids": [
+        "pcb_solder_paste_167",
+        "pcb_solder_paste_168"
+      ]
+    },
+    {
+      "component": "J6",
+      "x_mm": 24.75,
+      "y_mm": -25,
+      "paste_ids": [
+        "pcb_solder_paste_169",
+        "pcb_solder_paste_170"
+      ]
+    }
+  ],
+  "assembler_review": "not_performed",
+  "physical_testing": "not_performed"
+}

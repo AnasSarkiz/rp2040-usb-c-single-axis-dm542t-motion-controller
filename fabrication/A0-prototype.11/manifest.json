@@ -1,0 +1,81 @@
+{
+  "source_version": "0.1.0-prototype.11",
+  "hardware_revision": "A0",
+  "source_tag": "v0.1.0-prototype.11",
+  "circuit_sha256": "2c6677bb2808b9309ed45a463ab2ff047f34ebe0befc1f0e37961bf91ed7af67",
+  "status": "review_only_not_approved_to_order",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "2fbedcfe612dd0c3b0bbc42c3e74e68ce044d4d555e056d3ba9b00a55acb6bdd"
+    },
+    {
+      "path": "assembly-bom.csv",
+      "sha256": "224b4425415dfc26eb18821b5b7ea1f309686bda3572a527a2be1931fa7b6309"
+    },
+    {
+      "path": "exported/B_Cu.gbr",
+      "sha256": "e64a2e6cf5aa41a5e01a9ad08188108ac50a1af7ba7f0618a1faf149a0c842df"
+    },
+    {
+      "path": "exported/B_Mask.gbr",
+      "sha256": "5ba10c308ca6a2f540e6d35c1d14f02b39b8d7ac2a8e12e742af632ce60d9d6f"
+    },
+    {
+      "path": "exported/B_Paste.gbr",
+      "sha256": "79b0c33c97cf1214e42d1b9a107ec72811aba405b52cb1cbe2dbd587cf3804d4"
+    },
+    {
+      "path": "exported/B_SilkScreen.gbr",
+      "sha256": "6e23993fb3c56b1c75bbc2ac1674412edc929f010de17db86055b161a455a69f"
+    },
+    {
+      "path": "exported/Edge_Cuts.gbr",
+      "sha256": "1ed7442e9e484177a15fb575ca2a47bf64a344707393cfb18e1f85f59f6f29ab"
+    },
+    {
+      "path": "exported/F_Cu.gbr",
+      "sha256": "e66b2ed967f3526e59dc959df213f1b2a549fa4024084277f5f8289fbba2208f"
+    },
+    {
+      "path": "exported/F_Fab.gbr",
+      "sha256": "c1f2c8812c8c2ebe0470b12f96b1e90312a512d6e584799015759d69f965b8df"
+    },
+    {
+      "path": "exported/F_Mask.gbr",
+      "sha256": "a2da95024b084e982ccdf72f1109bfd62a07e6c9c4945d7007e7de5cbe741d4e"
+    },
+    {
+      "path": "exported/F_Paste.gbr",
+      "sha256": "2f9733585c5d6a9562ae6c0159a3afe54a7b70d01bccb165f8fc535d9374b92a"
+    },
+    {
+      "path": "exported/F_SilkScreen.gbr",
+      "sha256": "0be2e29ccac1ab82c6f2438cc31bf6eb71f94fc5ffdf40223ee9e4b40f6fde33"
+    },
+    {
+      "path": "exported/bom.csv",
+      "sha256": "8189284dc0cd2692e1b3efed89fca3aa57e14c4390eb2ba1a9c5588d656a946e"
+    },
+    {
+      "path": "exported/drill-L1-L2.drl",
+      "sha256": "10367ae9d144bc9881ab9b2aefd78ad8c1e1cb5e84d0118f68415d1867bf626b"
+    },
+    {
+      "path": "exported/drill_npth.drl",
+      "sha256": "2e08f60ced33cfa2872db4086f2336b8f95fe9e1270cf9362d271b16e70dcc20"
+    },
+    {
+      "path": "exported/pick_and_place.csv",
+      "sha256": "109674066d2ca3c2a33040d484571274e04b0eb0000c41ad542d9a1cbff58fc2"
+    },
+    {
+      "path": "gerbers.zip",
+      "sha256": "dd43c4ca8f3720c80654ec9364353d0b26a619c944c8ec6906cca254449fd65a"
+    },
+    {
+      "path": "review.json",
+      "sha256": "bf4105e6265bc25424be336c796d7b8329c1cb2c50146f4422e99810f8f0c88c"
+    }
+  ]
+}

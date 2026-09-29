@@ -1,0 +1,6 @@
+# Preserve exact native export bytes; SVG snapshots are reviewed as rendered images.
+__snapshots__/*.svg -text -diff
+previews/**/*.svg -text -diff
+fabrication/**/exported/*.csv -text whitespace=cr-at-eol
+*.zip -text -diff
+*.png -text -diff
