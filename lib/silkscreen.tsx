@@ -1,42 +1,30 @@
-// Board-space reference labels for crowded areas; purchased land patterns stay intact.
-export const referenceLabels: Record<string, { x: number; y: number }> = {
-  C4: { x: -13, y: 8.9 },
-  C8: { x: -1.7, y: 3.5 },
-  C9: { x: -3.2, y: 4.8 },
-  C10: { x: -6.3, y: 7.4 },
-  C11: { x: -8.9, y: 9.4 },
-  C14: { x: -28.5, y: -3.1 },
-  C16: { x: 0.3, y: -4.4 },
-  C19: { x: -11, y: 9.2 },
-  U1: { x: -5, y: -6 },
-  U3: { x: -27, y: -12.5 },
-  R20: { x: 11, y: -11.2 },
-  R8: { x: 2, y: -5.2 },
+// Fabricated legends use >=1.8 mm font size: the vector font's 0.09 stroke
+// ratio emits >=0.162 mm lines. Detailed part references remain on F_Fab.
+export const probeLabels: Record<
+  string,
+  { text: string; x: number; y: number }
+> = {
+  V5: { text: "5V", x: -13, y: 18.5 },
+  V3V3: { text: "3V3", x: -9, y: 18.5 },
+  V1V1: { text: "1V1", x: -5, y: 18.5 },
+  GND: { text: "GND", x: -1, y: 18.5 },
+  STEP: { text: "STEP", x: 13.5, y: 11 },
+  DIR: { text: "DIR", x: -3.5, y: 11 },
+  ENABLE: { text: "ENABLE", x: 28, y: 2 },
+  ARM: { text: "ARM", x: 12, y: -4 },
+  SWCLK: { text: "SWCLK", x: 7, y: -2 },
+  SWDIO: { text: "SWDIO", x: 8, y: 3.2 },
+  RUN: { text: "RUN", x: 5.6, y: -6.2 },
 }
 
-function ReferenceLabel({
-  name,
-  position,
-}: {
-  name: string
-  position: { x: number; y: number }
-}) {
-  return (
-    <silkscreentext
-      text={name}
-      pcbX={position.x}
-      pcbY={position.y}
-      fontSize="0.8mm"
-    />
-  )
-}
-
-export function ReferenceLabels() {
+export function FunctionalLabels() {
   return (
     <>
-      {Object.entries(referenceLabels).map(([name, position]) => (
-        <ReferenceLabel key={name} name={name} position={position} />
-      ))}
+      <silkscreentext text="USB-C" pcbX={-40} pcbY={7} fontSize="1.8mm" />
+      <silkscreentext text="BOOT" pcbX={-29} pcbY={9.5} fontSize="1.8mm" />
+      <silkscreentext text="RESET" pcbX={-29} pcbY={-24} fontSize="1.8mm" />
+      <silkscreentext text="PWR" pcbX={-29} pcbY={22} fontSize="1.8mm" />
+      <silkscreentext text="STATE" pcbX={-21} pcbY={22} fontSize="1.8mm" />
     </>
   )
 }

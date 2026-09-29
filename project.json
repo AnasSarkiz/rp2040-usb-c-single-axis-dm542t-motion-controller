@@ -1,7 +1,7 @@
 {
   "title": "RP2040 USB-C Single-Axis Stepper Motion Controller for External DM542T Drivers with STEP/DIR/ENABLE Outputs and Dual Limit-Switch Inputs",
   "hardware_revision": "A0",
-  "design_status": "routing_checks_passed_untested_prototype",
+  "design_status": "internal_design_export_checks_passed_assembler_acceptance_pending",
   "driver_target": "STEPPERONLINE DM542T V4.0",
   "silkscreen": [
     "RP2040 USB-C Motion Controller",
@@ -28,7 +28,7 @@
     }
   },
   "publication_status": "public_prototype_source_project",
-  "source_version": "0.1.0-prototype.11",
+  "source_version": "0.1.0-prototype.12",
   "github_repository": "https://github.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller",
   "tscircuit_package": "https://tscircuit.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller--01a0e89c"
 }

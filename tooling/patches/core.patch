@@ -1,0 +1,118 @@
+--- a/lib/components/primitive-components/PlatedHole.ts
++++ b/lib/components/primitive-components/PlatedHole.ts
+@@ -161,26 +161,28 @@
+       })
+ 
+       this.pcb_plated_hole_id = pcb_plated_hole.pcb_plated_hole_id
+-      db.pcb_solder_paste.insert({
+-        layer: "top",
+-        shape: "circle",
+-        // @ts-ignore: no idea why this is triggering
+-        radius: props.outerDiameter / 2,
+-        x: position.x,
+-        y: position.y,
+-        subcircuit_id: subcircuit?.subcircuit_id ?? undefined,
+-        pcb_group_id: this.getGroup()?.pcb_group_id ?? undefined,
+-      })
+-      db.pcb_solder_paste.insert({
+-        layer: "bottom",
+-        shape: "circle",
+-        // @ts-ignore: no idea why this is triggering
+-        radius: props.outerDiameter / 2,
+-        x: position.x,
+-        y: position.y,
+-        subcircuit_id: subcircuit?.subcircuit_id ?? undefined,
+-        pcb_group_id: this.getGroup()?.pcb_group_id ?? undefined,
+-      })
++      if (!props.solderPasteDisabled)
++        db.pcb_solder_paste.insert({
++          layer: "top",
++          shape: "circle",
++          // @ts-ignore: no idea why this is triggering
++          radius: props.outerDiameter / 2,
++          x: position.x,
++          y: position.y,
++          subcircuit_id: subcircuit?.subcircuit_id ?? undefined,
++          pcb_group_id: this.getGroup()?.pcb_group_id ?? undefined,
++        })
++      if (!props.solderPasteDisabled)
++        db.pcb_solder_paste.insert({
++          layer: "bottom",
++          shape: "circle",
++          // @ts-ignore: no idea why this is triggering
++          radius: props.outerDiameter / 2,
++          x: position.x,
++          y: position.y,
++          subcircuit_id: subcircuit?.subcircuit_id ?? undefined,
++          pcb_group_id: this.getGroup()?.pcb_group_id ?? undefined,
++        })
+     } else if (props.shape === "pill" && props.rectPad) {
+       const pcb_plated_hole = db.pcb_plated_hole.insert({
+         pcb_component_id,
+@@ -235,28 +237,30 @@
+       } as PcbPlatedHoleOval)
+ 
+       this.pcb_plated_hole_id = pcb_plated_hole.pcb_plated_hole_id
+-      db.pcb_solder_paste.insert({
+-        layer: "top",
+-        shape: props.shape,
+-        // @ts-ignore: no idea why this is triggering
+-        width: props.outerWidth,
+-        height: props.outerHeight,
+-        x: position.x,
+-        y: position.y,
+-        subcircuit_id: subcircuit?.subcircuit_id ?? undefined,
+-        pcb_group_id: this.getGroup()?.pcb_group_id ?? undefined,
+-      })
+-      db.pcb_solder_paste.insert({
+-        layer: "bottom",
+-        shape: props.shape,
+-        // @ts-ignore: no idea why this is triggering
+-        width: props.outerWidth,
+-        height: props.outerHeight,
+-        x: position.x,
+-        y: position.y,
+-        subcircuit_id: subcircuit?.subcircuit_id ?? undefined,
+-        pcb_group_id: this.getGroup()?.pcb_group_id ?? undefined,
+-      })
++      if (!props.solderPasteDisabled)
++        db.pcb_solder_paste.insert({
++          layer: "top",
++          shape: props.shape,
++          // @ts-ignore: no idea why this is triggering
++          width: props.outerWidth,
++          height: props.outerHeight,
++          x: position.x,
++          y: position.y,
++          subcircuit_id: subcircuit?.subcircuit_id ?? undefined,
++          pcb_group_id: this.getGroup()?.pcb_group_id ?? undefined,
++        })
++      if (!props.solderPasteDisabled)
++        db.pcb_solder_paste.insert({
++          layer: "bottom",
++          shape: props.shape,
++          // @ts-ignore: no idea why this is triggering
++          width: props.outerWidth,
++          height: props.outerHeight,
++          x: position.x,
++          y: position.y,
++          subcircuit_id: subcircuit?.subcircuit_id ?? undefined,
++          pcb_group_id: this.getGroup()?.pcb_group_id ?? undefined,
++        })
+     } else if (props.shape === "circular_hole_with_rect_pad") {
+       const pcb_plated_hole = db.pcb_plated_hole.insert({
+         pcb_component_id,
+--- a/lib/IsolatedCircuit.ts
++++ b/lib/IsolatedCircuit.ts
+@@ -287,10 +287,7 @@
+   }
+ 
+   getCoreVersion(): string {
+-    const [major, minor, patch] = pkgJson.version.split(".").map(Number)
+-    // We add one to the patch version because the build increments the version
+-    // after the build (it's a hack- won't work for major releases)
+-    return `${major}.${minor}.${patch + 1}`
++    return pkgJson.version
+   }
+ 
+   async preview(

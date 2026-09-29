@@ -33,10 +33,10 @@ export const LM66100DCKR = (props: ChipProps<typeof pinLabels>) => {
 <smtpad portHints={["pin4"]} pcbX="0.649986mm" pcbY="1.100074mm" width="0.350012mm" height="0.850011mm" shape="rect" />
 <smtpad portHints={["pin5"]} pcbX="0mm" pcbY="1.100074mm" width="0.350012mm" height="0.850011mm" shape="rect" />
 <smtpad portHints={["pin6"]} pcbX="-0.649986mm" pcbY="1.100074mm" width="0.350012mm" height="0.850011mm" shape="rect" />
-<silkscreenpath route={[{"x":-0.999998000000005,"y":0.4999990000000025},{"x":-0.999998000000005,"y":-0.48999140000000807},{"x":0.9999979999998914,"y":-0.48999140000000807},{"x":0.9999979999998914,"y":0.48999140000000807},{"x":0.9899903999998969,"y":0.4999990000000025},{"x":-0.999998000000005,"y":0.4999990000000025}]} />
-<silkscreencircle pcbX="-1.070102mm" pcbY="-0.910082mm" radius="0.050038mm" />
-<silkscreencircle pcbX="-0.780034mm" pcbY="-0.260096mm" radius="0.050038mm" />
-<silkscreentext text="{NAME}" pcbX="-0.0635mm" pcbY="2.524mm" anchorAlignment="center" fontSize="1mm" />
+<fabricationnotepath route={[{"x":-0.999998000000005,"y":0.4999990000000025},{"x":-0.999998000000005,"y":-0.48999140000000807},{"x":0.9999979999998914,"y":-0.48999140000000807},{"x":0.9999979999998914,"y":0.48999140000000807},{"x":0.9899903999998969,"y":0.4999990000000025},{"x":-0.999998000000005,"y":0.4999990000000025}]} />
+<silkscreencircle pcbX="-1.25mm" pcbY="-0.910082mm" radius="0.050038mm" strokeWidth="0.15mm" />
+<silkscreencircle pcbX="-0.780034mm" pcbY="-0.260096mm" radius="0.050038mm" strokeWidth="0.15mm" />
+<fabricationnotetext text={props.name} pcbX="-0.0635mm" pcbY="2.524mm" anchorAlignment="center" fontSize="1mm" />
 <courtyardoutline outline={[{"x":-1.3676000000000386,"y":1.774000000000001},{"x":1.2406000000000859,"y":1.774000000000001},{"x":1.2406000000000859,"y":-1.774000000000001},{"x":-1.3676000000000386,"y":-1.774000000000001},{"x":-1.3676000000000386,"y":1.774000000000001}]} />
       </footprint>}
       cadModel={{

@@ -13,9 +13,9 @@ export const SPH202012H1R5MT = (props: Omit<InductorProps, "inductance">) => {
       footprint={<footprint>
         <smtpad portHints={["pin1"]} pcbX="-0.905002mm" pcbY="0mm" width="0.999998mm" height="1.999996mm" shape="rect" />
 <smtpad portHints={["pin2"]} pcbX="0.905002mm" pcbY="0mm" width="0.999998mm" height="1.999996mm" shape="rect" />
-<silkscreenpath route={[{"x":-1.100023199999896,"y":1.1999976000000743},{"x":1.0999724000000697,"y":1.1999976000000743}]} />
-<silkscreenpath route={[{"x":-1.100023199999896,"y":-1.1999975999999606},{"x":1.0999977999999828,"y":-1.1999975999999606}]} />
-<silkscreentext text="{NAME}" pcbX="0.010922mm" pcbY="2.1938mm" anchorAlignment="center" fontSize="1mm" />
+<fabricationnotepath route={[{"x":-1.100023199999896,"y":1.1999976000000743},{"x":1.0999724000000697,"y":1.1999976000000743}]} />
+<fabricationnotepath route={[{"x":-1.100023199999896,"y":-1.1999975999999606},{"x":1.0999977999999828,"y":-1.1999975999999606}]} />
+<fabricationnotetext text={props.name} pcbX="0.010922mm" pcbY="2.1938mm" anchorAlignment="center" fontSize="1mm" />
 <courtyardoutline outline={[{"x":-1.648777999999993,"y":1.4438000000000102},{"x":1.670622000000094,"y":1.4438000000000102},{"x":1.670622000000094,"y":-1.4438000000001239},{"x":-1.648777999999993,"y":-1.4438000000001239},{"x":-1.648777999999993,"y":1.4438000000000102}]} />
       </footprint>}
       cadModel={{

@@ -1,0 +1,32 @@
+{
+  "purpose": "Source-built local generator fixes, not upstream releases. No circuit JSON or Gerber edits.",
+  "packages": [
+    {
+      "repo": "https://github.com/tscircuit/props",
+      "version": "0.0.666",
+      "commit": "98fa6ad97ac1f8b70465f0ed3aeac117a8a2cb37",
+      "local_version": "0.0.666-a0.1",
+      "patch": "tooling/patches/props.patch",
+      "archive": "tooling/packages/tscircuit-props-0.0.666-a0.1.tgz",
+      "sha256": "70df960b584eb6c7b4817ecdf5157a450783f19e5337a70042da36d115100c90"
+    },
+    {
+      "repo": "https://github.com/tscircuit/core",
+      "version": "0.0.1971",
+      "commit": "ce40682b7afc199dc9417804cf520d5d3a032acc",
+      "local_version": "0.0.1971-a0.1",
+      "patch": "tooling/patches/core.patch",
+      "archive": "tooling/packages/tscircuit-core-0.0.1971-a0.1.tgz",
+      "sha256": "84da541da67186709611b4dacad4dab7b60c544c699c9f1d718773f0e0f4ffdb"
+    },
+    {
+      "repo": "https://github.com/tscircuit/alphabet",
+      "version": "0.0.25",
+      "commit": "3d51cd3e944da2efa8eece825ac44c09956840e7",
+      "local_version": "0.0.25-a0.1",
+      "patch": "tooling/patches/alphabet.patch",
+      "archive": "tooling/packages/tscircuit-alphabet-0.0.25-a0.1.tgz",
+      "sha256": "350ef4b9cc2afc316e20e0037a40329bd8366bb221408e99d4ee95725d00e0c0"
+    }
+  ]
+}

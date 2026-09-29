@@ -1,8 +1,8 @@
 {
-  "version": "0.1.0-prototype.11",
+  "version": "0.1.0-prototype.12",
   "hardware_revision": "A0",
   "checked_on": "2026-09-29",
-  "status": "routing_checks_passed_untested_prototype",
+  "status": "internal_design_export_checks_passed_assembler_acceptance_pending",
   "checks": {
     "format": "passed",
     "typescript": "passed",
@@ -14,12 +14,14 @@
     "shorts": "passed_zero_findings",
     "routed_board_test": "passed",
     "independent_geometry": "passed_zero_violations",
-    "routed_visual_gate": "passed_copper_and_schematic_review",
-    "snapshots": "passed_reviewed_pcb_and_schematic_ci",
-    "fabrication": "blocked_terminal_paste_and_subtitle_bullet_export",
+    "routed_visual_gate": "passed",
+    "snapshots": "passed_reviewed_updated_ci_match",
+    "fabrication": "internal_checks_passed_assembler_acceptance_pending",
     "physical_testing": "not_started",
     "physical_copper_connectivity": "passed_all_57_nets_273_ports",
-    "geometry_regression": "passed_rotated_pill_bounds_area"
+    "geometry_regression": "passed_rotated_pill_bounds_area",
+    "silkscreen": "passed_actual_gerber_width_height_pad_edge_text_clearances",
+    "stencil_paste": "passed_no_unwanted_probe_or_terminal_openings"
   },
   "dependencies": {
     "tscircuit": "0.0.2646",
@@ -31,32 +33,32 @@
   "toolchain_archive_sha256": "39c44f8af42695b7b871df42e346c09fee670ea8dfc11f17083e296ea2b0d279",
   "local_artifacts": [
     {
-      "path": "evidence/routing-prototype-11/circuit.json",
-      "sha256": "2c6677bb2808b9309ed45a463ab2ff047f34ebe0befc1f0e37961bf91ed7af67"
+      "path": "evidence/routing-prototype-12/circuit.json",
+      "sha256": "1e6cfbddcdbaa0cd34a2b449a079211bce5d7619d93eb9794c6c9996693b0c6a"
     },
     {
-      "path": "evidence/routing-prototype-11/copper-measurements.json",
-      "sha256": "d6b4aaf4c110fae15fdac043702c3f40f9b53fb1fc1cac6a449661ad83e94f1e"
+      "path": "evidence/routing-prototype-12/copper-measurements.json",
+      "sha256": "640fd026e411219edf8f9848db458db09954974b588824bf87527831f65b0a58"
     },
     {
-      "path": "evidence/routing-prototype-11/pcb.png",
-      "sha256": "2b29d002344ac8443dde25e49f8328d52e723a31118b719ea3cc5ef7977fc67b"
+      "path": "evidence/routing-prototype-12/pcb.png",
+      "sha256": "c0590052f61e8248eabb966692e562e42c92193e4637049d165b6f84144bc967"
     },
     {
-      "path": "evidence/routing-prototype-11/pcb.svg",
-      "sha256": "c11d100831e29b972c8c1978fe17245d642953c66dd04292f29c0f3cd175168f"
+      "path": "evidence/routing-prototype-12/pcb.svg",
+      "sha256": "e124db51c581bb464db5d41895538c8138d6779349fb35a903a3580499d4774d"
     },
     {
-      "path": "evidence/routing-prototype-11/routed-connectivity.json",
-      "sha256": "99f9cdb5f6554d3cf18e00b36f6f4ffd3f390eac7ebad990d9b824eb056e23ab"
+      "path": "evidence/routing-prototype-12/routed-connectivity.json",
+      "sha256": "6e7509eb8cecd3822ff19fbc2f885598ea3731074c454ef1b01977e311d63e89"
     },
     {
-      "path": "evidence/routing-prototype-11/schematic.svg",
-      "sha256": "c063e1e7c7b1a47229ba6faf105160631a1f39ce76b8d23e48ae4dc57d8b2a48"
+      "path": "evidence/routing-prototype-12/schematic.svg",
+      "sha256": "53b2c4a709ce38707039ad6ee94f40bfb94383512403fc22b12df1b5b2b09b44"
     }
   ],
   "artifact_scope": "Raw logs, rejected generated designs and downloads remain local. Hashes identify evidence; they do not signify successful validation.",
-  "placement_changes": "Cleaned overlapping component and signal labels. Preserved all physical copper, holes, mounting clearances and component positions from prototype.10; only test-pad port-hint spelling changes from 1 to pin1. Replaced implied probe footprints with identical 1.4 mm copper pads and explicitly zero stencil paste using the supported solderPasteMargin property. All routed checks and software tests pass. Gerber export review identifies unavoidable through-hole terminal paste in the installed core; fabrication approval remains blocked.",
+  "placement_changes": "Fixed terminal stencil paste in source-built core/props packages and restored the bullet glyph in the source-built alphabet package. Increased functional legend sizes and moved detailed reference artwork to the fabrication layer. All physical copper, holes, vias and component placement remain identical to prototype.11; no routing failure or placement retry occurred.",
   "measurements": {
     "minimum_trace_width_mm": 0.15,
     "via_drill_mm": 0.3,
@@ -64,5 +66,9 @@
     "minimum_drill_to_smd_mm": 0.1548845,
     "copper_to_board_edge_mm": 0.5,
     "minimum_mount_center_to_copper_mm": 4.010594
-  }
+  },
+  "reviewed_artifacts": [
+    "fabrication/A0-prototype.12/",
+    "previews/A0-prototype.12/"
+  ]
 }

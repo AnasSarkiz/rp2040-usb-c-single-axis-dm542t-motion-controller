@@ -1,0 +1,89 @@
+{
+  "source_version": "0.1.0-prototype.12",
+  "hardware_revision": "A0",
+  "source_tag": "v0.1.0-prototype.12",
+  "circuit_sha256": "1e6cfbddcdbaa0cd34a2b449a079211bce5d7619d93eb9794c6c9996693b0c6a",
+  "status": "internal_checks_passed_assembler_acceptance_pending",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "2f1eb7d7e922039f8185e1cbfaff84d25bfcd737dce0c21cf47d8aaaab058366"
+    },
+    {
+      "path": "assembly-bom.csv",
+      "sha256": "224b4425415dfc26eb18821b5b7ea1f309686bda3572a527a2be1931fa7b6309"
+    },
+    {
+      "path": "assembly.svg",
+      "sha256": "2d263c610786052881c2b18599ab50eb801dd0815096b536fa910156a3a65f5e"
+    },
+    {
+      "path": "exported/B_Cu.gbr",
+      "sha256": "1a3b7e1483bf15e00823f96e8ad10fce58ff9c3324d15d6574083fee5164405b"
+    },
+    {
+      "path": "exported/B_Mask.gbr",
+      "sha256": "de6129dd3ac83092271eef4d36188cae7ad608c5d592294657cfa128bea56ded"
+    },
+    {
+      "path": "exported/B_Paste.gbr",
+      "sha256": "d44b428b5d265bdf7abce23ef64ea79a8c39ac95a36f12739843bc3167e0b3bf"
+    },
+    {
+      "path": "exported/B_SilkScreen.gbr",
+      "sha256": "6e104c6ea740b28b91e429d21d83c45a58eb4ba26fb3b698aa823cad998bd146"
+    },
+    {
+      "path": "exported/Edge_Cuts.gbr",
+      "sha256": "514c5895c6c339718d89d8de4b5401b6c018f9282722c9df305b317e62902b21"
+    },
+    {
+      "path": "exported/F_Cu.gbr",
+      "sha256": "3f789eb356b2ca9ae7f53c9d0766970548d4476622d93a3a83d719bdaa14d2fd"
+    },
+    {
+      "path": "exported/F_Fab.gbr",
+      "sha256": "c2bb789c8c21e7185f0a9fd777fd4a3780ab958da056d4929cca1cbfff49050e"
+    },
+    {
+      "path": "exported/F_Mask.gbr",
+      "sha256": "e0a6601f70c346653895f9144457b439991d34d560133539896c141c215ea343"
+    },
+    {
+      "path": "exported/F_Paste.gbr",
+      "sha256": "6e46dbd69f15618d0f0e4d0cdf52ba09796c9470a8d157ead70e6826898cec5c"
+    },
+    {
+      "path": "exported/F_SilkScreen.gbr",
+      "sha256": "571c2206317e137057002d9b0b91cd81c1735082465fddd0c33a631f04404306"
+    },
+    {
+      "path": "exported/bom.csv",
+      "sha256": "8189284dc0cd2692e1b3efed89fca3aa57e14c4390eb2ba1a9c5588d656a946e"
+    },
+    {
+      "path": "exported/drill-L1-L2.drl",
+      "sha256": "d77f36a5f70e5c8f7756381dcd5daa5b561c14889e368d1c07176cdf6d016950"
+    },
+    {
+      "path": "exported/drill_npth.drl",
+      "sha256": "fe5ae845fa5ca05839d892d0a05b829b2ece848f490249d4ff9be6f85513a26a"
+    },
+    {
+      "path": "exported/pick_and_place.csv",
+      "sha256": "109674066d2ca3c2a33040d484571274e04b0eb0000c41ad542d9a1cbff58fc2"
+    },
+    {
+      "path": "gerbers.zip",
+      "sha256": "da4173ea1b4d4493cec902606798dc9a97fa1cabc02ac7833903e86ec32f9b2c"
+    },
+    {
+      "path": "review.json",
+      "sha256": "89a2f781cb2446eb903756bac836ad6be0ce5619004f6d473a97c4d241b785c4"
+    },
+    {
+      "path": "silkscreen-review.json",
+      "sha256": "26cd78b5c5cfa9301d371ca7f111f65824d5baa3cb5a39b5317d2b9e0ec62b0a"
+    }
+  ]
+}

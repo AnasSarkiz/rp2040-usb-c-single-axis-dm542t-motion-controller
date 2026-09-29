@@ -1,4 +1,4 @@
-import { ReferenceLabels, referenceLabels } from "./silkscreen"
+import { FunctionalLabels, probeLabels } from "./silkscreen"
 import { DriverPower } from "./driver-power"
 import { TerminalFootprint } from "./terminal-footprint"
 import { passiveSchematicPosition } from "./schematic-layout"
@@ -27,7 +27,7 @@ export function CircuitParts() {
   return (
     <>
       <DriverPower />
-      <ReferenceLabels />
+      <FunctionalLabels />
       <net name="GND" isGroundNet />
       <net name="VBUS" isPowerNet nominalTraceWidth="0.5mm" />
       <net name="V5" isPowerNet nominalTraceWidth="0.5mm" />
@@ -382,7 +382,7 @@ export function CircuitParts() {
         <group key={connector.name} pcbX={0} pcbY={0}>
           <KF350_3_5_2P
             name={connector.name}
-            footprint={<TerminalFootprint />}
+            footprint={<TerminalFootprint name={connector.name} />}
             schPinArrangement={{ topSide: ["pin1"], bottomSide: ["pin2"] }}
             pinAttributes={{
               pin1: { isPassive: true },
@@ -400,9 +400,9 @@ export function CircuitParts() {
           />
           <silkscreentext
             text={connector.label}
-            fontSize="1mm"
+            fontSize="1.8mm"
             pcbX={connector.x}
-            pcbY={connector.y + (index < 3 ? -5 : 6)}
+            pcbY={connector.y + (index < 3 ? 5.5 : 6)}
           />
         </group>
       ))}
@@ -417,11 +417,6 @@ export function CircuitParts() {
           pcbX: part.pcbX,
           pcbY: part.pcbY,
           pcbRotation: part.pcbRotation,
-          pcbStyle: {
-            silkscreenTextVisibility: referenceLabels[part.name]
-              ? ("hidden" as const)
-              : ("inherit" as const),
-          },
           schRotation: part.nets.some((net) =>
             [
               "GND",
@@ -481,18 +476,10 @@ export function CircuitParts() {
             connections={{ pin1: `net.${rail}` }}
           />
           <silkscreentext
-            text={rail}
-            fontSize="0.65mm"
-            pcbX={
-              rail === "DIR" || rail === "STEP"
-                ? x + 1.8
-                : rail === "ARM"
-                  ? x - 1.8
-                  : x
-            }
-            pcbY={
-              rail === "DIR" || rail === "STEP" || rail === "ARM" ? y : y - 1.4
-            }
+            text={probeLabels[rail].text}
+            fontSize="1.8mm"
+            pcbX={probeLabels[rail].x}
+            pcbY={probeLabels[rail].y}
           />
         </group>
       ))}

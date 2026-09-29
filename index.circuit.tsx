@@ -78,19 +78,19 @@ export default function MotionControllerBoard() {
       <hole name="H4" diameter="3.2mm" pcbX={-40} pcbY={25} />
       <silkscreentext
         text={project.silkscreen[0]}
-        fontSize="1.2mm"
+        fontSize="1.8mm"
         pcbX={0}
-        pcbY={25}
+        pcbY={28}
       />
       <silkscreentext
         text={project.silkscreen[1]}
-        fontSize="1mm"
-        pcbX={0}
-        pcbY={22.5}
+        fontSize="1.8mm"
+        pcbX={-3}
+        pcbY={25}
       />
       <silkscreentext
         text={project.silkscreen[2]}
-        fontSize="1.2mm"
+        fontSize="1.8mm"
         pcbX={0}
         pcbY={-28.5}
       />

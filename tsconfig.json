@@ -25,6 +25,7 @@
     "firmware/build",
     "firmware/vendor",
     "firmware/.venv",
-    "firmware/build-arm"
+    "firmware/build-arm",
+    "tooling/regression-tests"
   ]
 }

@@ -87,9 +87,19 @@ export function PowerSwitch(props: ChipProps<typeof pinLabels>) {
             height={0.5999988}
             shape="rect"
           />
-          <silkscreenrect width={1.7} height={2.8} />
-          <silkscreencircle pcbX={1.397} pcbY={-1.651} radius={0.127} />
-          <silkscreentext text="{NAME}" pcbX={0} pcbY={2.56} fontSize={1} />
+          <fabricationnoterect width={1.7} height={2.8} />
+          <silkscreencircle
+            pcbX={1.397}
+            pcbY={-1.651}
+            radius={0.127}
+            strokeWidth="0.15mm"
+          />
+          <fabricationnotetext
+            text={props.name}
+            pcbX={0}
+            pcbY={2.56}
+            fontSize={1}
+          />
           <courtyardrect
             width={4.31}
             height={3.83}

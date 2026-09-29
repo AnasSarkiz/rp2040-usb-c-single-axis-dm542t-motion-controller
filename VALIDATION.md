@@ -2,7 +2,7 @@
 
 Product: **RP2040 USB-C Single-Axis Stepper Motion Controller for External DM542T Drivers with STEP/DIR/ENABLE Outputs and Dual Limit-Switch Inputs**
 
-Reviewed 2026-09-29 local time. **Untested prototype; fabrication blocked.** GitHub and tscircuit source publication is user-authorized. This board now has its own Git repository. Earlier source/dependency manifests identify pre-Git states; they do not constitute recoverable complete source snapshots. A0-draft-2 manifests are historical; the power circuit and firmware have changed since then.
+Reviewed 2026-09-29 local time. **Untested prototype; internal design/export checks pass; assembler acceptance pending.** GitHub and tscircuit source publication is user-authorized. This board now has its own Git repository. Earlier source/dependency manifests identify pre-Git states; they do not constitute recoverable complete source snapshots. A0-draft-2 manifests are historical; the power circuit and firmware have changed since then.
 
 ## Stage status
 
@@ -11,9 +11,9 @@ Reviewed 2026-09-29 local time. **Untested prototype; fabrication blocked.** Git
 | 1. Confirm requirements | passed | Driver/manual and user-authorized new mechanics below. |
 | 2. Review schematic and BOM | passed | DESIGN-REVIEW.md; 85 exact sourced components; regulated driver voltage/current budgets, supervisor, USB sequencing/suspend and overload handling reviewed. Physical electrical limits remain unmeasured. |
 | 3. Validate placement before routing | passed | Final unrouted build/test pass; placement 0 errors/0 warnings; schematic has only the accepted F1 style suggestion. PCB and schematic images inspected. Preserved in evidence/unrouted-A0/. |
-| 4. Route and validate copper | passed | 0.1.0-prototype.11: 0 native PCB errors; 0 shorts findings; 0 drill-to-pad violations; disconnected nets: []. See latest iteration below. |
-| 5. Automated and visual routed checks | passed | Prototype.11 native build/shorts, independent copper audits, formatting, TypeScript, board/firmware/geometry tests pass. Both copper layers and critical regions reviewed; schematic/PCB snapshots reviewed, updated and CI-matched. Manufacturing export limitations are tracked in stage 6. |
-| 6. Approve prototype fabrication | blocked | Native Gerber/drill/BOM/CPL package generated and inspected. Circular through-hole paste and missing subtitle bullet glyphs require canonical tooling fixes; assembler orientation/stencil review remains pending. Not approved to order. |
+| 4. Route and validate copper | passed | 0.1.0-prototype.12: 0 native PCB errors; 0 shorts findings; 0 drill-to-pad violations; disconnected nets: []. See latest iteration below. |
+| 5. Automated and visual routed checks | passed | Prototype.12 native build/shorts, independent copper and silkscreen audits, formatting, TypeScript, board/firmware/geometry tests pass. Current copper, mask, paste, outline, assembly and legend reviewed; schematic/PCB snapshots reviewed and CI-matched. |
+| 6. Approve prototype fabrication | blocked | Prototype.12 export defects are fixed and internal checks pass. Exact Gerber/drill/BOM/CPL package is ready for manufacturer review. Actual assembler orientation, stencil and production-panel acceptance remains pending. No order authorized. |
 | 7. Test physical prototype | not started | No physical hardware. BRING-UP.md defines required measurements. |
 | 8. Prepare store release | in progress | Exact name and revision in README, metadata and prototype source listing. GitHub/tscircuit projects created; source publication authorized. Sale-ready release remains incomplete. |
 
@@ -28,11 +28,11 @@ Reviewed 2026-09-29 local time. **Untested prototype; fabrication blocked.** Git
 
 ## Reproducibility
 
-Bun 1.3.9; tscircuit 0.0.2646; CLI 0.1.2172; core 0.0.1971; TypeScript 5.9.3; Biome 2.5.14; @types/node 22.15.30; pinned bun.lock. Run commands only inside this board directory. Catalog imports are preserved unchanged; locally authored symbol/footprint wrappers are explicit. Manufacturer PDFs remain local; official JLC assembly-stock snapshots are in references/catalog/. Datasheet URLs are in the BOM and design review. Individual catalog dates use UTC.
+Bun 1.3.9; tscircuit 0.0.2646; CLI 0.1.2172; core 0.0.1971-a0.1; props 0.0.666-a0.1; alphabet 0.0.25-a0.1; TypeScript 5.9.3; Biome 2.5.14; @types/node 22.15.30; pinned bun.lock. Run commands only inside this board directory. Catalog electrical footprints are preserved; prototype.12 moves detailed reference artwork to the fabrication layer and adjusts pin-one legend positions/stroke widths. Locally authored symbol/footprint wrappers are explicit. Manufacturer PDFs remain local; official JLC assembly-stock snapshots are in references/catalog/. Datasheet URLs are in the BOM and design review. Individual catalog dates use UTC.
 
 Firmware uses Pico SDK 2.2.0 (`a1438dff1d38bd9c65dbd693f0e5db4b9ae91779`), TinyUSB `86ad6e56c1700e85f1c5678607a762cfe3aa2f47`, CMake 3.31.6, Arm GNU 13.2.Rel1 / GCC 13.2.1. Exact archive hashes and subset-extraction record are in evidence/toolchain-install.json. Compiler binaries and SDK internals are unchanged; baseline and Cortex-M0+ runtime libraries are included. Firmware README records reconstruction/build/flash commands. ELF/BIN/HEX are software artifacts, not evidence of successful flashing.
 
-Earlier disk exhaustion and a system compiler missing nosys.specs were resolved with task-local dependencies and the official Arm toolchain. Native `keepout` is the installed supported spelling. Manufacturing tolerances are direct board props, not a nested routingTolerances prop. Typechecking exposed and corrected the unsupported form before routing. No type escapes, ignored errors, DRC suppression or tool patches are used.
+Earlier disk exhaustion and a system compiler missing nosys.specs were resolved with task-local dependencies and the official Arm toolchain. Native `keepout` is the installed supported spelling. Manufacturing tolerances are direct board props, not a nested routingTolerances prop. Typechecking exposed and corrected the unsupported form before routing. No type escapes, ignored errors, DRC suppression or installed-artifact patches are used. Prototype.12 includes tested source-built generator forks, with official base commits, source patches, regression fixtures and hashed package archives in tooling/.
 
 ## Current commands and evidence
 
@@ -54,8 +54,8 @@ Earlier disk exhaustion and a system compiler missing nosys.specs were resolved 
 | `bun run test:board` | Generated connectivity/BOM and unrouted mechanical invariants; evidence/a0-board-tests.log |
 | `bunx tsci check routing-difficulty index.circuit.tsx` | Congestion report: evidence/a0-routing-difficulty.log |
 | `bunx tsci export index.circuit.tsx --format schematic-pdf --output dist/index/schematic.pdf` | evidence/a0-schematic-export.log, rendered review evidence/a0-schematic-review.png |
-| `bunx tsci check shorts dist/index/circuit.json` | First candidate passed; current source fails (see publication check below) |
-| `bunx tsci snapshot index.circuit.tsx` | Required after routing; not yet run/accepted |
+| `bunx tsci check shorts dist/index/circuit.json` | Current prototype.12 passes; earlier failures remain in the historical records below |
+| `bunx tsci snapshot index.circuit.tsx` | Prototype.12 PCB change reviewed and accepted; PCB and schematic both match in CI mode |
 
 ## Review and warnings
 
@@ -191,3 +191,19 @@ Physical component placement is unchanged from the accepted unrouted prototype.1
 Reviewed final native PCB overview, top MCU/power closeups, bottom copper and unchanged schematic, then the actual exported F_Cu, B_Cu, F_Mask, F_Paste, F_SilkScreen and Edge_Cuts renders. Local paths: evidence/iteration-11-*. The Gerber review exposed unwanted paste on bare probes and terminals. Supported source-level paste margins resolve all probe openings. Core PlatedHole.doInitialPcbRender unconditionally adds paste on both sides of circular plated holes, and no public independent paste property exists in this installed version. The remaining ten terminal positions / twenty layer openings fail test:fabrication. The native Gerber font omits the two requested subtitle bullet glyphs although the source string is exact. Both are explicit stage-6 blockers. No generated copper/Gerber file was manually patched.
 
 `gerber-to-svg@4.2.8` was added solely to review the exported files. Circuit, router, firmware and compiler versions remain pinned and unchanged. Final format/type/board/connectivity/firmware/geometry checks pass; PCB and schematic snapshots match in CI mode after visual review. Fabrication check fails for the documented terminal stencil issue. CPL has exactly 85 BOM designators, all top side; final assembler orientation/stackup/stencil acceptance and all physical tests remain unavailable.
+
+## Fabrication iteration — 0.1.0-prototype.12
+
+Source-built core/props fixes add explicit plated-hole paste control; J2–J6 now have no top/bottom paste. The source-built alphabet adds the requested U+2022 bullets. These are genuine source changes with regression tests and canonical builds, not edits to installed code, Circuit JSON, or exported Gerbers. Package versions, upstream commits, patches, licenses and archive hashes are recorded in tooling/manifest.json. The core version reporter accurately reports its local prerelease.
+
+Manufacturer capability review identified undersized legend strokes/text. All functional text now uses 1.8 mm source font size, yielding actual Gerber character height ≥1.016242 mm and text stroke width 0.162 mm. Other printed strokes are ≥0.15 mm. Detailed component references/outlines remain on F_Fab. Actual exported Gerber checks find zero exposed-pad clearance, edge-margin or text-to-text violations at the recorded limits. Both subtitle bullets are visibly present. New parser tests check line/flash geometry and reject unsupported clear-polarity commands.
+
+Electrical component positions, copper pads, plated/nonplated holes, vias, traces and pours are JSON-identical to prototype.11. No new routing error occurred, so no electrical component relocation was required. The previously accepted unrouted placement and datasheet/BOM review remain applicable. Current native checks were rerun; schematic and source connectivity are unchanged. Netlist/source/placement pass; the 35 generic pin-model warnings and F1 cosmetic orientation suggestion remain accepted for the reasons above.
+
+Final native routed build and shorts pass with zero errors. Independent audits confirm 57 nets / 273 ports, no opens or short groups, minimum track width 0.15 mm, vias 0.30/0.60 mm drill/pad, minimum drill-to-pad clearance 0.1548845 mm, copper-edge 0.5 mm and mounting-centre clearance 4.010594 mm. The earlier current-budget estimate remains applicable because copper is unchanged; it is not a physical thermal result. Format, TypeScript, board, physical-connectivity, firmware sanitizer, rotated-pad geometry, paste and silkscreen tests pass. Initial PCB snapshot mismatch was reviewed as the intended legend/fabrication-layer change before updating. Both final snapshots match in CI mode; the schematic drawing is unchanged (its embedded font payload now includes the bullet glyph).
+
+Reviewed final native PCB/snapshot and clean top/bottom previews, assembly drawing and unchanged schematic. Independently rendered the actual final F_Cu, B_Cu, F_Mask, B_Mask, F_Paste, F_SilkScreen and Edge_Cuts Gerbers and inspected each. PTH/NPTH drill files and USB slots match prototype.11. Local evidence: iteration-12-*. Public artifacts: previews/A0-prototype.12/ and fabrication/A0-prototype.12/. The fabrication manifest identifies the source tag, exact Circuit JSON hash and every exported-file hash. CPL contains exactly 85 BOM designators, all top side; reviewed package includes the complete assembly BOM.
+
+Source-tool tests: props parsing/default/rejection tests and typecheck pass; core typecheck/build/version test and 17 plated-hole/paste regressions pass; alphabet build and all 10 tests pass. New visual fixtures were inspected. Upstream font generation's Boolean-union warning also occurs on the unchanged baseline; bullet stroke/outline/TTF regression tests pass. Optional DejaVu comparison font is unavailable and no comparison is claimed. The convenience reconstruction helper completed props/alphabet but its fresh core dependency installation stalled and was stopped; end-to-end helper verification is incomplete. The reviewed core archive was independently built/tested from the patched source checkout and the board's locked archive installation passes.
+
+Internal design/export review is complete. Stage 6 still requires actual assembler acceptance of library orientation, stencil apertures/thickness, stackup and production-panel handling. Upload permission was requested; no manufacturer response or acceptance is invented. No fabrication order, physical prototype or measured operating limits exist. Stage 7 remains not started.

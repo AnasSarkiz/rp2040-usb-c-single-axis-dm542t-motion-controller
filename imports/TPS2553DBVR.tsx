@@ -29,10 +29,10 @@ export const TPS2553DBVR = (props: SwitchProps) => {
 <smtpad portHints={["pin6"]} pcbX="-1.35001mm" pcbY="-0.94996mm" width="1.0999978mm" height="0.5999988mm" shape="rect" />
 <smtpad portHints={["pin5"]} pcbX="-1.35001mm" pcbY="-0mm" width="1.0999978mm" height="0.5999988mm" shape="rect" />
 <smtpad portHints={["pin4"]} pcbX="-1.35001mm" pcbY="0.94996mm" width="1.0999978mm" height="0.5999988mm" shape="rect" />
-<silkscreenpath route={[{"x":-0.899998200000141,"y":1.5499080000000731},{"x":0.9000236000000541,"y":1.5499080000000731}]} />
-<silkscreenpath route={[{"x":-0.899998200000141,"y":-1.5501111999999466},{"x":0.9000236000000541,"y":-1.5501111999999466}]} />
-<silkscreencircle pcbX="1.397mm" pcbY="-1.651mm" radius="0.127mm" />
-<silkscreentext text="{NAME}" pcbX="0.012446mm" pcbY="2.562354mm" anchorAlignment="center" fontSize="1mm" />
+<fabricationnotepath route={[{"x":-0.899998200000141,"y":1.5499080000000731},{"x":0.9000236000000541,"y":1.5499080000000731}]} />
+<fabricationnotepath route={[{"x":-0.899998200000141,"y":-1.5501111999999466},{"x":0.9000236000000541,"y":-1.5501111999999466}]} />
+<silkscreencircle pcbX="1.397mm" pcbY="-1.651mm" radius="0.127mm" strokeWidth="0.15mm" />
+<fabricationnotetext text={name} pcbX="0.012446mm" pcbY="2.562354mm" anchorAlignment="center" fontSize="1mm" />
 <courtyardoutline outline={[{"x":-2.1425540000000183,"y":1.8123540000000276},{"x":2.167445999999927,"y":1.8123540000000276},{"x":2.167445999999927,"y":-2.015045999999984},{"x":-2.1425540000000183,"y":-2.015045999999984},{"x":-2.1425540000000183,"y":1.8123540000000276}]} />
       </footprint>}
       cadModel={{

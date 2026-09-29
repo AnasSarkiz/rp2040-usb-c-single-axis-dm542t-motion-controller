@@ -4,3 +4,8 @@ previews/**/*.svg -text -diff
 fabrication/**/exported/*.csv -text whitespace=cr-at-eol
 *.zip -text -diff
 *.png -text -diff
+*.tgz -text -diff
+fabrication/**/assembly.svg -text -diff
+tooling/regression-tests/**/*.svg -text -diff
+# Unified patch context lines intentionally contain one leading space.
+tooling/patches/*.patch whitespace=-blank-at-eol

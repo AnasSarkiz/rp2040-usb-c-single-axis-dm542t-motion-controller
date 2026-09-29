@@ -1,0 +1,8 @@
+{
+  "circuit_sha256": "1e6cfbddcdbaa0cd34a2b449a079211bce5d7619d93eb9794c6c9996693b0c6a",
+  "fitted_placements": 85,
+  "status": "requires_assembler_review",
+  "unwanted_paste": [],
+  "assembler_review": "not_performed",
+  "physical_testing": "not_performed"
+}
