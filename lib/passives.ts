@@ -62,6 +62,7 @@ export const passives: Passive[] = [
   },
   {
     name: "R5",
+    pcbRotation: 180,
     kind: "resistor",
     rating: "10k",
     code: "C25804",
@@ -310,6 +311,7 @@ export const passives: Passive[] = [
   },
   {
     name: "C2",
+    pcbRotation: 180,
     kind: "capacitor",
     rating: "1uF",
     code: "C52923",
@@ -362,8 +364,8 @@ export const passives: Passive[] = [
     code: "C1525",
     footprint: "0402",
     nets: ["V3V3", "GND"],
-    pcbX: -10.8,
-    pcbY: -6.5,
+    pcbX: -11.4,
+    pcbY: -6.8,
     purpose: "U1 IOVDD pin1 bypass",
   },
   {
@@ -374,8 +376,8 @@ export const passives: Passive[] = [
     code: "C1525",
     footprint: "0402",
     nets: ["V3V3", "GND"],
-    pcbX: -8.5,
-    pcbY: -6.4,
+    pcbX: -8.0,
+    pcbY: -7.1,
     purpose: "U1 IOVDD pin10 bypass",
   },
   {
@@ -386,8 +388,8 @@ export const passives: Passive[] = [
     code: "C1525",
     footprint: "0402",
     nets: ["V3V3", "GND"],
-    pcbX: -4.4,
-    pcbY: 2,
+    pcbX: -3.8,
+    pcbY: 1.3,
     purpose: "U1 IOVDD pin22 bypass",
   },
   {
@@ -567,13 +569,14 @@ export const passives: Passive[] = [
   },
   {
     name: "R30",
+    pcbRotation: 180,
     kind: "resistor",
     rating: "100k",
     code: "C25803",
     footprint: "0603",
     nets: ["DRIVER_REG_ENABLE", "GND"],
-    pcbX: 1,
-    pcbY: -26,
+    pcbX: -2,
+    pcbY: -26.5,
     purpose: "Driver regulator defaults off",
   },
   {

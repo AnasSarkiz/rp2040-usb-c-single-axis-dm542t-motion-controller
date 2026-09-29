@@ -14,7 +14,7 @@ export const probeLabels: Record<
   ARM: { text: "ARM", x: 12, y: -4 },
   SWCLK: { text: "SWCLK", x: 7, y: -2 },
   SWDIO: { text: "SWDIO", x: 8, y: 3.2 },
-  RUN: { text: "RUN", x: 5.6, y: -6.2 },
+  RUN: { text: "RUN", x: 9.2, y: -6.4 },
 }
 
 export function FunctionalLabels() {

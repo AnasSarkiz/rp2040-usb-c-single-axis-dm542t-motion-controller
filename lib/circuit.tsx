@@ -1,8 +1,11 @@
-import { SchematicNotes } from "./schematic-notes"
 import { FunctionalLabels, probeLabels } from "./silkscreen"
 import { DriverPower } from "./driver-power"
 import { TerminalFootprint } from "./terminal-footprint"
-import { passiveSchematicPosition, mcuPinStyle } from "./schematic-layout"
+import {
+  passiveSchematicPosition,
+  schematicPosition,
+  mcuPinStyle,
+} from "./schematic-layout"
 import { passiveComponents } from "./passive-components"
 import {
   RP2040Attributes,
@@ -28,7 +31,6 @@ export function CircuitParts() {
   return (
     <>
       <DriverPower />
-      <SchematicNotes />
       <FunctionalLabels />
       <net name="GND" isGroundNet />
       <net name="VBUS" isPowerNet nominalTraceWidth="0.5mm" />
@@ -38,6 +40,7 @@ export function CircuitParts() {
       <net name="FUSED_VBUS" isPowerNet nominalTraceWidth="0.5mm" />
       <RP2040
         name="U1"
+        {...schematicPosition("U1")}
         pcbStyle={{ silkscreenTextVisibility: "hidden" }}
         schHeight={8.7}
         schPinStyle={mcuPinStyle}
@@ -46,8 +49,6 @@ export function CircuitParts() {
         pcbX={-10}
         pcbY={0}
         pcbRotation={90}
-        schX={0 * 0.3}
-        schY={0 * 0.3}
         connections={{
           pin1: "net.V3V3",
           pin10: "net.V3V3",
@@ -91,11 +92,10 @@ export function CircuitParts() {
       />
       <W25Q16JVSSIQ
         name="U2"
+        {...schematicPosition("U2")}
         pcbX={-22}
         pcbY={-4.5}
         pcbRotation={90}
-        schX={-6}
-        schY={6}
         connections={{
           pin1: "net.QSPI_CS",
           pin2: "net.QSPI_D1",
@@ -109,12 +109,11 @@ export function CircuitParts() {
       />
       <AP2112K_3_3TRG1
         name="U3"
+        {...schematicPosition("U3")}
         pcbStyle={{ silkscreenTextVisibility: "hidden" }}
         schHeight={0.6}
         pcbX={-27}
         pcbY={-10}
-        schX={-16}
-        schY={10}
         connections={{
           VIN: "net.V5",
           GND: "net.GND",
@@ -124,6 +123,7 @@ export function CircuitParts() {
       />
       <UsbProtection
         name="U4"
+        {...schematicPosition("U4")}
         pinAttributes={{
           pin2: { requiresGround: true },
           pin5: { requiresPower: true },
@@ -134,8 +134,6 @@ export function CircuitParts() {
         }}
         pcbX={-31}
         pcbY={0}
-        schX={-16}
-        schY={0}
         connections={{
           pin1: "net.USB_DP",
           pin6: "net.USB_DP",
@@ -147,11 +145,10 @@ export function CircuitParts() {
       />
       <LM66100DCKR
         name="U5"
+        {...schematicPosition("U5")}
         pcbX={-34}
         pcbY={-4}
         pcbRotation={90}
-        schX={-23}
-        schY={10}
         connections={{
           VIN: "net.FUSED_VBUS",
           GND: "net.GND",
@@ -162,6 +159,7 @@ export function CircuitParts() {
       />
       <UsbProtection
         name="U6"
+        {...schematicPosition("U6")}
         pinAttributes={{
           pin2: { requiresGround: true },
           pin5: { requiresPower: true },
@@ -172,8 +170,6 @@ export function CircuitParts() {
         }}
         pcbX={17}
         pcbY={-15}
-        schX={16}
-        schY={-2}
         connections={{
           pin1: "net.LIMIT_MIN_WIRE",
           pin6: "net.LIMIT_MIN_WIRE",
@@ -185,12 +181,11 @@ export function CircuitParts() {
       />
       <TYPE_C_31_M_12
         name="J1"
+        {...schematicPosition("J1")}
         pinAttributes={TYPE_C_31_M_12Attributes}
         pcbX={-40.5}
         pcbY={0}
         pcbRotation={270}
-        schX={-23}
-        schY={0}
         connections={{
           EH1: "net.GND",
           EH2: "net.GND",
@@ -210,21 +205,18 @@ export function CircuitParts() {
       />
       <InputFuse
         name="F1"
-        schRotation={-90}
+        {...schematicPosition("F1")}
         pinAttributes={{ pin1: { isPassive: true }, pin2: { isPassive: true } }}
         pcbX={-35}
         pcbY={-11}
-        schX={-23}
-        schY={5}
         connections={{ pin1: "net.VBUS", pin2: "net.FUSED_VBUS" }}
       />
       <ClockCrystal
         name="Y1"
+        {...schematicPosition("Y1")}
         pcbX={-2.9}
         pcbY={-3}
         pcbRotation={90}
-        schX={-4}
-        schY={-3.6}
         connections={{
           pin1: "net.XIN",
           pin3: "net.XTAL_OUT",
@@ -234,10 +226,9 @@ export function CircuitParts() {
       />
       <TS_1187A_B_A_B
         name="SW1"
+        {...schematicPosition("SW1")}
         pcbX={-29}
         pcbY={14}
-        schX={-8}
-        schY={3}
         internallyConnectedPins={[
           ["pin1", "pin2"],
           ["pin3", "pin4"],
@@ -251,10 +242,9 @@ export function CircuitParts() {
       />
       <TS_1187A_B_A_B
         name="SW2"
+        {...schematicPosition("SW2")}
         pcbX={-29}
         pcbY={-19}
-        schX={-8}
-        schY={-3}
         internallyConnectedPins={[
           ["pin1", "pin2"],
           ["pin3", "pin4"],
@@ -268,29 +258,26 @@ export function CircuitParts() {
       />
       <KT_0805G
         name="LED1"
+        {...schematicPosition("LED1")}
         schRotation={-90}
         pcbX={-29}
         pcbY={19}
-        schX={-15 * 0.3}
-        schY={15 * 0.3}
         connections={{ anode: "net.LED_PWR", cathode: "net.GND" }}
       />
       <KT_0805G
         name="LED2"
+        {...schematicPosition("LED2")}
         schRotation={-90}
         pcbX={-21}
         pcbY={19}
-        schX={-3}
-        schY={4.5}
         connections={{ anode: "net.LED_STATUS", cathode: "net.GND" }}
       />
       <OutputMosfet
         name="Q1"
+        {...schematicPosition("Q1")}
         pinAttributes={AO3400AAttributes}
         pcbX={15}
         pcbY={8}
-        schX={4.5}
-        schY={1.5}
         connections={{
           G: "net.STEP_GATE",
           D: "net.PUL_MINUS",
@@ -299,29 +286,26 @@ export function CircuitParts() {
       />
       <OutputMosfet
         name="Q2"
+        {...schematicPosition("Q2")}
         pinAttributes={AO3400AAttributes}
         pcbX={15}
         pcbY={1}
-        schX={4.5}
-        schY={-1.5}
         connections={{ G: "net.ARM_GATE", D: "net.STEP_RETURN", S: "net.GND" }}
       />
       <OutputMosfet
         name="Q3"
+        {...schematicPosition("Q3")}
         pinAttributes={AO3400AAttributes}
         pcbX={3}
         pcbY={8}
-        schX={8}
-        schY={1.5}
         connections={{ G: "net.DIR_GATE", D: "net.DIR_MINUS", S: "net.GND" }}
       />
       <OutputMosfet
         name="Q4"
+        {...schematicPosition("Q4")}
         pinAttributes={AO3400AAttributes}
         pcbX={15}
         pcbY={-6}
-        schX={11.5}
-        schY={1.5}
         connections={{
           G: "net.DISABLE_GATE",
           D: "net.ENA_MINUS",
@@ -330,11 +314,10 @@ export function CircuitParts() {
       />
       <OutputMosfet
         name="Q5"
+        {...schematicPosition("Q5")}
         pinAttributes={AO3400AAttributes}
         pcbX={21}
         pcbY={-6}
-        schX={11.5}
-        schY={-1.5}
         connections={{
           G: "net.ENABLE_GATE",
           D: "net.DISABLE_GATE",
@@ -395,8 +378,7 @@ export function CircuitParts() {
             pcbX={connector.x}
             pcbY={connector.y}
             pcbRotation={index < 3 ? 180 : 0}
-            schX={21}
-            schY={6 - index * 4}
+            {...schematicPosition(connector.name)}
             connections={{
               pin1: `net.${connector.a}`,
               pin2: `net.${connector.b}`,
@@ -454,9 +436,9 @@ export function CircuitParts() {
         { rail: "DIR", x: 0, y: 11 },
         { rail: "ENABLE", x: 23, y: 2 },
         { rail: "ARM", x: 9, y: -4 },
-        { rail: "SWCLK", x: 3, y: -1 },
-        { rail: "SWDIO", x: 2, y: 1 },
-        { rail: "RUN", x: 5, y: -4 },
+        { rail: "SWCLK", x: 4.2, y: -1 },
+        { rail: "SWDIO", x: 3.5, y: 1.5 },
+        { rail: "RUN", x: 5.5, y: -5.5 },
       ].map(({ rail, x, y }, index) => (
         <group key={rail} pcbX={0} pcbY={0}>
           <testpoint
@@ -475,8 +457,7 @@ export function CircuitParts() {
             }
             pcbX={x}
             pcbY={y}
-            schX={(-35 + index * 7) * 0.3}
-            schY={-21}
+            {...schematicPosition(`TP${index + 1}`)}
             connections={{ pin1: `net.${rail}` }}
           />
           <silkscreentext

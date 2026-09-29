@@ -1,4 +1,4 @@
-import { driverRegulatorPinStyle } from "./schematic-layout"
+import { driverRegulatorPinStyle, schematicPosition } from "./schematic-layout"
 import { TPS63030DSKR } from "../imports/TPS63030DSKR"
 import { PowerSwitch } from "./power-switch"
 import { TPS3839K33DBZR } from "../imports/TPS3839K33DBZR"
@@ -11,13 +11,12 @@ export function DriverPower() {
       <net name="DRIVER_VIN" isPowerNet nominalTraceWidth="0.5mm" />
       <TPS63030DSKR
         name="U7"
+        {...schematicPosition("U7")}
         schHeight={2.2}
         schWidth={1.9}
         schPinStyle={driverRegulatorPinStyle}
         pcbX={-3}
         pcbY={-20}
-        schX={0}
-        schY={10.7}
         connections={{
           VOUT: "net.VDRV",
           L2: "net.BOOST_L2",
@@ -34,10 +33,9 @@ export function DriverPower() {
       />
       <PowerSwitch
         name="U8"
+        {...schematicPosition("U8")}
         pcbX={-18}
         pcbY={-22}
-        schX={-9}
-        schY={11}
         connections={{
           pin1: "net.V5",
           pin2: "net.GND",
@@ -49,10 +47,9 @@ export function DriverPower() {
       />
       <TPS3839K33DBZR
         name="U9"
+        {...schematicPosition("U9")}
         pcbX={1}
         pcbY={-11}
-        schX={9}
-        schY={11}
         connections={{
           GND: "net.GND",
           N_RESET: "net.SUPERVISOR_RESET",
@@ -61,11 +58,10 @@ export function DriverPower() {
       />
       <SWPA4018S1R5NT
         name="L1"
+        {...schematicPosition("L1")}
         pcbX={-9}
         pcbY={-20}
         pcbRotation={90}
-        schX={-4.5}
-        schY={11}
         connections={{ pin1: "net.BOOST_L1", pin2: "net.BOOST_L2" }}
       />
     </>

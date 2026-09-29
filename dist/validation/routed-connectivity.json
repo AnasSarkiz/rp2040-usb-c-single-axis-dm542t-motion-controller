@@ -1,5 +1,5 @@
 {
-  "circuit_sha256": "c01006f5916422e1fb6a2ae3884c46f84c55da5db58b02822d198b90b07f367d",
+  "circuit_sha256": "7c21065dccbe81cac9a1b11166c6343d3d1007687827928e2905b5094563de6c",
   "method": "Union physical pad, trace and pour copper per layer; join layers only at plated holes/vias. Conservative minimum endpoint width for tapered segments; geometric join tolerance 0.0000001 mm. Shorts require the separate native raster/gerber check.",
   "nets": {
     "VDRV": {
@@ -289,5 +289,29 @@
     }
   },
   "failed_nets": [],
-  "shorted_net_groups": []
+  "shorted_net_groups": [
+    [
+      "ARM",
+      "DIR",
+      "DRIVER_FAULT",
+      "DRIVER_POWER",
+      "DRIVER_REG_ENABLE",
+      "ENABLE",
+      "GND",
+      "QSPI_CLK",
+      "QSPI_D0",
+      "QSPI_D2",
+      "QSPI_D3",
+      "STEP",
+      "V3V3"
+    ],
+    [
+      "RUN",
+      "SWCLK"
+    ],
+    [
+      "MCU_DM",
+      "MCU_DP"
+    ]
+  ]
 }

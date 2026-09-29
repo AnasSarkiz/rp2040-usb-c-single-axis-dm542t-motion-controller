@@ -1,46 +1,58 @@
 {
-  "source_version": "0.1.0-prototype.18",
+  "source_version": "0.1.0-prototype.19",
   "hardware_revision": "A0",
   "status": "rejected_not_fabrication_ready",
   "routing_enabled": true,
   "build_command": "tsci build index.circuit.tsx --pcb-png --pcb-svgs --schematic-svgs",
   "build_exit_code": 1,
-  "native_errors": 4,
-  "native_error_types": [
-    "pcb_via_clearance_error"
-  ],
-  "native_shorts": 0,
-  "physical_connectivity": "57_nets_273_ports_passed_no_shorts",
-  "via_pair_violations": 4,
-  "reserved_plane_intrusions": 28,
-  "ordinary_drill_to_pad_violations": 0,
+  "native_errors": 84,
+  "native_error_types": {
+    "pcb_trace_error": 30,
+    "pcb_pad_trace_clearance_error": 1,
+    "pcb_via_trace_clearance_error": 29,
+    "pcb_pad_pad_clearance_error": 16,
+    "pcb_via_clearance_error": 2,
+    "pcb_placement_error": 6
+  },
+  "native_shorts_findings": 29,
+  "physical_connectivity": "failed_3_shorted_groups_all_57_nets_273_ports_joined",
+  "via_pair_violations": 3,
+  "reserved_plane_intrusions": 29,
+  "ordinary_drill_to_pad_violations": 13,
+  "schematic_sheets": "8_native_A4_landscape_visually_reviewed",
+  "snapshot_check": "failed_not_accepted",
   "dependencies": {
     "tscircuit": "0.0.2646",
     "@tscircuit/cli": "0.1.2172",
-    "@tscircuit/core": "0.0.1971-a0.2",
+    "@tscircuit/core": "0.0.1971-a0.3",
     "typescript": "5.9.3",
-    "@biomejs/biome": "2.5.14"
+    "@biomejs/biome": "2.5.14",
+    "@tscircuit/capacity-autorouter": "0.0.919-a0.2"
   },
   "inputs": [
     {
       "path": "index.circuit.tsx",
-      "sha256": "f771c6ae9e032bd77dbfcc1d0667d946a11ab52093a53ec165d54e2d1acbd971"
+      "sha256": "23054fa06271ae2c78e45b80542eaa7ef7dc776a9df7c12c6ddfe7e24ad3b79b"
     },
     {
       "path": "project.json",
-      "sha256": "5247ca2f2ed0b01b79638052e80ab6f92aec7fd2ce058c9fd45b2b3693a5979d"
+      "sha256": "7f4b80fe49382a71e1c2a26423aa7dd7a3f35ccb5e0c554638c3b0d2175b8ece"
     },
     {
       "path": "package.json",
-      "sha256": "2c35c2e1c1f82c6c39efcbbca06d967cf5496d7254817d25e8604b0ca9355941"
+      "sha256": "9af9e27215e9052801a9ee696cce7fcabb83600b1b653bd1d6bef307a87cabef"
     },
     {
       "path": "bun.lock",
-      "sha256": "11a84e95ff3b2f8d96e0e7968e62fa3cb4c5054cca1940c3b2b33fbc61ea7b47"
+      "sha256": "846771b64ed69f7b20ad841db9169c70ddaff8b7df4f6a568ade5cb8eeae2fae"
     },
     {
       "path": "tscircuit.config.json",
       "sha256": "ec9dda49e55faaf473a18cb06210bb75d10d1d92c2fe20aed244b65272a36aa0"
+    },
+    {
+      "path": "tooling/manifest.json",
+      "sha256": "1e26c68b791474695ad5d438f2c30803bb9e5dd9ce0e9a0bebd39623fdb48031"
     },
     {
       "path": "lib/catalog.json",
@@ -48,11 +60,11 @@
     },
     {
       "path": "lib/circuit.tsx",
-      "sha256": "5bdc91d1f673e7fb26d6011b2a8a3ac182469457ef7f4238724bcff13e656e09"
+      "sha256": "ddf5ecc2944c2dfda66f6ead4a5f6e3c8cc7b4f6ccb63a7aeffe2b857990314f"
     },
     {
       "path": "lib/driver-power.tsx",
-      "sha256": "fa033181f55fcd2a69d3a0b6ef474e575023adab625d173bf3a176439f46f053"
+      "sha256": "b599f1676ab54cb6e050467df083ee8f615b3cad43aee18b273669e617a7a325"
     },
     {
       "path": "lib/output-mosfet.tsx",
@@ -64,7 +76,7 @@
     },
     {
       "path": "lib/passives.ts",
-      "sha256": "c79e86ec87803a34552fa46f58ea58657aab618ae5651a5ec7835e707998ecc8"
+      "sha256": "3990f6b6cc93a4e617ccf3639671ce58e336b4047d2598167406b0c16fe50eb6"
     },
     {
       "path": "lib/pin-attributes.ts",
@@ -76,23 +88,23 @@
     },
     {
       "path": "lib/schematic-layout.ts",
-      "sha256": "24ce3ae8cd0fcf944161e6e5c23b75ed103ca2222d8cf5f86a916005f31d3ec6"
+      "sha256": "f2eef350c9b8d84dc5384257484b22e12f3c0db3f41e5ea8d0ead97cf643dd89"
     },
     {
       "path": "lib/schematic-notes.tsx",
-      "sha256": "1b4a0fdc0d465e1cdd0d9b148381b24daeae9b27fdb0e67b1b7323f47b681ed0"
+      "sha256": "b53140215c3b1f01d44a8e34d4fbb7b7d14e45cd928937148d26763eef717ac4"
     },
     {
       "path": "lib/silkscreen.tsx",
-      "sha256": "7b60bc8b437c5aa683de6e9e703366813014bb4930acba16765ecdb41fa3a4c6"
+      "sha256": "1fcfc88bc898f62c382481a7fb468001a57d5d1dcee4d999675ba1ac9772752a"
     },
     {
       "path": "lib/symbol-clockcrystal.tsx",
-      "sha256": "04862b717defb28d98e7f50f47b27eccb2d3148dff0dd2b0f15ea803f20b981a"
+      "sha256": "ae22f2a9a4749b1d351615ea16624050f5b20e4eeb8ed803ecef53956a860b2a"
     },
     {
       "path": "lib/symbol-inputfuse.tsx",
-      "sha256": "96bc80fccb5ecef4e160391f5b95c571e67162913d473f61b870920781ece94e"
+      "sha256": "64cdc56d1dbe1c578cadb0a2b7174fc97e08d9376fbd11ec2e4285568ec78398"
     },
     {
       "path": "lib/symbol-usbprotection.tsx",
@@ -245,36 +257,88 @@
     {
       "path": "imports/W25Q16JVSSIQ.tsx",
       "sha256": "eddd257b9fd141ca403fd720cc3948ed9e952c9a83d99e23f740b99f361ad156"
+    },
+    {
+      "path": "tooling/packages/tscircuit-props-0.0.666-a0.1.tgz",
+      "sha256": "70df960b584eb6c7b4817ecdf5157a450783f19e5337a70042da36d115100c90"
+    },
+    {
+      "path": "tooling/packages/tscircuit-core-0.0.1971-a0.3.tgz",
+      "sha256": "a5c3a2b547c63037e7f937054f4d5c9d7adb88e5bd559e80d731d2a9f32111dc"
+    },
+    {
+      "path": "tooling/packages/tscircuit-alphabet-0.0.25-a0.1.tgz",
+      "sha256": "350ef4b9cc2afc316e20e0037a40329bd8366bb221408e99d4ee95725d00e0c0"
+    },
+    {
+      "path": "tooling/packages/tscircuit-capacity-autorouter-0.0.919-a0.2.tgz",
+      "sha256": "3bb78a0bffef7a5af17e5391df4b1e4714dc67b863af35376c448091bef56d23"
     }
   ],
   "outputs": [
     {
       "path": "dist/README.md",
-      "sha256": "515021e09466b8ad05dcb2da0187250ee22e592c6d1daf64f7ea34317e3095ba"
+      "sha256": "9d65d0e63352c73819c79b2d4ea0d7e2666b7870563f22e26c2e0a7cc34ffcdf"
     },
     {
       "path": "dist/index/circuit.json",
-      "sha256": "c01006f5916422e1fb6a2ae3884c46f84c55da5db58b02822d198b90b07f367d"
+      "sha256": "7c21065dccbe81cac9a1b11166c6343d3d1007687827928e2905b5094563de6c"
     },
     {
       "path": "dist/index/pcb.png",
-      "sha256": "815962dae3e002046e2dcaf6901b21e441e9373201fdc8036747483a5e4ecae8"
+      "sha256": "cc9eafd7ba0beb95d63a09bdb106df6bfbdae86e8c47b0066c5a667950c0ad91"
     },
     {
       "path": "dist/index/pcb.svg",
-      "sha256": "c9d230c6cd2c756b4f2fd868d644c2a15d07da064b623b75463613c7b6ac62c7"
+      "sha256": "5e71be66cead3f0f19df45137901cd4790089f0a281134c55b4ed9785af078e6"
+    },
+    {
+      "path": "dist/index/schematic-a4.pdf",
+      "sha256": "0b499b33ace8d434d38e2456be1a0a4e0a516fb52d0f485db3d1dc9f0dec1854"
+    },
+    {
+      "path": "dist/index/schematic-sheet-1.svg",
+      "sha256": "795768c5ed7a4c2e6110615b31398fb140decb10a0b1335bac201ce4645b5980"
+    },
+    {
+      "path": "dist/index/schematic-sheet-2.svg",
+      "sha256": "364b1216a43490d12d9017eae6aaea639ffde3fc4d54f3febce3f52c2e9457dc"
+    },
+    {
+      "path": "dist/index/schematic-sheet-3.svg",
+      "sha256": "d00c2ef8f4ff1ae5dad02a62c227d7d56dc4fb8a146fe54d4ff49284768f6f65"
+    },
+    {
+      "path": "dist/index/schematic-sheet-4.svg",
+      "sha256": "6027b5abf1da2980a93fac034efd06a818eaa228d1b36cbaadf6d09c6c14cd12"
+    },
+    {
+      "path": "dist/index/schematic-sheet-5.svg",
+      "sha256": "bc5f939de15c44371ab87b380be160b54141e614e4efe186799fa698d3f1a4c5"
+    },
+    {
+      "path": "dist/index/schematic-sheet-6.svg",
+      "sha256": "5ddb0be8260bea72b1b31c7c51e4c8d4d7248a1f80604b8a7c5e20e147e8f220"
+    },
+    {
+      "path": "dist/index/schematic-sheet-7.svg",
+      "sha256": "b00fa655b9dd10f98d0fd8d2186a430b883b0bf0579c1876836029cf04e66572"
+    },
+    {
+      "path": "dist/index/schematic-sheet-8.svg",
+      "sha256": "04ec678bdefb91de13126ea0d9d177991003700bae5bf724d8eb99d98e769308"
     },
     {
       "path": "dist/index/schematic.svg",
-      "sha256": "ba26221cc9c2f14886fa8d28ed1343459f641d3e502e2bb92127ece69f47af8d"
+      "sha256": "0de65e7a3db3979349b07eae2c1a0e38cd4e58fce6b0371fb169ffe926bd2f0d"
     },
     {
       "path": "dist/validation/copper-measurements.json",
-      "sha256": "48cdcd04ca8617b3cc30cb11bcc67494c3a491c8b69d1113d43f49f0806c37e7"
+      "sha256": "6bfb2c30b73bdca569dfa2a80a35bd5a780a9d87eed07ad6dea7af9f2c402f93"
     },
     {
       "path": "dist/validation/routed-connectivity.json",
-      "sha256": "e40afa52f38b3f8b820b39fc4b40854f76a42f7f790a85173697061b19acd9e4"
+      "sha256": "a4c57d1f9472cd5a1573c112668e1f513a84d1c6786fd165e6e98b1664c254bc"
     }
   ]
 }

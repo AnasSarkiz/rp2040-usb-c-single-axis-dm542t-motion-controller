@@ -1,4 +1,4 @@
-const { convertCircuitJsonToPcbSvg } = require("circuit-to-svg")
+const { convertCircuitJsonToPcbSvg, convertCircuitJsonToSchematicSvg } = require("circuit-to-svg")
 const { Resvg } = require("@resvg/resvg-js")
 const fs = require("node:fs")
 const project = require("../project.json")
@@ -24,3 +24,18 @@ for (const layer of layers) {
 }
 fs.copyFileSync(`${folder}/top.png`, `${folder}/pcb.png`)
 fs.copyFileSync("dist/index/schematic.svg", `${folder}/schematic.svg`)
+
+const sheets = circuit.filter((element) => element.type === "schematic_sheet")
+for (const sheet of sheets) {
+  if (sheet.sheet_size !== "a4" || sheet.sheet_width !== 297 || sheet.sheet_height !== 210)
+    throw new Error(`Not a native A4 sheet: ${sheet.name}`)
+  const svg = convertCircuitJsonToSchematicSvg(circuit, {
+    schematicSheetIndex: sheet.sheet_index,
+    width: 1684,
+    height: 1191,
+  })
+  const basename = `schematic-sheet-${sheet.sheet_index + 1}`
+  fs.writeFileSync(`dist/index/${basename}.svg`, svg)
+  fs.writeFileSync(`${folder}/${basename}.svg`, svg)
+  fs.writeFileSync(`${folder}/${basename}.png`, new Resvg(svg).render().asPng())
+}

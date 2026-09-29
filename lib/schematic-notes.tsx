@@ -1,12 +1,13 @@
 import { Fragment } from "react"
+import { schematicPosition, schematicSheets } from "./schematic-layout"
 
 // Board operating points and component ratings; sources in DESIGN-REVIEW.md.
 // IC ratings do not override the USB budget or imply measured board performance.
 const chipNotes = [
   {
     name: "U1",
-    x: 1.8,
-    y: 7,
+    x: -11,
+    y: 8,
     lines: [
       "U1 / RP2040 motion + USB controller",
       "3.3 V I/O; internal 1.1 V core rail",
@@ -15,8 +16,8 @@ const chipNotes = [
   },
   {
     name: "U2",
-    x: -6.9,
-    y: 8.7,
+    x: -10,
+    y: 7,
     lines: [
       "U2 / QSPI program flash",
       "16 Mbit (2 MiB); powered from 3.3 V",
@@ -25,8 +26,8 @@ const chipNotes = [
   },
   {
     name: "U3",
-    x: -18.9,
-    y: 13.5,
+    x: -10,
+    y: 8,
     lines: [
       "U3 / 3.3 V linear regulator",
       "5 V input; IC rated 600 mA",
@@ -35,8 +36,8 @@ const chipNotes = [
   },
   {
     name: "U4",
-    x: -19,
-    y: 3.5,
+    x: -3,
+    y: 3,
     lines: [
       "U4 / USB D+ and D- ESD clamp",
       "USB full speed; VBUS clamp rail 5 V",
@@ -45,8 +46,8 @@ const chipNotes = [
   },
   {
     name: "U5",
-    x: -26,
-    y: 13.5,
+    x: -3,
+    y: 9,
     lines: [
       "U5 / reverse-current blocking diode",
       "5 V USB path; IC rated 1.5 A",
@@ -55,8 +56,8 @@ const chipNotes = [
   },
   {
     name: "U6",
-    x: 13.8,
-    y: 0.8,
+    x: -10,
+    y: 7,
     lines: [
       "U6 / dual limit-input ESD clamp",
       "3.3 V logic; NC dry contacts only",
@@ -65,8 +66,8 @@ const chipNotes = [
   },
   {
     name: "U7",
-    x: -3,
-    y: 13.5,
+    x: 1,
+    y: 8,
     lines: [
       "U7 / buck-boost driver supply",
       "VDRV = 4.75 V nominal; 48.5 mA budget",
@@ -75,8 +76,8 @@ const chipNotes = [
   },
   {
     name: "U8",
-    x: -14.2,
-    y: 9.4,
+    x: -11,
+    y: 8,
     lines: [
       "U8 / switched branch current limiter",
       "5 V input; ILIM = 100k to ground",
@@ -85,8 +86,8 @@ const chipNotes = [
   },
   {
     name: "U9",
-    x: 7,
-    y: 13.5,
+    x: -11,
+    y: 8,
     lines: [
       "U9 / 3.3 V brownout supervisor",
       "Reset threshold 2.93 V nominal",
@@ -95,36 +96,37 @@ const chipNotes = [
   },
 ]
 
-export function SchematicNotes() {
+export function SchematicNotes({
+  sheetName,
+}: {
+  sheetName: (typeof schematicSheets)[number]
+}) {
   return (
     <>
-      {chipNotes.map((note) =>
-        note.lines.map((text, index) => (
-          <Fragment key={`${note.name}-${index}`}>
-            <schematictext
-              text={text}
-              schX={note.x}
-              schY={note.y - index * 0.48}
-              anchor="left"
-              fontSize={0.28}
-              color="#24364b"
-            />
-          </Fragment>
-        )),
-      )}
+      {chipNotes
+        .filter(
+          (note) => schematicPosition(note.name).schSheetName === sheetName,
+        )
+        .map((note) =>
+          note.lines.map((text, index) => (
+            <Fragment key={`${note.name}-${index}`}>
+              <schematictext
+                text={text}
+                schX={note.x}
+                schY={note.y - index * 0.48}
+                anchor="left"
+                fontSize={0.28}
+                color="#24364b"
+              />
+            </Fragment>
+          )),
+        )}
       <schematictext
-        text="RP2040 USB-C Motion Controller / REV A0 / Design review"
-        schX={-26}
-        schY={24}
+        text={`REV A0 / ${schematicSheets.indexOf(sheetName) + 1} of ${schematicSheets.length} / ${sheetName} / Untested prototype`}
+        schX={-11}
+        schY={-10}
         anchor="left"
-        fontSize={0.5}
-      />
-      <schematictext
-        text="Nominal design values unless marked as IC ratings. Physical prototype untested."
-        schX={-26}
-        schY={23}
-        anchor="left"
-        fontSize={0.28}
+        fontSize={0.25}
       />
     </>
   )

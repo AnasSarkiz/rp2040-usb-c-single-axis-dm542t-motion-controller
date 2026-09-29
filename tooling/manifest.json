@@ -14,10 +14,10 @@
       "repo": "https://github.com/tscircuit/core",
       "version": "0.0.1971",
       "commit": "ce40682b7afc199dc9417804cf520d5d3a032acc",
-      "local_version": "0.0.1971-a0.2",
+      "local_version": "0.0.1971-a0.3",
       "patch": "tooling/patches/core.patch",
-      "archive": "tooling/packages/tscircuit-core-0.0.1971-a0.2.tgz",
-      "sha256": "171080c0041f2aa879d1f23961accc48e4d069e1b628da4849285b90c3f8183b"
+      "archive": "tooling/packages/tscircuit-core-0.0.1971-a0.3.tgz",
+      "sha256": "a5c3a2b547c63037e7f937054f4d5c9d7adb88e5bd559e80d731d2a9f32111dc"
     },
     {
       "repo": "https://github.com/tscircuit/alphabet",
@@ -27,6 +27,15 @@
       "patch": "tooling/patches/alphabet.patch",
       "archive": "tooling/packages/tscircuit-alphabet-0.0.25-a0.1.tgz",
       "sha256": "350ef4b9cc2afc316e20e0037a40329bd8366bb221408e99d4ee95725d00e0c0"
+    },
+    {
+      "repo": "https://github.com/tscircuit/tscircuit-autorouter",
+      "version": "0.0.919",
+      "commit": "2b1be78a24b877602e4661ca60653a09643668f4",
+      "local_version": "0.0.919-a0.2",
+      "patch": "tooling/patches/tscircuit-autorouter.patch",
+      "archive": "tooling/packages/tscircuit-capacity-autorouter-0.0.919-a0.2.tgz",
+      "sha256": "3bb78a0bffef7a5af17e5391df4b1e4714dc67b863af35376c448091bef56d23"
     }
   ]
 }

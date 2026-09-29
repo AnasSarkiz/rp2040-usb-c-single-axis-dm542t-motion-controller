@@ -1,6 +1,6 @@
 # RP2040 USB-C Single-Axis Stepper Motion Controller for External DM542T Drivers with STEP/DIR/ENABLE Outputs and Dual Limit-Switch Inputs
 
-**Prototype source release 0.1.0-prototype.18 — revision A0 — untested. Four-layer routing validation failed; manufacturer acceptance pending. Not approved to order.**
+**Prototype source release 0.1.0-prototype.19 — revision A0 — untested. Four-layer routing validation failed; manufacturer acceptance pending. Not approved to order.**
 
 A USB-powered RP2040 controller concept for one external STEPPERONLINE DM542T V4.0 driver, with buffered STEP/DIR/ENABLE signals, two normally-closed dry-contact limit inputs, USB bootloader access, SWD test pads, reset/boot buttons and status LEDs.
 
@@ -14,4 +14,6 @@ The user authorized GitHub and tscircuit source publication on 2026-09-29. This 
 
 Bottom silkscreen carries the requested notice: “For evaluation only; not FCC approved for resale.”
 
-Prototype.18 includes local routed dist output for inspection. Shorts and required connectivity pass, but four via-spacing violations and reserved ground-plane intrusions remain; do not fabricate.
+Prototype.19 adds eight native A4 schematic sheets, an eight-page landscape PDF and per-IC function/rating notes. Local routed dist and exact check results accompany the source. Routing and fabrication acceptance remain blocked; do not fabricate.
+
+Current prototype.19 routing result: **84 native DRC errors**, 29 native shorts findings and three independently shorted net groups. A4 schematic conversion is complete; this source release is rejected for fabrication. See [VALIDATION.md](VALIDATION.md).

@@ -1,6 +1,6 @@
 # Source-built fabrication fixes
 
-These three packages are local forks, **not official upstream releases**. They
+These four packages are local forks, **not official upstream releases**. They
 are installed by the board's locked Bun overrides. The ordinary `tsci` commands
 load the board's core package; there is no runtime monkey patch and no Gerber or
 Circuit JSON rewriting. Every published package archive is hashed in
@@ -50,4 +50,30 @@ limits this installation to five minutes and fails explicitly on timeout. Thus
 end-to-end verification of this convenience helper remains incomplete. The
 reviewed core archive was built and typechecked from the same patched source in
 the original checkout, where all relevant core tests passed. The board installs
-the three hashed archives from its locked dependencies without rebuilding them.
+the hashed archives from its locked dependencies without rebuilding them.
+
+
+**Autorouter a0.2 (prototype.19):** repair-stage DRC carries the board's
+`minViaHoleEdgeToViaHoleEdgeClearance` through Circuit JSON conversion as a
+floor. The indexed repair engine measures copper edges, so its search margin
+subtracts the smallest via annular-diameter difference from the drill rule.
+For 0.30/0.60 mm vias, the 0.46 mm drill gap becomes 0.16 mm copper gap;
+this conversion stays conservative for mixed via sizes. The authoritative
+check still examines actual holes. Nine focused tests, TypeScript and the
+canonical build pass. This does not guarantee a route solves.
+
+The source checkout follows upstream's disabled lockfile-saving setting. An
+attempt to save a source lockfile produced an invalid unresolved peer entry;
+that file is quarantined locally and is not published or used by the helper.
+The board's own dependency lockfile and package archive hashes remain the
+reproducibility boundary. Source reconstruction has not been verified end to
+end. No upstream benchmark was run: the repository requires Blacksmith for
+benchmarks, unavailable here.
+
+**Core a0.3 (prototype.19):** the configured `autorouter.traceClearance`
+is now forwarded as the local solver's `defaultObstacleMargin`, including
+explicit per-phase settings and the legacy simplified remote endpoint. A
+regression reproduced the missing 0.23 mm setting and passes with the fix.
+The core's 24 focused tests, TypeScript and canonical source build pass.
+The board requests 0.20 mm routing clearance; physical acceptance thresholds
+remain unchanged. No generated copper is modified.

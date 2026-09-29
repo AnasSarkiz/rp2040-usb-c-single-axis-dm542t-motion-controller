@@ -1,6 +1,6 @@
 {
   "name": "@tsci/AnasSarkiz.rp2040-usb-c-single-axis-dm542t-motion-controller--01a0e89c",
-  "version": "0.1.0-prototype.18",
+  "version": "0.1.0-prototype.19",
   "description": "RP2040 USB-C Single-Axis Stepper Motion Controller for External DM542T Drivers with STEP/DIR/ENABLE Outputs and Dual Limit-Switch Inputs",
   "main": "index.circuit.tsx",
   "keywords": [
@@ -20,7 +20,7 @@
     "bom": "bun scripts/build-bom.ts",
     "test:board": "python3 tests/check-board.py --stage routed",
     "test:firmware": "cc -std=c11 -Wall -Wextra -Werror -fsanitize=address,undefined firmware/motion.c firmware/test_motion.c -lm -o firmware/test-motion && firmware/test-motion",
-    "test": "bun run test:board && bun run test:connectivity && bun run test:firmware && bun run test:power && bun run test:via-spacing && bun run test:copper",
+    "test": "bun run test:board && bun run test:schematic-sheets && bun run test:connectivity && bun run test:firmware && bun run test:power && bun run test:via-spacing && bun run test:copper",
     "test:power": "cc -std=c11 -Wall -Wextra -Werror -fsanitize=address,undefined firmware/power_policy.c firmware/test_power_policy.c -o firmware/test-power && firmware/test-power",
     "test:placement": "python3 tests/check-board.py --stage placement",
     "test:connectivity": "firmware/.venv/bin/python scripts/check-copper-connectivity.py",
@@ -28,7 +28,8 @@
     "test:fabrication": "python3 scripts/check-fabrication.py",
     "test:silkscreen": "PYTHONPATH=scripts firmware/.venv/bin/python tests/test-silkscreen-geometry.py && firmware/.venv/bin/python scripts/check-silkscreen.py",
     "test:via-spacing": "python3 tests/test-via-spacing.py",
-    "test:copper": "firmware/.venv/bin/python scripts/measure-copper.py"
+    "test:copper": "firmware/.venv/bin/python scripts/measure-copper.py",
+    "test:schematic-sheets": "python3 tests/check-schematic-sheets.py"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.14",
@@ -47,8 +48,9 @@
   },
   "homepage": "https://tscircuit.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller--01a0e89c",
   "overrides": {
-    "@tscircuit/core": "file:./tooling/packages/tscircuit-core-0.0.1971-a0.2.tgz",
+    "@tscircuit/core": "file:./tooling/packages/tscircuit-core-0.0.1971-a0.3.tgz",
     "@tscircuit/props": "file:./tooling/packages/tscircuit-props-0.0.666-a0.1.tgz",
-    "@tscircuit/alphabet": "file:./tooling/packages/tscircuit-alphabet-0.0.25-a0.1.tgz"
+    "@tscircuit/alphabet": "file:./tooling/packages/tscircuit-alphabet-0.0.25-a0.1.tgz",
+    "@tscircuit/capacity-autorouter": "file:./tooling/packages/tscircuit-capacity-autorouter-0.0.919-a0.2.tgz"
   }
 }

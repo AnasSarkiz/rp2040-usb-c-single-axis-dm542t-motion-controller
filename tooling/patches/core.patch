@@ -154,3 +154,29 @@
    }
  
    // Calculate bounds
+--- a/lib/components/primitive-components/Group/Group.ts
++++ b/lib/components/primitive-components/Group/Group.ts
+@@ -882,6 +882,11 @@
+           subcircuitComponent: this,
+         })
+         simpleRouteJson.allowViaInPad = autorouterConfig.allowViaInPad
++        if (autorouterConfig.traceClearance !== undefined) {
++          simpleRouteJson.defaultObstacleMargin = distance.parse(
++            autorouterConfig.traceClearance,
++          )
++        }
+ 
+         const { autorouting_result } = await fetchWithDebug(
+           `${serverUrl}/autorouting/solve`,
+@@ -1497,6 +1502,11 @@
+         routingPhasePlan.drcTolerances,
+       )
+       simpleRouteJson.allowViaInPad = phaseAutorouterConfig.allowViaInPad
++      if (phaseAutorouterConfig.traceClearance !== undefined) {
++        simpleRouteJson.defaultObstacleMargin = distance.parse(
++          phaseAutorouterConfig.traceClearance,
++        )
++      }
+ 
+       const getPrecomputedRoutingResult = usesPreviousStageOutput
+         ? undefined

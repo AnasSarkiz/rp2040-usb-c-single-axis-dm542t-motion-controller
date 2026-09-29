@@ -1,0 +1,77 @@
+--- a/lib/testing/getDrcErrors.ts
++++ b/lib/testing/getDrcErrors.ts
+@@ -74,7 +74,9 @@
+   options: GetDrcErrorsOptions = {},
+ ): GetDrcErrorsResult => {
+   const connMap = createDrcConnectivityMap(circuitJson)
++  const board = circuitJson.find((element) => element.type === "pcb_board")
+   const viaClearance = Math.max(
++    board?.min_via_hole_edge_to_via_hole_edge_clearance ?? 0,
+     options.viaClearance ?? MIN_VIA_TO_VIA_CLEARANCE,
+     MIN_VIA_TO_VIA_CLEARANCE,
+   )
+--- a/lib/testing/utils/convertToCircuitJson.ts
++++ b/lib/testing/utils/convertToCircuitJson.ts
+@@ -946,6 +946,9 @@
+       ? { outline: srj.outline, shape: "polygon" as const }
+       : { shape: "rect" as const }),
+     material: "fr4",
++    ...(srj.minViaHoleEdgeToViaHoleEdgeClearance !== undefined
++      ? { min_via_hole_edge_to_via_hole_edge_clearance: srj.minViaHoleEdgeToViaHoleEdgeClearance }
++      : {}),
+     ...(srj.minBoardEdgeClearance !== undefined
+       ? { min_board_edge_clearance: srj.minBoardEdgeClearance }
+       : {}),
+--- a/lib/autorouter-pipelines/AutoroutingPipeline9_PreloadedTraceGraph/Pipeline9JointDrcRepairSolver.ts
++++ b/lib/autorouter-pipelines/AutoroutingPipeline9_PreloadedTraceGraph/Pipeline9JointDrcRepairSolver.ts
+@@ -1,3 +1,4 @@
++import { getPipeline9ViaCopperClearance } from "./getPipeline9ViaCopperClearance"
+ import type { AnyCircuitElement } from "circuit-json"
+ import type { ConnectivityMap } from "circuit-json-to-connectivity-map"
+ import type { GraphicsObject } from "graphics-debug"
+@@ -721,7 +722,12 @@
+       params.originalSrj.minTraceToPadEdgeClearance ??
+       RELAXED_DRC_OPTIONS.traceClearance ??
+       0.1
+-    const viaClearance = RELAXED_DRC_OPTIONS.viaClearance ?? 0.1
++    const viaClearance = getPipeline9ViaCopperClearance({
++      originalSrj: params.originalSrj,
++      defaultViaDiameter: params.defaultViaDiameter,
++      defaultViaHoleDiameter: params.defaultViaHoleDiameter,
++      minimumCopperClearance: RELAXED_DRC_OPTIONS.viaClearance ?? 0.1,
++    })
+     const baselineDrc = evaluateRelaxedDrc({
+       includeBoardClearance: true,
+       inputSrj: params.originalSrj,
+--- /dev/null
++++ b/lib/autorouter-pipelines/AutoroutingPipeline9_PreloadedTraceGraph/getPipeline9ViaCopperClearance.ts
+@@ -0,0 +1,29 @@
++import type { SimpleRouteJson } from "lib/types"
++
++/** Convert the drill-edge rule to a conservative copper-edge search margin. */
++export const getPipeline9ViaCopperClearance = (params: {
++  originalSrj: SimpleRouteJson
++  defaultViaDiameter: number
++  defaultViaHoleDiameter: number
++  minimumCopperClearance: number
++}): number => {
++  const annularDiameters = [
++    params.defaultViaDiameter - params.defaultViaHoleDiameter,
++  ]
++  for (const trace of params.originalSrj.traces ?? []) {
++    for (const point of trace.route) {
++      if (point.route_type !== "via") continue
++      annularDiameters.push(
++        (point.via_diameter ?? params.defaultViaDiameter) -
++          (point.via_hole_diameter ?? params.defaultViaHoleDiameter),
++      )
++    }
++  }
++  // Taking the smallest annulus preserves the drill rule for mixed via sizes.
++  // The authoritative Circuit JSON check still evaluates each actual drill.
++  return Math.max(
++    params.minimumCopperClearance,
++    (params.originalSrj.minViaHoleEdgeToViaHoleEdgeClearance ?? 0) -
++      Math.min(...annularDiameters),
++  )
++}

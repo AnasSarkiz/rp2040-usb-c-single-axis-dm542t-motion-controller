@@ -2,7 +2,7 @@
 
 Product: **RP2040 USB-C Single-Axis Stepper Motion Controller for External DM542T Drivers with STEP/DIR/ENABLE Outputs and Dual Limit-Switch Inputs**
 
-Reviewed 2026-09-29 local time. **Untested prototype; via-spacing audit failed for prototype.13; correction in progress. Not fabrication ready.** GitHub and tscircuit source publication is user-authorized. This board now has its own Git repository. Earlier source/dependency manifests identify pre-Git states; they do not constitute recoverable complete source snapshots. A0-draft-2 manifests are historical; the power circuit and firmware have changed since then.
+Reviewed 2026-09-30 local time. **Untested prototype. Current prototype.19 has 84 native errors, 29 native shorts findings and three independently shorted net groups. Not fabrication ready.** GitHub and tscircuit source publication is user-authorized. This board now has its own Git repository. Earlier source/dependency manifests identify pre-Git states; they do not constitute recoverable complete source snapshots. A0-draft-2 manifests are historical; the power circuit and firmware have changed since then.
 
 ## Stage status
 
@@ -10,10 +10,10 @@ Reviewed 2026-09-29 local time. **Untested prototype; via-spacing audit failed f
 |---|---|---|
 | 1. Confirm requirements | in progress | Four-layer 90×60×1 mm candidate; 1 oz outer/0.5 oz inner copper target. Exact manufacturer dielectric stackup and acceptance remain unconfirmed. |
 | 2. Review schematic and BOM | passed | DESIGN-REVIEW.md; 85 exact sourced components; regulated driver voltage/current budgets, supervisor, USB sequencing/suspend and overload handling reviewed. Physical electrical limits remain unmeasured. |
-| 3. Validate placement before routing | passed | Candidate 18: native unrouted build and board invariants pass; zero placement DRC errors/warnings; reviewed PCB. R5/C2 rotation optimization suggestions remain accepted. |
-| 4. Route and validate copper | blocked | Prototype.18: 4 via-spacing errors; 28 non-GND traces on reserved inner1 plane. No detected shorts; all 57 nets / 273 required ports connected; zero ordinary drill-to-pad violations. |
-| 5. Automated and visual routed checks | blocked | Prototype.18 routing rejected. Four copper-layer previews inspected; no snapshot accepted. A4 sheet conversion remains pending. |
-| 6. Approve prototype fabrication | blocked | No prototype.18 manufacturing export; dist is rejected diagnostic output only. Historical exports remain withdrawn from ordering. |
+| 3. Validate placement before routing | passed | Candidate 19j: native unrouted build and invariants pass; zero placement DRC errors/warnings; PCB reviewed. All five required pre-routing checks exit 0. Eight native A4 sheets reviewed; two pin-padding suggestions accepted for readability. |
+| 4. Route and validate copper | blocked | Prototype.19j: 84 native errors; 29 native shorts findings; three independently shorted net groups; three via-pair, 13 ordinary drill-to-pad and 29 reserved-plane violations. |
+| 5. Automated and visual routed checks | blocked | Prototype.19j routing rejected. Four copper layers inspected; snapshot verification fails, no snapshot accepted. All eight A4 pages and 273 unchanged pin/net mappings verified. |
+| 6. Approve prototype fabrication | blocked | No prototype.19 manufacturing export; dist is rejected diagnostic output only. Historical exports remain withdrawn from ordering. |
 | 7. Test physical prototype | not started | No physical hardware. BRING-UP.md defines required measurements. |
 | 8. Prepare store release | in progress | Exact name and revision in README, metadata and prototype source listing. GitHub/tscircuit projects created; source publication authorized. Sale-ready release remains incomplete. |
 
@@ -23,18 +23,20 @@ Reviewed 2026-09-29 local time. **Untested prototype; via-spacing audit failed f
 - Common-anode STEP/DIR/ENA, regulated 4.75 V nominal, 7–16 mA per active driver input, 4.5–5 V target at the driver. ≤1 Ω control-pair cable loop. No motor power, external injection or 24 V sensors. Indoor 0–50 °C intended range.
 - 500 mA USB configuration request. Design budgets: 80 mA before configuration, about 160 mA running, about 386 mA including branch current limit; attachment capacitance 9.35 µF. Suspend must be ≤2.5 mA. These are allocations, not measurements; see evidence/power-budget.json and BRING-UP.md.
 - Normally-closed dry-contact limits, reset/boot buttons, LEDs and 11 bare 1.4 mm test pads. Broken wires assert limits. Firmware cap 2000 steps/s, 10 µs high/low minimums, 2 ms direction guard, ≥200 ms enable lead, 1 s heartbeat timeout.
-- User explicitly authorized a **new outline and mounting pattern**, replacing the original matching requirement: 90×60×1 mm FR-4, two layers, top assembly, four 3.2 mm finished NPTH holes at centered (±40,±25) mm, 80×50 mm spacing. Four 4 mm-radius both-layer keepouts reserve hardware clearance; 1 mm remains between each clearance circle and board edge. M3 hardware must fit this envelope. No specific enclosure fit claimed.
-- JLCPCB target: 1 oz outer copper, signal width and copper spacing ≥0.15 mm, main power trunks 0.4/0.5 mm, vias ≥0.3 mm drill / 0.6 mm pad, via/drill separation ≥0.25 mm, copper-edge clearance ≥0.5 mm. [Manufacturer capabilities](https://jlcpcb.com/capabilities/pcb-capabilities). Fine-pitch escape necks and actual current capacity must be assessed from routed geometry. No controlled impedance claim on the two-layer stackup.
+- User explicitly authorized a **new outline and mounting pattern**, replacing the original matching requirement: 90×60×1 mm FR-4, four-layer candidate, top assembly, four 3.2 mm finished NPTH holes at centered (±40,±25) mm, 80×50 mm spacing. Four native 4.03 mm-radius keepouts on all four layers reserve the 4 mm hardware clearance; 1 mm remains between each clearance circle and board edge. M3 hardware must fit this envelope. No specific enclosure fit claimed.
+- JLCPCB target: 1 oz outer copper, signal width and copper spacing ≥0.15 mm, main power trunks 0.4/0.5 mm, vias ≥0.3 mm drill / 0.6 mm pad, via-hole separation ≥0.46 mm and other plated-drill separation ≥0.25 mm, copper-edge clearance ≥0.5 mm. [Manufacturer capabilities](https://jlcpcb.com/capabilities/pcb-capabilities). Fine-pitch escape necks and actual current capacity must be assessed from routed geometry. No controlled impedance claim; the exact four-layer dielectric stackup remains unconfirmed.
 
 ## Reproducibility
 
-Bun 1.3.9; tscircuit 0.0.2646; CLI 0.1.2172; core 0.0.1971-a0.1; props 0.0.666-a0.1; alphabet 0.0.25-a0.1; TypeScript 5.9.3; Biome 2.5.14; @types/node 22.15.30; pinned bun.lock. Run commands only inside this board directory. Catalog electrical footprints are preserved; prototype.12 moves detailed reference artwork to the fabrication layer and adjusts pin-one legend positions/stroke widths. Locally authored symbol/footprint wrappers are explicit. Manufacturer PDFs remain local; official JLC assembly-stock snapshots are in references/catalog/. Datasheet URLs are in the BOM and design review. Individual catalog dates use UTC.
+Bun 1.3.9; tscircuit 0.0.2646; CLI 0.1.2172; core 0.0.1971-a0.3; capacity-autorouter 0.0.919-a0.2; props 0.0.666-a0.1; alphabet 0.0.25-a0.1; TypeScript 5.9.3; Biome 2.5.14; @types/node 22.15.30; pinned bun.lock. Run commands only inside this board directory. Catalog electrical footprints are preserved; prototype.12 moves detailed reference artwork to the fabrication layer and adjusts pin-one legend positions/stroke widths. Locally authored symbol/footprint wrappers are explicit. Manufacturer PDFs remain local; official JLC assembly-stock snapshots are in references/catalog/. Datasheet URLs are in the BOM and design review. Individual catalog dates use UTC.
 
 Firmware uses Pico SDK 2.2.0 (`a1438dff1d38bd9c65dbd693f0e5db4b9ae91779`), TinyUSB `86ad6e56c1700e85f1c5678607a762cfe3aa2f47`, CMake 3.31.6, Arm GNU 13.2.Rel1 / GCC 13.2.1. Exact archive hashes and subset-extraction record are in evidence/toolchain-install.json. Compiler binaries and SDK internals are unchanged; baseline and Cortex-M0+ runtime libraries are included. Firmware README records reconstruction/build/flash commands. ELF/BIN/HEX are software artifacts, not evidence of successful flashing.
 
 Earlier disk exhaustion and a system compiler missing nosys.specs were resolved with task-local dependencies and the official Arm toolchain. Native `keepout` is the installed supported spelling. Manufacturing tolerances are direct board props, not a nested routingTolerances prop. Typechecking exposed and corrected the unsupported form before routing. No type escapes, ignored errors, DRC suppression or installed-artifact patches are used. Prototype.12 includes tested source-built generator forks, with official base commits, source patches, regression fixtures and hashed package archives in tooling/.
 
-## Current commands and evidence
+## Historical baseline commands and evidence
+
+These are earlier baseline results, not acceptance of the current routed board. Current prototype.19 results and logs are recorded at the end of this file.
 
 | Command | Result / evidence |
 |---|---|
@@ -277,3 +279,38 @@ Fresh native routed build generated 217 traces and 152 vias, then exited 1 with 
 Format and TypeScript checks pass. Top, bottom, inner1 and inner2 diagnostic previews were inspected; inner1 still contains signal cuts. Bottom notice is present, but final routed silkscreen-to-via clearance and Gerber review remain pending. No snapshots were accepted and no fabrication export was generated. A4 conversion, stackup acceptance and hardware tests remain pending.
 
 User requested --include-dist. Fresh native circuit JSON and PCB/schematic renders are included with the exact tagged source, build-status record, source/output hashes and full independent audit reports. Historical dist/debug files were archived locally before building. Native errors are preserved in circuit JSON; no rules or checks were relaxed. Including rejected dist does not mean build success, fabrication readiness or verified cloud timeout resolution. Logs: evidence/iteration-18-*.log; raw evidence: evidence/routing-prototype-18/.
+
+## A4 schematic and routing investigation — 0.1.0-prototype.19
+
+Reviewed 2026-09-30. All eight native schematic sheets are A4 landscape (297 × 210 mm). The CLI exported an eight-page A4 PDF; all eight rendered pages were visually inspected. All 96 component symbols belong to a sheet; nine IC function/rating notes share their IC's sheet. A regression compares all 273 required pin/net mappings against prototype.18. Enlarged U1/U7 symbols deliberately retain readable pin spacing: two padding-optimization suggestions are accepted because the suggested smaller bodies crowd labels. No schematic collision is accepted. Simple sheets do not need sections.
+
+Placement changes include R5/C2/R30 rotations; R30 moved to (-2,-26.5) mm; TP9 to (4.2,-1), TP10 to (3.5,1.5), TP11 to (5.5,-5.5); C8 ultimately to (-3.8,1.3); C7 to (-8,-7.1); C6 to (-11.4,-6.8). C13 was tested at (-16.3,-0.3) and returned to (-15.6,-0.3). RUN legend moved clear of TP11. Electrical connections, components and manufacturing minima are unchanged. Each routing attempt followed a real component change, unrouted placement checks and a reviewed placement PNG.
+
+Candidate history (all failures retained locally):
+
+| Candidate | Result |
+|---|---|
+| 19a | Pipeline 9: 8 native errors, including 7 via-spacing and 1 pad/trace error; 27 reserved-plane intrusions. |
+| 19b | Pipeline 3 exhausted HyperGraphSectionOptimizer iterations; no routed output. |
+| 19c | Execution interrupted before a routed result; no pass claimed. |
+| 19d | Source-built pipeline 9 stopped with `repair04 merge rejected a new via in the boundary collar`; no routed output. |
+| 19e | Pipeline 9 produced 217 traces/141 vias but 68 native DRC errors. Rejected. |
+| 19f | Pipeline 7 produced 80 native DRC errors. Rejected. |
+| 19g | Pipeline 9, 10x, 0.20 mm requested margin: 107 native errors and 75 native raster/Gerber shorts findings. Rejected. |
+| 19h | Pipeline 1: failed to solve 22 regions after about five minutes; zero routed traces and 273 unconnected ports. |
+| 19i | Isolated native MCU fanout trial: fails before routing because a custom-symbol pin selector cannot resolve U4.pin1; moving the breakout to the end of the source did not fix it. Not incorporated. |
+| 19j | Current pipeline 9/5x candidate with the corrected indexed-engine clearance units. See results below. |
+
+Two canonical source fixes were built and tested, with no installed-file patches or generated-copper edits. Autorouter a0.2 propagates the declared 0.46 mm via-hole rule through its repair evaluator and converts it to the indexed engine's copper-edge units (9 focused tests, typecheck and canonical build pass). The intermediate a0.1 incorrectly passed 0.46 mm as a copper gap, overconstraining its search; that experiment is retained only locally. With 0.30/0.60 mm vias, the corrected indexed margin is 0.16 mm; the authoritative hole check remains 0.46 mm. Core a0.3 forwards `traceClearance` to the local routing input: the regression reproduced `undefined` for a requested 0.23 mm and now passes; 24 focused core tests, typecheck and canonical build pass. The current board's dumped native input confirms 0.20 mm obstacle margin and 0.46 mm via-hole clearance. These fixes do not establish that the solver meets all constraints. The source-reconstruction helper's complete fresh run remains unverified; the recorded source checkouts were tested and built directly. Blacksmith-only upstream benchmarks were not available.
+
+Earlier firmware and BOM remain electrically applicable because no pin/net or component-value change occurred. Formatting, TypeScript, firmware sanitizer tests, independent geometry regressions and A4 assertions pass. Current routed acceptance requires the native and independent results below. No failed route snapshot has been accepted and no current manufacturing package is approved. Historical Gerber packages remain withdrawn. Physical prototype measurements and exact manufacturer stackup/assembler acceptance are still outstanding.
+
+### Current candidate 19j results
+
+The routed build completed and exited 1: 217 traces, 151 vias, **84 native errors** (30 trace, 29 via/trace clearance, 16 pad/pad clearance, six routed placement, two via/via clearance, one pad/trace clearance). The native shorts command exited 1 with 29 raster/Gerber findings, which must not be interpreted as 29 distinct physical shorts. Independent copper connectivity found three shorted net groups; all 57 nets/273 required ports being joined does not constitute a connectivity pass when unintended connections exist.
+
+The independent geometry audit found three via pairs violating the 0.46 mm hole/0.15 mm different-net copper minima, 13 ordinary drill-to-pad violations and 29 non-GND traces on reserved inner1. Minimum measured via-hole gap is 0.266830 mm; minimum different-net via-copper gap is -0.033170 mm (overlap). Minimum ordinary drill-to-pad gap is zero. Trace width is at least 0.15 mm, vias are 0.30/0.60 mm, copper-edge clearance is 0.5 mm and minimum copper distance from mounting centers is 4.0 mm. These passing dimensions do not offset the failed clearances.
+
+Current logs: evidence/iteration-19j-routing.log, iteration-19j-shorts.log, iteration-19j-netlist.log, iteration-19j-pin_specification.log, iteration-19j-source.log, iteration-19j-schematic-placement.log and iteration-19-snapshot.log. All five pre-routing checks exit 0; the accepted generic pin-model warnings remain as previously reviewed. Snapshot verification exits 1 for both changed PCB and schematic; no update was accepted. Both independent audit hashes match dist/index/circuit.json. Reviewed artifacts: all four previews/A0-prototype.19 copper-layer PNGs, the unrouted placement PNG, and all eight A4 PDF pages. Final PDF page renders are byte-identical to the eight visually reviewed pages. Current native and independent results are published in dist/build-status.json and dist/validation/.
+
+The current source-built fixes have passing focused regressions (24 core, nine autorouter) and passing typechecks/builds; they have not produced an acceptable board. Stop point: native detailed routing/repair still violates clearances and reserved-plane usage; native MCU fanout fails while resolving a custom-symbol pin selector before routing. No rule was relaxed, failure suppressed, snapshot accepted or generated copper edited. Next work is to isolate and correct those native solver/fanout defects, then make another relevant component adjustment, repeat the unrouted gate, reroute and run all copper checks. Manufacturer stackup and assembler acceptance remain required before prototype fabrication approval. Historical exports are withdrawn.

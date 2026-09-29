@@ -2,7 +2,7 @@
 
 **Revision A0 — untested prototype. Four-layer candidate fails routing validation. Not fabrication ready; do not order the historical exports.**
 
-USB-C powers an RP2040 and connects a computer to one external STEPPERONLINE DM542T V4.0. The external driver supplies motor current from its own supply. This board carries control signals only. The public package includes circuit sources, the complete sourcing BOM, firmware sources and tests. Detailed investigation artifacts and compiled firmware remain local. The prototype.13 audit missed two via-to-via copper clearance violations. The latest four-layer candidate has no detected shorts and all required connections are routed, but still fails four via-spacing checks and ground-plane enforcement; see the recorded toolchain fix and remaining blockers. Historical manufacturing exports are retained for traceability and are not approved for ordering. See [VALIDATION.md](VALIDATION.md).
+USB-C powers an RP2040 and connects a computer to one external STEPPERONLINE DM542T V4.0. The external driver supplies motor current from its own supply. This board carries control signals only. The public package includes circuit sources, the complete sourcing BOM, firmware sources and tests. Detailed investigation artifacts and compiled firmware remain local. The prototype.13 audit missed two via-to-via copper clearance violations. The current four-layer layout remains under routing review. Native routing and independent copper audits must both pass before fabrication; see the exact current results in VALIDATION.md. Historical manufacturing exports are retained for traceability and are not approved for ordering. See [VALIDATION.md](VALIDATION.md).
 
 All 85 fitted components have exact JLCPCB mappings in [BOM.md](BOM.md) and [bom.csv](bom.csv). These are sourced parts, not an approved assembly package.
 
@@ -90,7 +90,7 @@ Storage recovered on 2026-09-29. The earlier corrupted output remains quarantine
 
 ## Repositories and versions
 
-Source version **0.1.0-prototype.14**, hardware revision **A0**. Public source publication was authorized on 2026-09-29; it does not approve fabrication or hardware operation.
+Source version **0.1.0-prototype.19**, hardware revision **A0**. Public source publication was authorized on 2026-09-29; it does not approve fabrication or hardware operation.
 
 - [GitHub repository](https://github.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller)
 - [tscircuit project](https://tscircuit.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller--01a0e89c)
@@ -101,22 +101,26 @@ The independent physical-connectivity audit requires Shapely 2.1.2 (`python3 -m 
 
 ## Current preview and manufacturing review
 
-The schematic includes function and voltage/current notes beside all nine ICs. Enlarged MCU and converter symbols and separated USB/power sections support design review.
+The schematic uses eight native A4 landscape sheets (297 × 210 mm): MCU/decoupling, USB, logic power, flash/clock, reset/debug, driver power, motion outputs and limit inputs. Each IC has nearby function and rating notes. All eight PDF pages were inspected; the automated sheet check also verifies the original 273 required pin-to-net mappings.
 
-**Rejected routing candidate — this render is for debugging, not fabrication approval.**
+[Eight-page A4 schematic PDF](dist/index/schematic-a4.pdf) · [First schematic sheet](dist/index/schematic-sheet-1.svg) · [Current validation record](VALIDATION.md).
 
-![Rejected A0 four-layer routing candidate](previews/A0-prototype.14/pcb.png)
+**Routing under review — these are design renders, not physical photographs or fabrication approval.**
 
-[Schematic preview](previews/A0-prototype.14/schematic.svg) · [Inner ground-layer diagnostic](previews/A0-prototype.14/inner1.svg) · [Current blockers](VALIDATION.md). No prototype.14 manufacturing export exists. Historical exports are withdrawn from ordering. These are generated design views, not physical prototype photographs.
+![A0 four-layer routing candidate](previews/A0-prototype.19/pcb.png)
+
+[Inner ground layer](previews/A0-prototype.19/inner1.svg). No prototype.19 manufacturing export is approved. Historical exports remain withdrawn from ordering.
 
 ## Cloud build timeout
 
-Source release `0.1.0-prototype.17` sets `build.workerTimeoutMs` to `3600000` (60 minutes) in `tscircuit.config.json`. The prototype.14 cloud worker was terminated at its previous 600000 ms limit while routing was still advancing. An environment-level `TSCIRCUIT_BUILD_WORKER_TIMEOUT_MS` overrides this config if the host sets one; the host may also impose a separate overall deadline. Prototype.16 registry metadata reports `user_code_job_timeout` with “Build timed out after 30 minutes”, indicating an overall hosted-job deadline. Increasing the worker setting does not establish that this platform deadline has changed. Hosted completion with the increased limit remains unverified. PCB sources and dependencies are unchanged, so the rejected prototype.14 routing evidence still applies.
+Source release `0.1.0-prototype.17` sets `build.workerTimeoutMs` to `3600000` (60 minutes) in `tscircuit.config.json`. The prototype.14 cloud worker was terminated at its previous 600000 ms limit while routing was still advancing. An environment-level `TSCIRCUIT_BUILD_WORKER_TIMEOUT_MS` overrides this config if the host sets one; the host may also impose a separate overall deadline. Prototype.16 registry metadata reports `user_code_job_timeout` with “Build timed out after 30 minutes”, indicating an overall hosted-job deadline. Increasing the worker setting does not establish that this platform deadline has changed. Hosted completion with the increased limit remains unverified. That timeout change did not validate copper. The current prototype.19 has additional source, placement and dependency changes and its own validation results.
 
 ## Bottom evaluation notice
 
 Source release `0.1.0-prototype.16` adds “For evaluation only; not FCC approved for resale.” to the bottom silkscreen in two centered lines at 1.8 mm font size. The [bottom placement preview](previews/A0-prototype.16/bottom-silkscreen-unrouted.png) is an unrouted render for reviewing the notice, not a fabrication-approved layout. The native layer render uses top-view coordinates, so bottom lettering appears mirrored and reads normally from the underside. The 60-minute build-worker timeout is configured in prototype.17.
 
-## Included local build — prototype.18
+## Included local build — prototype.19
 
-This release includes fresh native routed output under `dist/`, uploaded with `--include-dist`. It is a **rejected diagnostic build, not a fabrication package**: four via-spacing errors and 28 non-GND traces on the reserved inner1 plane remain. Native shorts and independent physical-connectivity checks pass (57 nets, 273 required ports); ordinary drill-to-pad clearance also passes. See [build status](dist/build-status.json) and [dist notes](dist/README.md). Publishing dist does not establish that the service skips its cloud rebuild or changes the overall hosted timeout.
+This release includes fresh native output under `dist/`, uploaded with `--include-dist`. The eight-page A4 schematic is included. Routed acceptance is reported separately in [build status](dist/build-status.json) and [dist notes](dist/README.md); publication is not fabrication approval. Including dist does not establish that the service skips its cloud rebuild or changes the overall hosted timeout.
+
+Current prototype.19 routing result: **84 native DRC errors**, 29 native shorts findings and three independently shorted net groups. A4 schematic conversion is complete; this source release is rejected for fabrication. See [VALIDATION.md](VALIDATION.md).

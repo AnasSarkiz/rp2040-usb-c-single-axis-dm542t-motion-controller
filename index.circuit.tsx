@@ -1,6 +1,9 @@
+import { Fragment } from "react"
+import { SchematicNotes } from "./lib/schematic-notes"
 import { CircuitParts } from "./lib/circuit"
 import { EvaluationNotice } from "./lib/silkscreen"
 import project from "./project.json"
+import { schematicSheets } from "./lib/schematic-layout"
 
 // Native routing enabled after the documented A0 placement gate passed.
 // Fabrication remains gated by routed geometry and physical prototype review.
@@ -8,6 +11,7 @@ export default function MotionControllerBoard() {
   return (
     <board
       autorouterEffortLevel="5x"
+      autorouterVersion="beta_pipeline9"
       title={project.title}
       width="90mm"
       height="60mm"
@@ -27,18 +31,23 @@ export default function MotionControllerBoard() {
       minViaPadDiameter="0.6mm"
       autorouter={{
         local: true,
-        traceClearance: "0.15mm",
+        traceClearance: "0.2mm",
         allowViaInPad: false,
       }}
     >
-      <schematicsheet
-        name="Controller"
-        sheetSize="ANSI_B"
-        sheetWidth={640}
-        sheetHeight={540}
-      >
-        <CircuitParts />
-      </schematicsheet>
+      {schematicSheets.map((name, sheetIndex) => (
+        <Fragment key={name}>
+          <schematicsheet
+            name={name}
+            displayName={name}
+            sheetIndex={sheetIndex}
+            sheetSize="A4"
+          >
+            <SchematicNotes sheetName={name} />
+          </schematicsheet>
+        </Fragment>
+      ))}
+      <CircuitParts />
       <copperpour
         name="GroundPlane"
         connectsTo="net.GND"
