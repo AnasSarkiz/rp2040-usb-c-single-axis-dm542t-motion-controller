@@ -1,7 +1,7 @@
 {
   "title": "RP2040 USB-C Single-Axis Stepper Motion Controller for External DM542T Drivers with STEP/DIR/ENABLE Outputs and Dual Limit-Switch Inputs",
   "hardware_revision": "A0",
-  "design_status": "internal_design_export_checks_passed_assembler_acceptance_pending",
+  "design_status": "routing_blocked_untested_prototype",
   "driver_target": "STEPPERONLINE DM542T V4.0",
   "silkscreen": [
     "RP2040 USB-C Motion Controller",
@@ -13,7 +13,7 @@
     "width_mm": 90,
     "height_mm": 60,
     "thickness_mm": 1,
-    "layers": 2,
+    "layers": 4,
     "mounting_holes": {
       "finished_diameter_mm": 3.2,
       "plated": false,
@@ -28,7 +28,13 @@
     }
   },
   "publication_status": "public_prototype_source_project",
-  "source_version": "0.1.0-prototype.13",
+  "source_version": "0.1.0-prototype.14",
   "github_repository": "https://github.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller",
-  "tscircuit_package": "https://tscircuit.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller--01a0e89c"
+  "tscircuit_package": "https://tscircuit.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller--01a0e89c",
+  "layer_plan": {
+    "top": "components, signals and power",
+    "inner1": "reserved GND plane; enforcement currently fails",
+    "inner2": "signals and power",
+    "bottom": "signals, power and GND pour"
+  }
 }

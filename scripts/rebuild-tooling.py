@@ -53,7 +53,7 @@ if __name__ == '__main__':
         else:
             run(['bunx', 'yalc@1.0.0-pre.53', 'link', '@tscircuit/props', '--store-folder', str(store)], checkout)
             run(['bunx', '--no-install', 'tsc', '--noEmit'], checkout)
-            run(['bun', 'test', 'tests/core-version.test.ts', 'tests/components/primitive-components/plated-hole', 'tests/components/primitive-components/create-solderpaste', 'tests/components/primitive-components/smtpad-solder-paste'], checkout)
+            run(['bun', 'test', 'tests/core-version.test.ts', 'tests/utils/autorouting/simple-route-json-fixed-net-internal-connections.test.tsx', 'tests/utils/autorouting/simple-route-json-interconnect-obstacles.test.tsx', 'tests/utils/autorouting/simple-route-json-assignable-via.test.tsx', 'tests/utils/autorouting/simple-route-json-unbroken-copper-pour-obstacles.test.tsx', 'tests/repros/repro-duplicate-obstacle-connectivity-aliases.test.tsx', 'tests/components/primitive-components/plated-hole', 'tests/components/primitive-components/create-solderpaste', 'tests/components/primitive-components/smtpad-solder-paste'], checkout)
         run(['bun', 'run', 'build'], checkout)
         if name == 'alphabet':
             run(['bun', 'test'], checkout)

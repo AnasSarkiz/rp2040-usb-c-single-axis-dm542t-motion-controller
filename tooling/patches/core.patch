@@ -116,3 +116,41 @@
    }
  
    async preview(
+--- a/lib/utils/autorouting/getSimpleRouteJsonFromCircuitJson.ts
++++ b/lib/utils/autorouting/getSimpleRouteJsonFromCircuitJson.ts
+@@ -289,16 +289,6 @@
+     }),
+   )
+ 
+-  // Add every equivalent ID from the shared connectivity map to each obstacle.
+-  for (const obstacle of obstacles) {
+-    const additionalIds = obstacle.connectedTo.flatMap((id) =>
+-      sharedConnMap.getIdsConnectedToNet(id),
+-    )
+-    obstacle.connectedTo = [
+-      ...new Set([...obstacle.connectedTo, ...additionalIds]),
+-    ]
+-  }
+-
+   // Build mapping from source_port_id to internal connection ID for interconnects
+   const internalConnections = db.source_component_internal_connection.list()
+   const sourcePortIdToInternalConnectionId = new Map<string, string>()
+@@ -351,6 +341,18 @@
+         }
+       }
+     }
++  }
++
++  // Classify internal links before expanding aliases: another pad on the same
++  // net must not make fixed copper or a plane assignable to unrelated nets.
++  // Add every equivalent ID from the shared connectivity map to each obstacle.
++  for (const obstacle of obstacles) {
++    const additionalIds = obstacle.connectedTo.flatMap((id) =>
++      sharedConnMap.getIdsConnectedToNet(id),
++    )
++    obstacle.connectedTo = [
++      ...new Set([...obstacle.connectedTo, ...additionalIds]),
++    ]
+   }
+ 
+   // Calculate bounds

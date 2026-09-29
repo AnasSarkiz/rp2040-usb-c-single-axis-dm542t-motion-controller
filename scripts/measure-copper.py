@@ -10,6 +10,7 @@ from collections import Counter, defaultdict
 from shapely.geometry import Point, Polygon, LineString, box
 from shapely.ops import unary_union
 from copper_geometry import geometry
+from via_spacing import audit_via_spacing
 
 path=Path('dist/index/circuit.json')
 circuit=json.loads(path.read_text())
@@ -41,7 +42,9 @@ vias=[p for p in circuit if p['type']=='pcb_via']
 source_traces={e['source_trace_id']:e for e in circuit if e['type']=='source_trace'}
 nets={e['source_net_id']:e['name'] for e in circuit if e['type']=='source_net'}
 net_by_key={e.get('subcircuit_connectivity_map_key'):e['name'] for e in circuit if e['type']=='source_net'}
+reserved_plane_trace_violations=[]
 net_dimensions={}
+net_layer_widths=defaultdict(list)
 copper=[g for _,g in pads]
 for trace in traces:
     source=source_traces.get(trace.get('source_trace_id'),{})
@@ -49,6 +52,9 @@ for trace in traces:
     report=net_dimensions.setdefault(net,{'minimum_width_mm':100,'maximum_width_mm':0,'total_track_length_mm':0})
     for a,b in zip(trace['route'],trace['route'][1:]):
         if a['route_type']=='wire':
+            if a['layer']=='inner1' and net!='GND':
+                reserved_plane_trace_violations.append({'trace':trace['pcb_trace_id'],'net':net,'layer':a['layer']})
+            net_layer_widths[(net,a['layer'])].append(a['width'])
             report['minimum_width_mm']=min(report['minimum_width_mm'],a['width'])
             report['maximum_width_mm']=max(report['maximum_width_mm'],a['width'])
         if a['route_type']=='wire' and b['route_type']=='wire' and a['layer']==b['layer']:
@@ -74,11 +80,20 @@ mount_clearances=[Point(h['x'],h['y']).distance(all_copper) for h in circuit if 
 # Use 30 um copper as a conservative 1 oz allocation; this is not measurement.
 area_mil2=(min(widths)/.0254)*(.030/.0254)
 capacity_10c_a=.048*(10**.44)*(area_mil2**.725)
-result={'circuit_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
- 'measurement_scope':'trace dimensions, via dimensions, all ordinary drill-to-SMD/test-pad clearances; native DRC handles remaining rules',
+via_spacing = audit_via_spacing(vias, {'drill_gap_mm': board.get('min_via_hole_edge_to_via_hole_edge_clearance', .25), 'copper_gap_mm': .15})
+layer_capacity_estimates=[]
+for (net,layer),layer_widths in sorted(net_layer_widths.items()):
+    is_inner=layer not in ['top','bottom']
+    allocated_copper_mm=.015 if is_inner else .030
+    area_mil2=(min(layer_widths)/.0254)*(allocated_copper_mm/.0254)
+    capacity=(.024 if is_inner else .048)*(10**.44)*(area_mil2**.725)
+    layer_capacity_estimates.append({'net':net,'layer':layer,'minimum_width_mm':min(layer_widths),'allocated_copper_thickness_mm':allocated_copper_mm,'ipc_2221_estimated_capacity_10c_a':capacity})
+reserved_plane_trace_violations=list({entry['trace']:entry for entry in reserved_plane_trace_violations}.values())
+result={'reserved_plane_trace_violations':reserved_plane_trace_violations,'layer_capacity_estimates':layer_capacity_estimates,'via_spacing': via_spacing, 'circuit_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
+ 'measurement_scope':'trace dimensions, via dimensions, all ordinary drill-to-SMD/test-pad clearances and exact via-to-via drill/copper spacing; native DRC handles remaining rules',
  'copper_edge_clearance_mm':edge_clearance,
  'copper_distance_from_mount_centers_mm':mount_clearances,
- 'narrowest_trace_estimated_capacity_at_10c_rise_a':capacity_10c_a,
+ 'external_trace_capacity_estimate_10c_a':capacity_10c_a,
  'net_dimensions':net_dimensions,
  'trace_count':len(traces),'wire_widths_mm':dict(Counter(round(w,6) for w in widths)),
  'minimum_trace_width_mm':min(widths),
@@ -89,6 +104,8 @@ result={'circuit_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
 Path('evidence/copper-measurements.json').write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps({k:v for k,v in result.items() if k not in ['trace_lengths_by_source_trace_id_mm','drill_to_pad_violations','net_dimensions']},indent=2))
 print('Drill-to-pad violations:',len(violations))
+assert not reserved_plane_trace_violations, 'Non-ground traces cross the reserved inner1 ground plane'
+assert not via_spacing['violations'], 'Via spacing violations; see evidence/copper-measurements.json'
 assert min(widths)>=.15-1e-6
 assert all(v['hole_diameter']>=.3-1e-6 and v['outer_diameter']>=.6-1e-6 for v in vias)
 assert not violations, 'Ordinary drill-to-pad clearance violations; see evidence/copper-measurements.json'

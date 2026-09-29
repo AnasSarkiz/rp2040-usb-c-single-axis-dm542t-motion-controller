@@ -6,11 +6,12 @@ import project from "./project.json"
 export default function MotionControllerBoard() {
   return (
     <board
+      autorouterEffortLevel="5x"
       title={project.title}
       width="90mm"
       height="60mm"
       thickness="1mm"
-      layers={2}
+      layers={4}
       schLayout={{ layoutMode: "relative" }}
       schTraceAutoLabelEnabled
       schMaxTraceDistance={3}
@@ -18,7 +19,7 @@ export default function MotionControllerBoard() {
       minTraceToPadEdgeClearance="0.15mm"
       minPadEdgeToPadEdgeClearance="0.15mm"
       minViaEdgeToPadEdgeClearance="0.15mm"
-      minViaHoleEdgeToViaHoleEdgeClearance="0.25mm"
+      minViaHoleEdgeToViaHoleEdgeClearance="0.46mm"
       minPlatedHoleDrillEdgeToDrillEdgeClearance="0.25mm"
       minBoardEdgeClearance="0.5mm"
       minViaHoleDiameter="0.3mm"
@@ -38,6 +39,15 @@ export default function MotionControllerBoard() {
         <CircuitParts />
       </schematicsheet>
       <copperpour
+        name="GroundPlane"
+        connectsTo="net.GND"
+        layer="inner1"
+        unbroken
+        clearance="0.2mm"
+        boardEdgeMargin="0.5mm"
+        cutoutMargin="0.5mm"
+      />
+      <copperpour
         connectsTo="net.GND"
         layer="bottom"
         clearance="0.15mm"
@@ -49,28 +59,28 @@ export default function MotionControllerBoard() {
         radius="4.03mm"
         pcbX={-40}
         pcbY={-25}
-        layers={["top", "bottom"]}
+        layers={["top", "inner1", "inner2", "bottom"]}
       />
       <keepout
         shape="circle"
         radius="4.03mm"
         pcbX={40}
         pcbY={-25}
-        layers={["top", "bottom"]}
+        layers={["top", "inner1", "inner2", "bottom"]}
       />
       <keepout
         shape="circle"
         radius="4.03mm"
         pcbX={40}
         pcbY={25}
-        layers={["top", "bottom"]}
+        layers={["top", "inner1", "inner2", "bottom"]}
       />
       <keepout
         shape="circle"
         radius="4.03mm"
         pcbX={-40}
         pcbY={25}
-        layers={["top", "bottom"]}
+        layers={["top", "inner1", "inner2", "bottom"]}
       />
       <hole name="H1" diameter="3.2mm" pcbX={-40} pcbY={-25} />
       <hole name="H2" diameter="3.2mm" pcbX={40} pcbY={-25} />

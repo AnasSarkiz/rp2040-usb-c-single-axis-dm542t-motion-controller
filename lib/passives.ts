@@ -339,7 +339,7 @@ export const passives: Passive[] = [
     footprint: "0402",
     nets: ["V3V3", "GND"],
     pcbX: -13,
-    pcbY: 6,
+    pcbY: 7,
     purpose: "RP2040 VREG_IN stability",
   },
   {
@@ -387,7 +387,7 @@ export const passives: Passive[] = [
     footprint: "0402",
     nets: ["V3V3", "GND"],
     pcbX: -3.6,
-    pcbY: 2,
+    pcbY: 1.7,
     purpose: "U1 IOVDD pin22 bypass",
   },
   {
@@ -435,7 +435,7 @@ export const passives: Passive[] = [
     footprint: "0402",
     nets: ["V3V3", "GND"],
     pcbX: -15.2,
-    pcbY: 2.5,
+    pcbY: 2.9,
     purpose: "U1 USB_VDD and IOVDD49 bypass",
   },
   {
@@ -447,7 +447,7 @@ export const passives: Passive[] = [
     footprint: "0402",
     nets: ["V1V1", "GND"],
     pcbX: -15.6,
-    pcbY: -1,
+    pcbY: -0.3,
     purpose: "U1 DVDD pin50 bypass",
   },
   {

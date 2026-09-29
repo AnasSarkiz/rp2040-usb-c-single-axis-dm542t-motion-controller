@@ -2,18 +2,18 @@
 
 Product: **RP2040 USB-C Single-Axis Stepper Motion Controller for External DM542T Drivers with STEP/DIR/ENABLE Outputs and Dual Limit-Switch Inputs**
 
-Reviewed 2026-09-29 local time. **Untested prototype; internal design/export checks pass; assembler acceptance pending.** GitHub and tscircuit source publication is user-authorized. This board now has its own Git repository. Earlier source/dependency manifests identify pre-Git states; they do not constitute recoverable complete source snapshots. A0-draft-2 manifests are historical; the power circuit and firmware have changed since then.
+Reviewed 2026-09-29 local time. **Untested prototype; via-spacing audit failed for prototype.13; correction in progress. Not fabrication ready.** GitHub and tscircuit source publication is user-authorized. This board now has its own Git repository. Earlier source/dependency manifests identify pre-Git states; they do not constitute recoverable complete source snapshots. A0-draft-2 manifests are historical; the power circuit and firmware have changed since then.
 
 ## Stage status
 
 | Stage | Status | Evidence / remaining work |
 |---|---|---|
-| 1. Confirm requirements | passed | Driver/manual and user-authorized new mechanics below. |
+| 1. Confirm requirements | in progress | Four-layer 90×60×1 mm candidate; 1 oz outer/0.5 oz inner copper target. Exact manufacturer dielectric stackup and acceptance remain unconfirmed. |
 | 2. Review schematic and BOM | passed | DESIGN-REVIEW.md; 85 exact sourced components; regulated driver voltage/current budgets, supervisor, USB sequencing/suspend and overload handling reviewed. Physical electrical limits remain unmeasured. |
-| 3. Validate placement before routing | passed | Final unrouted build/test pass; placement 0 errors/0 warnings; schematic has only the accepted F1 style suggestion. PCB and schematic images inspected. Preserved in evidence/unrouted-A0/. |
-| 4. Route and validate copper | passed | 0.1.0-prototype.13: 0 native PCB errors; 0 shorts findings; 0 drill-to-pad violations; disconnected nets: []. See latest iteration below. |
-| 5. Automated and visual routed checks | passed | Prototype.13 electrical/geometry checks pass; annotated schematic visually reviewed; both final snapshots match in CI mode. |
-| 6. Approve prototype fabrication | blocked | Prototype.13 internal export checks pass; actual manufacturer/assembler acceptance remains pending. Physical fabrication geometry matches prototype.12. |
+| 3. Validate placement before routing | passed | Candidate 14c unrouted native build and board invariants pass; zero placement DRC errors/warnings; reviewed PCB image. R5/C2 rotation heuristics accepted as optimization suggestions. |
+| 4. Route and validate copper | blocked | 0.1.0-prototype.14: 57 native PCB errors; 10 shorts findings; 4 drill-to-pad violations; disconnected nets: []. See latest iteration below. |
+| 5. Automated and visual routed checks | blocked | Prototype.14 route rejected: native/shorts/via/plane checks fail. No routed snapshot accepted. Current workspace additionally requires A4 sheet organization; existing large schematic sheet still needs conversion. |
+| 6. Approve prototype fabrication | blocked | No fabrication package generated for rejected prototype.14. Historical prototype.13 exports are withdrawn from ordering because of via-spacing failures. Manufacturer acceptance remains pending. |
 | 7. Test physical prototype | not started | No physical hardware. BRING-UP.md defines required measurements. |
 | 8. Prepare store release | in progress | Exact name and revision in README, metadata and prototype source listing. GitHub/tscircuit projects created; source publication authorized. Sale-ready release remains incomplete. |
 
@@ -223,3 +223,25 @@ USB footprint entry is now explicitly from local negative Y, which rotates to th
 Regenerated fabrication/A0-prototype.13/ from the final routed JSON. All Gerber/drill/BOM/CPL contents equal prototype.12 after excluding creation-date comments; the assembly SVG is byte-identical. Therefore the prior visual copper, mask, paste, outline, drill, orientation and legend review remains applicable. Paste and actual-Gerber silkscreen audits rerun successfully. The new manifest links this source tag to the current JSON and exported bytes. Manufacturer acceptance and physical prototype testing remain pending; no order placed.
 
 Final snapshot gate: reviewed the schematic difference before acceptance, updated the snapshots, then ran `tsci snapshot index.circuit.tsx --ci`; PCB and schematic both match (exit 0). Logs: evidence/iteration-13-snapshot-update.log and iteration-13-snapshot-ci.log. Stage 5 is passed with the documented accepted style/optimization suggestions; manufacturer acceptance and physical tests remain pending.
+
+## Via-spacing correction in progress
+
+User inspection triggered an expanded audit of prototype.13. Of 170 vias, RUN/SWCLK has 0.100000 mm copper spacing and V3V3/GND has 0.104849 mm, both below the recorded 0.15 mm rule. Minimum drill-edge spacing is 0.250568 mm (above the former 0.25 mm limit). Same-net ring overlaps are not shorts, but the new layout reserves more space for all vias. Native checks and the earlier independent audit missed different-net via-to-via copper clearance; previous stage-4/5 pass records are superseded. New regression tests reproduce the missed failure; the normal test command now runs an explicit via/drill geometry audit.
+
+Candidate 14 moves SWCLK probe TP9 from (2,-2) to (3,-1), moves C4 from (-13,6) to (-13,7), and raises via drill-edge clearance to 0.46 mm. With 0.30/0.60 mm vias this requires 0.76 mm centres and 0.16 mm ring-edge spacing. This tightens the rule; it does not change the 0.15 mm acceptance threshold. Placement is checked unrouted before attempting native routing.
+
+Four-layer assessment: user suggested four layers. Candidate 14a used four layers, a native unbroken inner1 GND pour and 0.46 mm via drill separation. Native build reported zero PCB errors, but independent geometry found via overlaps and 10 drill-to-pad violations, while physical connectivity and native shorts rejected shorts. Candidate 14b added a ground fanout phase and moved C8/C13; it failed fanout and left connections unrouted. Both are preserved locally as rejected candidates.
+
+Root-cause investigation found that core expanded obstacle net aliases before assigning internal component links. A grounded switch thereby marked the entire ground plane and other fixed pads as net-assignable (80 obstacles). The source-built core 0.0.1971-a0.2 classifies own-pad internal links before alias expansion; the exact board SRJ now preserves a fixed ground plane and has 10 actual assignable obstacles. The new upstream-style regression failed before the fix and passes afterward; 23 related tests, typecheck and canonical build pass. Source patch, test/snapshot and hashed archive are preserved under tooling/. Candidate 14c also moves C12 to (-15.2,2.9), removes the failed fanout phase and uses supported 5x native routing effort. Unrouted placement has zero DRC errors/warnings; remaining R5/C2 suggestions are optimization heuristics. Placement image reviewed and unrouted invariants pass. Routing validation remains pending.
+
+## Placement iteration — 0.1.0-prototype.14
+
+Four-layer candidate, expanded via-spacing regression, and source-built core fix for internal-link net alias classification. Moved TP9 and C4/C8/C12/C13 before routing. Native routing and independent geometry still reject this candidate; source release only, not fabrication ready.
+
+Unrouted placement/build/invariants pass and the placement overview was inspected. Routing results: 57 native PCB errors; 10 shorts findings; 4 drill-to-pad violations; disconnected nets: []. This routing candidate is rejected. No manufacturing rule was weakened. Logs: local evidence/iteration-14-*. Generated geometry and audits are preserved in evidence/routing-prototype-14/.
+
+Final candidate 14c result: 57 native PCB errors, 10 native shorts findings, four ordinary drill-to-pad violations and four via-spacing violations. Minimum different-net ring gap is 0.0867456 mm; minimum drill gap is 0.131654 mm. All 57 nets/273 ports have contact, but five physical short groups invalidate connectivity. Although the input ground-plane obstacle is now correctly fixed, the native router still puts non-GND traces on inner1 despite `unbroken`; the expanded geometry audit rejects this too. This demonstrates an unresolved multilayer routing/plane-enforcement tooling blocker, not successful four-layer validation. The native build error exit and independent failures are preserved rather than suppressed.
+
+No route snapshot was accepted and no current fabrication export was generated. Historical exported files remain immutable evidence, explicitly withdrawn from ordering. Four layers remain the proposed direction, pending routing/tooling fixes, a verified manufacturer stackup, current per-layer current-path review, A4 schematic organization and the remaining fabrication gates. Physical testing is not started.
+
+Final source checks for prototype.14: format, TypeScript, netlist, pin specification and source pass; schematic-placement has no collisions (accepted padding/F1 style suggestions). Native PCB placement exits 1 for R5/C2 optimization heuristics with zero placement DRC errors/warnings. Via regression 5/5, rotated-pad geometry 1/1 and legend parser 2/2 pass. Fabrication/silkscreen commands fail explicitly because no export exists for this rejected revision; scripts now derive the target revision from project metadata instead of reading or overwriting historical exports. Reviewed inner1 diagnostic image visibly confirms the routing cuts through the intended reference plane. These successful source/tool tests do not override the failed routing gate.

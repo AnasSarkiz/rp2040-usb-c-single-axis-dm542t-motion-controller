@@ -62,7 +62,7 @@ if args.stage=='placement':
     assert not traces, 'Placement review must remain unrouted'
 else:
     assert traces, 'Routed validation requires actual copper'
-    errors=[item for item in circuit if item['type'].endswith('_error')]
-    assert not errors, Counter(error["type"] for error in errors)
+errors=[item for item in circuit if item['type'].endswith('_error')]
+assert not errors, Counter(error["type"] for error in errors)
 assert len([item for item in circuit if item['type']=='pcb_keepout'])==4
 print('PASS: RP2040 rails and I/O, output gating, connector polarity, switch pairs, 85 exact BOM mappings, four NPTH holes/keepouts; stage='+args.stage)

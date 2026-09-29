@@ -454,7 +454,7 @@ export function CircuitParts() {
         { rail: "DIR", x: 0, y: 11 },
         { rail: "ENABLE", x: 23, y: 2 },
         { rail: "ARM", x: 9, y: -4 },
-        { rail: "SWCLK", x: 2, y: -2 },
+        { rail: "SWCLK", x: 3, y: -1 },
         { rail: "SWDIO", x: 2, y: 1 },
         { rail: "RUN", x: 5, y: -4 },
       ].map(({ rail, x, y }, index) => (

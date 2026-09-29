@@ -1,8 +1,8 @@
 # RP2040 USB-C Single-Axis Stepper Motion Controller for External DM542T Drivers with STEP/DIR/ENABLE Outputs and Dual Limit-Switch Inputs
 
-**Revision A0 — untested prototype. Internal design and fabrication-file checks pass; assembler acceptance and physical testing remain pending.**
+**Revision A0 — untested prototype. Four-layer candidate fails routing validation. Not fabrication ready; do not order the historical exports.**
 
-USB-C powers an RP2040 and connects a computer to one external STEPPERONLINE DM542T V4.0. The external driver supplies motor current from its own supply. This board carries control signals only. The public package includes circuit sources, the complete sourcing BOM, firmware sources and tests. Detailed investigation artifacts and compiled firmware remain local. The current routed revision passes native DRC, shorts and independent physical-connectivity and dimensional audits. The reviewed [manufacturing package](fabrication/A0-prototype.13/README.md) contains Gerbers, drills, assembly BOM and placement files. Manufacturer acceptance remains pending; see [VALIDATION.md](VALIDATION.md).
+USB-C powers an RP2040 and connects a computer to one external STEPPERONLINE DM542T V4.0. The external driver supplies motor current from its own supply. This board carries control signals only. The public package includes circuit sources, the complete sourcing BOM, firmware sources and tests. Detailed investigation artifacts and compiled firmware remain local. The prototype.13 audit missed two via-to-via copper clearance violations. The four-layer candidate still fails routing, via clearance and ground-plane enforcement; see the recorded toolchain fix and remaining blockers. Historical manufacturing exports are retained for traceability and are not approved for ordering. See [VALIDATION.md](VALIDATION.md).
 
 All 85 fitted components have exact JLCPCB mappings in [BOM.md](BOM.md) and [bom.csv](bom.csv). These are sourced parts, not an approved assembly package.
 
@@ -70,7 +70,7 @@ Firmware supports signed relative moves, configurable speed/acceleration, ENABLE
 
 ## Mechanical design
 
-The user authorized a new outline and mounting pattern on 2026-09-28, replacing the original matching requirement. Board: 90 × 60 mm, nominal 1.0 mm FR-4, two copper layers, top-side assembly. Four 3.2 mm finished NPTH holes have centers (5,5), (85,5), (85,55), (5,55) mm from the lower-left corner: 80 × 50 mm spacing. Native 4.03 mm-radius keepouts reserve at least the 8 mm hardware envelope after polygon approximation. M3 hardware must fit that envelope. No existing enclosure fit is claimed; screw head, standoff, cable and terminal screwdriver access require prototype review.
+The user authorized a new outline and mounting pattern on 2026-09-28, replacing the original matching requirement. Board: 90 × 60 mm, nominal 1.0 mm FR-4, four copper layers proposed, top-side assembly. Four 3.2 mm finished NPTH holes have centers (5,5), (85,5), (85,55), (5,55) mm from the lower-left corner: 80 × 50 mm spacing. Native 4.03 mm-radius keepouts reserve at least the 8 mm hardware envelope after polygon approximation. M3 hardware must fit that envelope. No existing enclosure fit is claimed; screw head, standoff, cable and terminal screwdriver access require prototype review.
 
 PCB identity text is exactly:
 
@@ -84,25 +84,27 @@ The exact product name is also in project metadata and the prototype [store list
 
 Run board commands from this directory only. Use Bun 1.3.9 and `bun install --frozen-lockfile`, then `bun run format:check`, `bun run typecheck`, `bun run bom`, and `bun run test:firmware`. `bun run test:placement` checks an unrouted placement build. `bun run test:board` checks routed connectivity and rejects emitted PCB errors. Full staged tscircuit commands and their actual results are in [VALIDATION.md](VALIDATION.md). `dist/index/pcb.png` is a routed design render, not a photograph or physical-test result.
 
-USB suspend handling, regulated driver power and overload monitoring are implemented. Routed-copper checks pass. Final fabrication review and all physical measurements remain pending. Gerbers, drills and an 85-part placement file are included for review; they are not approved for ordering. No fabrication order has been placed. Use [BRING-UP.md](BRING-UP.md) after all pre-fabrication gates pass.
+USB suspend handling, regulated driver power and overload monitoring are implemented. Routed-copper checks are being repeated with expanded via-spacing coverage. Final fabrication review and all physical measurements remain pending. Gerbers, drills and an 85-part placement file are included for review; they are not approved for ordering. No fabrication order has been placed. Use [BRING-UP.md](BRING-UP.md) after all pre-fabrication gates pass.
 
-Storage recovered on 2026-09-29. The earlier corrupted output remains quarantined locally; complete rejected candidates are preserved as historical evidence. Current source remains two-layer. Earlier rejected routes remain historical evidence. The current route has zero detected opens, shorts or ordinary drill-to-pad violations.
+Storage recovered on 2026-09-29. The earlier corrupted output remains quarantined locally; complete rejected candidates are preserved as historical evidence. Current source is a rejected four-layer candidate. Earlier rejected routes remain historical evidence. Prototype.13 had no detected opens or shorts, but its via copper spacing fails the expanded audit.
 
 ## Repositories and versions
 
-Source version **0.1.0-prototype.13**, hardware revision **A0**. Public source publication was authorized on 2026-09-29; it does not approve fabrication or hardware operation.
+Source version **0.1.0-prototype.14**, hardware revision **A0**. Public source publication was authorized on 2026-09-29; it does not approve fabrication or hardware operation.
 
 - [GitHub repository](https://github.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller)
 - [tscircuit project](https://tscircuit.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller--01a0e89c)
 
 Each meaningful saved revision is committed and tagged in GitHub and pushed to tscircuit with the same version. See [VERSIONING.md](VERSIONING.md). Historical manifests and rejected routing artifacts predate Git history and remain in the local investigation archive; they are not reconstructed or relabeled as validated releases. Public check results and hashes are in [evidence/public-validation.json](evidence/public-validation.json). Local toolchains, downloaded manufacturer PDFs, private task input and corrupted output are excluded from publication.
 
-The independent physical-connectivity audit requires Shapely 2.1.2 (`python3 -m venv firmware/.venv`, then `firmware/.venv/bin/pip install shapely==2.1.2`). Run `bun run test:connectivity` after routing. Prototype.3 passed native DRC and shorts but this additional audit found an open VBUS_SENSE connection. Prototype.10 resolves that open and passes all four copper checks. The labels were cleaned up in prototype.11. Prototype.12 fixed the terminal stencil output and bullet glyphs. Prototype.13 adds readable per-chip schematic notes. Internal checks pass; manufacturer acceptance remains pending.
+The independent physical-connectivity audit requires Shapely 2.1.2 (`python3 -m venv firmware/.venv`, then `firmware/.venv/bin/pip install shapely==2.1.2`). Run `bun run test:connectivity` after routing. Prototype.3 passed native DRC and shorts but this additional audit found an open VBUS_SENSE connection. Prototype.10 resolved that open and passed the checks available then; the later via-spacing audit invalidates its clearance acceptance. The labels were cleaned up in prototype.11. Prototype.12 fixed the terminal stencil output and bullet glyphs. Prototype.13 adds readable per-chip schematic notes. Prototype.14 withdraws its clearance pass after finding two via copper gaps below the design rule, adds permanent regression checks, and assesses a four-layer layout. The four-layer route fails validation and is not ready to manufacture.
 
 ## Current preview and manufacturing review
 
 The schematic includes function and voltage/current notes beside all nine ICs. Enlarged MCU and converter symbols and separated USB/power sections support design review.
 
-![A0 routed board render](previews/A0-prototype.13/pcb.png)
+**Rejected routing candidate — this render is for debugging, not fabrication approval.**
 
-[Schematic preview](previews/A0-prototype.13/schematic.svg) · [Manufacturing package and blockers](fabrication/A0-prototype.13/README.md). These are generated design views, not physical prototype photographs.
+![Rejected A0 four-layer routing candidate](previews/A0-prototype.14/pcb.png)
+
+[Schematic preview](previews/A0-prototype.14/schematic.svg) · [Inner ground-layer diagnostic](previews/A0-prototype.14/inner1.svg) · [Current blockers](VALIDATION.md). No prototype.14 manufacturing export exists. Historical exports are withdrawn from ordering. These are generated design views, not physical prototype photographs.

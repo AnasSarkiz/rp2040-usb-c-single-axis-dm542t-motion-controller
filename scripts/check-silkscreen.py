@@ -49,7 +49,9 @@ def read_legend(path):
 
 
 if __name__ == '__main__':
-    folder = Path('fabrication/A0-prototype.13')
+    project = json.loads(Path('project.json').read_text())
+    folder = Path('fabrication') / (project['hardware_revision'] + '-' + project['source_version'].removeprefix('0.1.0-'))
+    assert folder.exists(), f'No fabrication export exists for current source: {folder}'
     circuit_path = Path('dist/index/circuit.json')
     circuit = json.loads(circuit_path.read_text())
     pads = [pad for pad in circuit if pad['type'] in ['pcb_smtpad', 'pcb_plated_hole'] and not pad.get('is_covered_with_solder_mask')]

@@ -1,77 +1,114 @@
 {
-  "version": "0.1.0-prototype.13",
+  "version": "0.1.0-prototype.14",
   "hardware_revision": "A0",
   "checked_on": "2026-09-29",
-  "status": "internal_design_export_checks_passed_assembler_acceptance_pending",
+  "status": "four_layer_routing_failed_not_fabrication_ready",
   "checks": {
     "format": "passed",
     "typescript": "passed",
     "firmware_motion_parser_sanitizers": "passed",
     "firmware_power_policy_sanitizers": "passed",
     "netlist": "passed_zero_errors_zero_warnings",
-    "placement": "zero_drc_errors_warnings_exit_1_three_accepted_optimization_heuristics",
-    "routed_build": "passed_zero_errors",
-    "shorts": "passed_zero_findings",
-    "routed_board_test": "passed",
-    "independent_geometry": "passed_zero_violations",
-    "routed_visual_gate": "passed",
-    "snapshots": "passed_reviewed_ci_match",
-    "fabrication": "internal_checks_passed_assembler_acceptance_pending",
+    "placement": "zero_drc_errors_warnings_two_accepted_rotation_heuristics",
+    "routed_build": "failed_57_errors",
+    "shorts": "failed_10_findings",
+    "routed_board_test": "failed",
+    "independent_geometry": "failed_4_drill_to_pad_and_4_via_pairs_and_reserved_plane_intrusions",
+    "routed_visual_gate": "not_passed",
+    "snapshots": "not_accepted_rejected_routing",
+    "fabrication": "blocked_no_current_export_historical_exports_withdrawn",
     "physical_testing": "not_started",
-    "physical_copper_connectivity": "passed_all_57_nets_273_ports",
+    "physical_copper_connectivity": "failed_5_shorted_net_groups_all_ports_contacted",
     "geometry_regression": "passed_rotated_pill_bounds_area",
-    "silkscreen": "passed_actual_gerber_dimensions_clearances",
-    "stencil_paste": "passed_no_unwanted_probe_or_terminal_paste",
+    "silkscreen": "blocked_no_current_fabrication_export",
+    "stencil_paste": "generator_regressions_pass_current_fabrication_export_absent",
     "schematic_annotations": "all_9_ics_with_function_and_ratings",
     "schematic_placement": "zero_collisions_accepted_padding_and_fuse_style_suggestions",
-    "pcb_placement": "zero_drc_errors_warnings_exit_1_three_accepted_optimization_heuristics"
+    "pcb_placement": "zero_drc_errors_warnings_two_accepted_rotation_heuristics",
+    "via_spacing": "failed_4_pairs",
+    "ground_plane_enforcement": "failed_31_non_ground_inner1_traces",
+    "core_regressions": "23_pass_typecheck_build_pass",
+    "via_spacing_regressions": "5_pass",
+    "schematic_sheet_format": "pending_A4_conversion"
   },
   "dependencies": {
     "tscircuit": "0.0.2646",
     "@tscircuit/cli": "0.1.2172",
-    "@tscircuit/core": "0.0.1971",
+    "@tscircuit/core": "0.0.1971-a0.2",
     "typescript": "5.9.3",
     "@biomejs/biome": "2.5.14"
   },
-  "toolchain_archive_sha256": "39c44f8af42695b7b871df42e346c09fee670ea8dfc11f17083e296ea2b0d279",
   "local_artifacts": [
     {
-      "path": "evidence/routing-prototype-13/circuit.json",
-      "sha256": "f359710c48824c82808ca40d9aa4b29b9edf0e864852d9e1c0ee83bb37ba8b06"
+      "path": "evidence/routing-prototype-14/circuit.json",
+      "sha256": "aae383a259a54712a6b747b8651d703021f6d9cd8d69f3ea3d6364ae9d47480c"
     },
     {
-      "path": "evidence/routing-prototype-13/copper-measurements.json",
-      "sha256": "4823356dff926bdb515a98e319fdf5ea50ed8648033913a9ffdb079bd506a41a"
+      "path": "evidence/routing-prototype-14/copper-measurements.json",
+      "sha256": "69955d12c04d2adacc30a1e51e9b52f218c35a958cc54a88bcaf4f435b0e7122"
     },
     {
-      "path": "evidence/routing-prototype-13/pcb.png",
-      "sha256": "c0590052f61e8248eabb966692e562e42c92193e4637049d165b6f84144bc967"
+      "path": "evidence/routing-prototype-14/pcb.png",
+      "sha256": "616e6eae71db81703bfba366fc187a2d954244561179497c77ca5c86375cf8c5"
     },
     {
-      "path": "evidence/routing-prototype-13/pcb.svg",
-      "sha256": "e124db51c581bb464db5d41895538c8138d6779349fb35a903a3580499d4774d"
+      "path": "evidence/routing-prototype-14/pcb.svg",
+      "sha256": "8ee4da097f4dbb2b346b52a36a2603173b6dcb73fc3e0f97127e1dfe5979d60a"
     },
     {
-      "path": "evidence/routing-prototype-13/routed-connectivity.json",
-      "sha256": "4db3896dce348c20a3d0afcc5a79c3b2e9f898858f19903e8b6644426da78cae"
+      "path": "evidence/routing-prototype-14/routed-connectivity.json",
+      "sha256": "40c47bf45e5df84a6e327359bafa6612677a3c99c97c35269ce2a534a80564e9"
     },
     {
-      "path": "evidence/routing-prototype-13/schematic.svg",
+      "path": "evidence/routing-prototype-14/schematic.svg",
       "sha256": "ba26221cc9c2f14886fa8d28ed1343459f641d3e502e2bb92127ece69f47af8d"
     }
   ],
   "artifact_scope": "Raw logs, rejected generated designs and downloads remain local. Hashes identify evidence; they do not signify successful validation.",
-  "placement_changes": "Added function and rating schematictext notes beside U1-U9, separated crowded schematic sections and increased U1/U7 pin spacing with supported per-pin margins. Explicit USB footprint plug-entry metadata fixes the orientation inference. Electrical connectivity and physical PCB geometry are unchanged from prototype.12.",
+  "placement_changes": "Four-layer candidate, expanded via-spacing regression, and source-built core fix for internal-link net alias classification. Moved TP9 and C4/C8/C12/C13 before routing. Native routing and independent geometry still reject this candidate; source release only, not fabrication ready.",
   "measurements": {
     "minimum_trace_width_mm": 0.15,
     "via_drill_mm": 0.3,
     "via_pad_mm": 0.6,
-    "minimum_drill_to_smd_mm": 0.1548845,
+    "minimum_drill_to_smd_mm": 0.0,
     "copper_to_board_edge_mm": 0.5,
-    "minimum_mount_center_to_copper_mm": 4.010594
+    "minimum_mount_center_to_copper_mm": 4.010594383880082,
+    "minimum_via_copper_gap_mm": 0.08674558804738486,
+    "minimum_via_drill_gap_mm": 0.13165371860523584
   },
   "reviewed_artifacts": [
-    "previews/A0-prototype.13/",
-    "fabrication/A0-prototype.13/"
+    "evidence/iteration-14c-unrouted/pcb.png",
+    "evidence/routing-prototype-14/",
+    "previews/A0-prototype.14/inner1.png"
+  ],
+  "historical_export_status": "Prototype.13 has two via copper clearance violations; do not fabricate any historical export.",
+  "source_built_packages": [
+    {
+      "repo": "https://github.com/tscircuit/props",
+      "version": "0.0.666",
+      "commit": "98fa6ad97ac1f8b70465f0ed3aeac117a8a2cb37",
+      "local_version": "0.0.666-a0.1",
+      "patch": "tooling/patches/props.patch",
+      "archive": "tooling/packages/tscircuit-props-0.0.666-a0.1.tgz",
+      "sha256": "70df960b584eb6c7b4817ecdf5157a450783f19e5337a70042da36d115100c90"
+    },
+    {
+      "repo": "https://github.com/tscircuit/core",
+      "version": "0.0.1971",
+      "commit": "ce40682b7afc199dc9417804cf520d5d3a032acc",
+      "local_version": "0.0.1971-a0.2",
+      "patch": "tooling/patches/core.patch",
+      "archive": "tooling/packages/tscircuit-core-0.0.1971-a0.2.tgz",
+      "sha256": "171080c0041f2aa879d1f23961accc48e4d069e1b628da4849285b90c3f8183b"
+    },
+    {
+      "repo": "https://github.com/tscircuit/alphabet",
+      "version": "0.0.25",
+      "commit": "3d51cd3e944da2efa8eece825ac44c09956840e7",
+      "local_version": "0.0.25-a0.1",
+      "patch": "tooling/patches/alphabet.patch",
+      "archive": "tooling/packages/tscircuit-alphabet-0.0.25-a0.1.tgz",
+      "sha256": "350ef4b9cc2afc316e20e0037a40329bd8366bb221408e99d4ee95725d00e0c0"
+    }
   ]
 }
