@@ -259,3 +259,11 @@ Added the exact requested wording on bottom silkscreen: “For evaluation only;�
 Validation: formatting and TypeScript passed; native `tsci build index.circuit.tsx --routing-disabled --pcb-svgs` passed; `bun run test:placement` passed, including no routed traces and no emitted errors. Both emitted notice records have the exact text, bottom layer and 1.8 mm font. Visually inspected `previews/A0-prototype.16/bottom-silkscreen-unrouted.png`: two separated lines within the outline, clear of through-hole connector pads and mounting holes. This is a placement preview using top-view coordinates; its bottom text is mirrored as expected.
 
 The change is silkscreen-only; electrical connections, component positions, routing settings and dependencies remain unchanged. No routing rerun, via-to-ink review or Gerber fabrication acceptance was performed. Existing prototype.14 routing failures remain unresolved and all stage blockers persist. The 30-minute build-worker timeout from prototype.15 is retained.
+
+## Source release 0.1.0-prototype.17 — 60-minute worker timeout
+
+The user reported “Build timed out after 30 minutes”. Increased native `build.workerTimeoutMs` from 1800000 to 3600000 (60 minutes). Validated the value against the installed CLI schema and retained the existing worker call-path verification. This setting controls individual CLI build workers; an explicit host environment override or separate overall platform deadline may still terminate the job earlier. Hosted completion remains unverified.
+
+Configuration and release metadata only: electrical design, PCB placement, silkscreen, routing settings and dependency versions are unchanged from prototype.16. No new routing attempt or component move was made. Formatting and TypeScript checks passed. Existing routing, A4 sheet, stackup and fabrication blockers remain unchanged.
+
+Readback of prototype.16 from `package_releases/get` confirms `user_code_job_error.error_code=user_code_job_timeout` and message “Build timed out after 30 minutes”. This is a hosted-job timeout report, not the CLI worker timeout message. No supported project setting for the overall hosted deadline was found in the installed config schema. The worker limit change is published as requested, but resolution of the reported platform timeout is not claimed; the service operator may need to increase that deadline.

@@ -1,6 +1,6 @@
 {
   "$schema": "https://cdn.jsdelivr.net/npm/@tscircuit/cli/types/tscircuit.config.schema.json",
   "build": {
-    "workerTimeoutMs": 1800000
+    "workerTimeoutMs": 3600000
   }
 }

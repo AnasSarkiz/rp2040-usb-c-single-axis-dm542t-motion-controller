@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-prototype.16",
+  "version": "0.1.0-prototype.17",
   "hardware_revision": "A0",
   "checked_on": "2026-09-29",
   "status": "four_layer_routing_failed_not_fabrication_ready",
@@ -114,11 +114,13 @@
   ],
   "routing_evidence_version": "0.1.0-prototype.14",
   "build_timeout": {
-    "worker_timeout_ms": 1800000,
-    "previous_hosted_timeout_ms": 600000,
+    "worker_timeout_ms": 3600000,
+    "previous_reported_timeout_minutes": 30,
     "config_validation": "passed_installed_cli_schema_and_worker_call_path",
     "hosted_build": "unverified",
-    "pcb_source_changes": true
+    "pcb_source_changes": false,
+    "separate_platform_deadline": "prototype_16_reports_user_code_job_timeout_after_30_minutes",
+    "reported_error_resolved": false
   },
   "bottom_evaluation_notice": {
     "text": [
