@@ -251,3 +251,11 @@ Final source checks for prototype.14: format, TypeScript, netlist, pin specifica
 The supplied prototype.14 hosted log reports `Worker job timed out after 600000ms`, after routing advanced to highDensityForceImproveSolver (58%). Set native `build.workerTimeoutMs` to `1800000` (30 minutes) in `tscircuit.config.json`. Installed CLI 0.1.2172 schema accepts a positive integer; its build path passes this field to the worker pool. An explicit host environment timeout takes precedence; a separate sandbox deadline may still apply.
 
 This release changes configuration and release documentation only. PCB source files and dependency versions are unchanged; all prior electrical/placement evidence and routing failures remain applicable. No local routing attempt was run for this config-only change, and no new copper or fabrication acceptance is claimed. Hosted completion with the increased limit remains unverified. Config schema checks, formatting and TypeScript checks passed. Existing stage blockers remain unchanged.
+
+## Source release 0.1.0-prototype.16 — bottom evaluation notice
+
+Added the exact requested wording on bottom silkscreen: “For evaluation only;” at (0, -10) mm and “not FCC approved for resale.” at (0, -13) mm, centered, 1.8 mm font. The board title, functional labels and hardware revision remain in place. Native bottom-layer mirroring is retained, for readable lettering when viewed from the underside.
+
+Validation: formatting and TypeScript passed; native `tsci build index.circuit.tsx --routing-disabled --pcb-svgs` passed; `bun run test:placement` passed, including no routed traces and no emitted errors. Both emitted notice records have the exact text, bottom layer and 1.8 mm font. Visually inspected `previews/A0-prototype.16/bottom-silkscreen-unrouted.png`: two separated lines within the outline, clear of through-hole connector pads and mounting holes. This is a placement preview using top-view coordinates; its bottom text is mirrored as expected.
+
+The change is silkscreen-only; electrical connections, component positions, routing settings and dependencies remain unchanged. No routing rerun, via-to-ink review or Gerber fabrication acceptance was performed. Existing prototype.14 routing failures remain unresolved and all stage blockers persist. The 30-minute build-worker timeout from prototype.15 is retained.

@@ -112,3 +112,7 @@ The schematic includes function and voltage/current notes beside all nine ICs. E
 ## Cloud build timeout
 
 Source release `0.1.0-prototype.15` sets `build.workerTimeoutMs` to `1800000` (30 minutes) in `tscircuit.config.json`. The prototype.14 cloud worker was terminated at its previous 600000 ms limit while routing was still advancing. An environment-level `TSCIRCUIT_BUILD_WORKER_TIMEOUT_MS` overrides this config if the host sets one; the host may also impose a separate overall deadline. Hosted completion with the increased limit remains unverified. PCB sources and dependencies are unchanged, so the rejected prototype.14 routing evidence still applies.
+
+## Bottom evaluation notice
+
+Source release `0.1.0-prototype.16` adds “For evaluation only; not FCC approved for resale.” to the bottom silkscreen in two centered lines at 1.8 mm font size. The [bottom placement preview](previews/A0-prototype.16/bottom-silkscreen-unrouted.png) is an unrouted render for reviewing the notice, not a fabrication-approved layout. The native layer render uses top-view coordinates, so bottom lettering appears mirrored and reads normally from the underside. The 30-minute build-worker timeout remains configured.

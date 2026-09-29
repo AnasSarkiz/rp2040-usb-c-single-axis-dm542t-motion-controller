@@ -28,7 +28,7 @@
     }
   },
   "publication_status": "public_prototype_source_project",
-  "source_version": "0.1.0-prototype.15",
+  "source_version": "0.1.0-prototype.16",
   "github_repository": "https://github.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller",
   "tscircuit_package": "https://tscircuit.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller--01a0e89c",
   "layer_plan": {
@@ -36,5 +36,9 @@
     "inner1": "reserved GND plane; enforcement currently fails",
     "inner2": "signals and power",
     "bottom": "signals, power and GND pour"
-  }
+  },
+  "bottom_silkscreen_notice": [
+    "For evaluation only;",
+    "not FCC approved for resale."
+  ]
 }

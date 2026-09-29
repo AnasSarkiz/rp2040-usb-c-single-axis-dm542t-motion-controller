@@ -1,4 +1,5 @@
 import { CircuitParts } from "./lib/circuit"
+import { EvaluationNotice } from "./lib/silkscreen"
 import project from "./project.json"
 
 // Native routing enabled after the documented A0 placement gate passed.
@@ -104,6 +105,7 @@ export default function MotionControllerBoard() {
         pcbX={0}
         pcbY={-28.5}
       />
+      <EvaluationNotice />
     </board>
   )
 }

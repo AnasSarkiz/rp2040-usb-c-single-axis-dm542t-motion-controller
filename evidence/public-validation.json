@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-prototype.15",
+  "version": "0.1.0-prototype.16",
   "hardware_revision": "A0",
   "checked_on": "2026-09-29",
   "status": "four_layer_routing_failed_not_fabrication_ready",
@@ -29,7 +29,8 @@
     "ground_plane_enforcement": "failed_31_non_ground_inner1_traces",
     "core_regressions": "23_pass_typecheck_build_pass",
     "via_spacing_regressions": "5_pass",
-    "schematic_sheet_format": "pending_A4_conversion"
+    "schematic_sheet_format": "pending_A4_conversion",
+    "bottom_evaluation_notice": "passed_unrouted_build_exact_text_bottom_layer_visual_placement"
   },
   "dependencies": {
     "tscircuit": "0.0.2646",
@@ -117,6 +118,16 @@
     "previous_hosted_timeout_ms": 600000,
     "config_validation": "passed_installed_cli_schema_and_worker_call_path",
     "hosted_build": "unverified",
-    "pcb_source_changes": false
+    "pcb_source_changes": true
+  },
+  "bottom_evaluation_notice": {
+    "text": [
+      "For evaluation only;",
+      "not FCC approved for resale."
+    ],
+    "layer": "bottom",
+    "font_size_mm": 1.8,
+    "review": "unrouted_only_no_routed_or_fabrication_acceptance",
+    "preview": "previews/A0-prototype.16/bottom-silkscreen-unrouted.png"
   }
 }

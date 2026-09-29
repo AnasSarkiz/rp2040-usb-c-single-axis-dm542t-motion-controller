@@ -28,3 +28,24 @@ export function FunctionalLabels() {
     </>
   )
 }
+
+export function EvaluationNotice() {
+  return (
+    <>
+      <silkscreentext
+        text="For evaluation only;"
+        layer="bottom"
+        fontSize="1.8mm"
+        pcbX={0}
+        pcbY={-10}
+      />
+      <silkscreentext
+        text="not FCC approved for resale."
+        layer="bottom"
+        fontSize="1.8mm"
+        pcbX={0}
+        pcbY={-13}
+      />
+    </>
+  )
+}
