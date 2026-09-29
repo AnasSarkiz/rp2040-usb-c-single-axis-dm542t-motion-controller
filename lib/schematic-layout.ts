@@ -46,3 +46,19 @@ export function passiveSchematicPosition(name: string) {
   if (!placement) throw new Error(`No schematic placement for ${name}`)
   return placement
 }
+
+// Supported per-pin margins enlarge dense symbols without the deprecated
+// schPinSpacing prop (the installed core intentionally ignores that prop).
+export const mcuPinStyle = Object.fromEntries(
+  Array.from({ length: 57 }, (_, index) => [
+    `pin${index + 1}`,
+    { marginTop: 0.1 },
+  ]),
+)
+
+export const driverRegulatorPinStyle = Object.fromEntries(
+  Array.from({ length: 11 }, (_, index) => [
+    `pin${index + 1}`,
+    { marginTop: 0.15 },
+  ]),
+)

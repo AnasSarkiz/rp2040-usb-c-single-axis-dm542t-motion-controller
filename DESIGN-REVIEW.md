@@ -47,3 +47,15 @@ NC dry contacts give approximately 0.30 V closed and 3.3 V open, with about 1 ms
 All **85 fitted components** have exact manufacturer/package/JLC mappings and positive assembly-eligible quantities checked in official JLC listings, with individual UTC dates in `bom.csv`. Catalog imports remain unchanged; local wrappers correct the TPS2553 schematic classification and add missing MOSFET reference labels without altering supplier pads. The KF350 terminal footprint follows its drawing (3.5 mm pitch, 1 mm holes, 6.9 mm depth, 8.8 mm height). Top-bank wire entry points upward; lower-bank entry downward. Allow 5 mm underside clearance for leads. Manual-weld terminal assembly must be confirmed at quote review.
 
 JLC planning target: 90×60×1 mm, two-layer FR-4, 1 oz outer copper, ≥0.15 mm signal/clearance, 0.4/0.5 mm power trunks, ≥0.3/0.6 mm via drill/pad, ≥0.5 mm copper-edge clearance. No controlled-impedance claim. Actual copper, ground return, drill clearance, power necks, mask/paste and assembler review are later gates. Mounting and connector access have been visually reviewed; physical enclosure fit remains untested.
+
+## Schematic review annotations (prototype.13)
+
+Every IC U1–U9 has adjacent `schematictext` describing its role and relevant
+operating point or rating. Notes distinguish the board's design budgets from
+component ratings and from physical measurements. USB protection, reverse
+blocking, the 3.3 V regulator, boot/reset controls and flash are separated in
+the schematic to keep symbols, labels and the notes clear of wires.
+
+The added flash supply range is 2.7–3.6 V ([Winbond W25Q16JV family](https://www.winbond.com/hq/product/code-storage-flash/qspi-nor/w25q-jv/?__locale=en&partNo=W25Q16JVBYIQ)); the fitted part remains W25Q16JVSSIQ. The 600 mA AP2112 rating is an IC rating ([Diodes](https://www.diodes.com/part/view/AP2112)), not permission to exceed the USB or thermal budget. The 1.5 A LM66100 rating ([TI](https://www.ti.com/product/LM66100)) likewise does not increase the board limit. The TPS63030 input range is 1.8–5.5 V ([TI](https://www.ti.com/product/TPS63030)); the board's required input and driver-current budget remain as documented above. References checked 2026-09-29. Other notes use the established design calculations and datasheets above.
+
+U1 and U7 use increased schematic pin spacing, with enough box width for their pin names. The USB footprint explicitly declares entry from its local negative-Y face, which rotates to the left board edge; this corrects model inference without changing copper or the connector position.

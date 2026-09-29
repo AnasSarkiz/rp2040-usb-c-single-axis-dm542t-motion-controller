@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-prototype.12",
+  "version": "0.1.0-prototype.13",
   "hardware_revision": "A0",
   "checked_on": "2026-09-29",
   "status": "internal_design_export_checks_passed_assembler_acceptance_pending",
@@ -9,19 +9,22 @@
     "firmware_motion_parser_sanitizers": "passed",
     "firmware_power_policy_sanitizers": "passed",
     "netlist": "passed_zero_errors_zero_warnings",
-    "placement": "passed_zero_errors_zero_warnings",
+    "placement": "zero_drc_errors_warnings_exit_1_three_accepted_optimization_heuristics",
     "routed_build": "passed_zero_errors",
     "shorts": "passed_zero_findings",
     "routed_board_test": "passed",
     "independent_geometry": "passed_zero_violations",
     "routed_visual_gate": "passed",
-    "snapshots": "passed_reviewed_updated_ci_match",
+    "snapshots": "passed_reviewed_ci_match",
     "fabrication": "internal_checks_passed_assembler_acceptance_pending",
     "physical_testing": "not_started",
     "physical_copper_connectivity": "passed_all_57_nets_273_ports",
     "geometry_regression": "passed_rotated_pill_bounds_area",
-    "silkscreen": "passed_actual_gerber_width_height_pad_edge_text_clearances",
-    "stencil_paste": "passed_no_unwanted_probe_or_terminal_openings"
+    "silkscreen": "passed_actual_gerber_dimensions_clearances",
+    "stencil_paste": "passed_no_unwanted_probe_or_terminal_paste",
+    "schematic_annotations": "all_9_ics_with_function_and_ratings",
+    "schematic_placement": "zero_collisions_accepted_padding_and_fuse_style_suggestions",
+    "pcb_placement": "zero_drc_errors_warnings_exit_1_three_accepted_optimization_heuristics"
   },
   "dependencies": {
     "tscircuit": "0.0.2646",
@@ -33,32 +36,32 @@
   "toolchain_archive_sha256": "39c44f8af42695b7b871df42e346c09fee670ea8dfc11f17083e296ea2b0d279",
   "local_artifacts": [
     {
-      "path": "evidence/routing-prototype-12/circuit.json",
-      "sha256": "1e6cfbddcdbaa0cd34a2b449a079211bce5d7619d93eb9794c6c9996693b0c6a"
+      "path": "evidence/routing-prototype-13/circuit.json",
+      "sha256": "f359710c48824c82808ca40d9aa4b29b9edf0e864852d9e1c0ee83bb37ba8b06"
     },
     {
-      "path": "evidence/routing-prototype-12/copper-measurements.json",
-      "sha256": "640fd026e411219edf8f9848db458db09954974b588824bf87527831f65b0a58"
+      "path": "evidence/routing-prototype-13/copper-measurements.json",
+      "sha256": "4823356dff926bdb515a98e319fdf5ea50ed8648033913a9ffdb079bd506a41a"
     },
     {
-      "path": "evidence/routing-prototype-12/pcb.png",
+      "path": "evidence/routing-prototype-13/pcb.png",
       "sha256": "c0590052f61e8248eabb966692e562e42c92193e4637049d165b6f84144bc967"
     },
     {
-      "path": "evidence/routing-prototype-12/pcb.svg",
+      "path": "evidence/routing-prototype-13/pcb.svg",
       "sha256": "e124db51c581bb464db5d41895538c8138d6779349fb35a903a3580499d4774d"
     },
     {
-      "path": "evidence/routing-prototype-12/routed-connectivity.json",
-      "sha256": "6e7509eb8cecd3822ff19fbc2f885598ea3731074c454ef1b01977e311d63e89"
+      "path": "evidence/routing-prototype-13/routed-connectivity.json",
+      "sha256": "4db3896dce348c20a3d0afcc5a79c3b2e9f898858f19903e8b6644426da78cae"
     },
     {
-      "path": "evidence/routing-prototype-12/schematic.svg",
-      "sha256": "53b2c4a709ce38707039ad6ee94f40bfb94383512403fc22b12df1b5b2b09b44"
+      "path": "evidence/routing-prototype-13/schematic.svg",
+      "sha256": "ba26221cc9c2f14886fa8d28ed1343459f641d3e502e2bb92127ece69f47af8d"
     }
   ],
   "artifact_scope": "Raw logs, rejected generated designs and downloads remain local. Hashes identify evidence; they do not signify successful validation.",
-  "placement_changes": "Fixed terminal stencil paste in source-built core/props packages and restored the bullet glyph in the source-built alphabet package. Increased functional legend sizes and moved detailed reference artwork to the fabrication layer. All physical copper, holes, vias and component placement remain identical to prototype.11; no routing failure or placement retry occurred.",
+  "placement_changes": "Added function and rating schematictext notes beside U1-U9, separated crowded schematic sections and increased U1/U7 pin spacing with supported per-pin margins. Explicit USB footprint plug-entry metadata fixes the orientation inference. Electrical connectivity and physical PCB geometry are unchanged from prototype.12.",
   "measurements": {
     "minimum_trace_width_mm": 0.15,
     "via_drill_mm": 0.3,
@@ -68,7 +71,7 @@
     "minimum_mount_center_to_copper_mm": 4.010594
   },
   "reviewed_artifacts": [
-    "fabrication/A0-prototype.12/",
-    "previews/A0-prototype.12/"
+    "previews/A0-prototype.13/",
+    "fabrication/A0-prototype.13/"
   ]
 }

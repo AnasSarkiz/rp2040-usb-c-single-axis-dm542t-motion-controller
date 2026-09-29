@@ -32,8 +32,8 @@ export default function MotionControllerBoard() {
       <schematicsheet
         name="Controller"
         sheetSize="ANSI_B"
-        sheetWidth={520}
-        sheetHeight={500}
+        sheetWidth={640}
+        sheetHeight={540}
       >
         <CircuitParts />
       </schematicsheet>

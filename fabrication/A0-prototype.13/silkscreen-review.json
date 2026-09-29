@@ -1,0 +1,15 @@
+{
+  "circuit_sha256": "f359710c48824c82808ca40d9aa4b29b9edf0e864852d9e1c0ee83bb37ba8b06",
+  "layers": {
+    "top": {
+      "minimum_stroke_mm": 0.15,
+      "minimum_text_height_mm": 1.0162419999999983,
+      "violations": []
+    },
+    "bottom": {
+      "minimum_stroke_mm": null,
+      "minimum_text_height_mm": null,
+      "violations": []
+    }
+  }
+}

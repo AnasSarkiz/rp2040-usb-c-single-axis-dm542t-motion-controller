@@ -1,3 +1,4 @@
+import { driverRegulatorPinStyle } from "./schematic-layout"
 import { TPS63030DSKR } from "../imports/TPS63030DSKR"
 import { PowerSwitch } from "./power-switch"
 import { TPS3839K33DBZR } from "../imports/TPS3839K33DBZR"
@@ -10,11 +11,13 @@ export function DriverPower() {
       <net name="DRIVER_VIN" isPowerNet nominalTraceWidth="0.5mm" />
       <TPS63030DSKR
         name="U7"
-        schHeight={1.2}
+        schHeight={2.2}
+        schWidth={1.9}
+        schPinStyle={driverRegulatorPinStyle}
         pcbX={-3}
         pcbY={-20}
         schX={0}
-        schY={11}
+        schY={10.7}
         connections={{
           VOUT: "net.VDRV",
           L2: "net.BOOST_L2",

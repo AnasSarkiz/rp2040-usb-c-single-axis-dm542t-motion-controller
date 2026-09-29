@@ -2,7 +2,7 @@
 
 **Revision A0 — untested prototype. Internal design and fabrication-file checks pass; assembler acceptance and physical testing remain pending.**
 
-USB-C powers an RP2040 and connects a computer to one external STEPPERONLINE DM542T V4.0. The external driver supplies motor current from its own supply. This board carries control signals only. The public package includes circuit sources, the complete sourcing BOM, firmware sources and tests. Detailed investigation artifacts and compiled firmware remain local. The current routed revision passes native DRC, shorts and independent physical-connectivity and dimensional audits. The reviewed [manufacturing package](fabrication/A0-prototype.12/README.md) contains Gerbers, drills, assembly BOM and placement files. Manufacturer acceptance remains pending; see [VALIDATION.md](VALIDATION.md).
+USB-C powers an RP2040 and connects a computer to one external STEPPERONLINE DM542T V4.0. The external driver supplies motor current from its own supply. This board carries control signals only. The public package includes circuit sources, the complete sourcing BOM, firmware sources and tests. Detailed investigation artifacts and compiled firmware remain local. The current routed revision passes native DRC, shorts and independent physical-connectivity and dimensional audits. The reviewed [manufacturing package](fabrication/A0-prototype.13/README.md) contains Gerbers, drills, assembly BOM and placement files. Manufacturer acceptance remains pending; see [VALIDATION.md](VALIDATION.md).
 
 All 85 fitted components have exact JLCPCB mappings in [BOM.md](BOM.md) and [bom.csv](bom.csv). These are sourced parts, not an approved assembly package.
 
@@ -90,17 +90,19 @@ Storage recovered on 2026-09-29. The earlier corrupted output remains quarantine
 
 ## Repositories and versions
 
-Source version **0.1.0-prototype.12**, hardware revision **A0**. Public source publication was authorized on 2026-09-29; it does not approve fabrication or hardware operation.
+Source version **0.1.0-prototype.13**, hardware revision **A0**. Public source publication was authorized on 2026-09-29; it does not approve fabrication or hardware operation.
 
 - [GitHub repository](https://github.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller)
 - [tscircuit project](https://tscircuit.com/AnasSarkiz/rp2040-usb-c-single-axis-dm542t-motion-controller--01a0e89c)
 
 Each meaningful saved revision is committed and tagged in GitHub and pushed to tscircuit with the same version. See [VERSIONING.md](VERSIONING.md). Historical manifests and rejected routing artifacts predate Git history and remain in the local investigation archive; they are not reconstructed or relabeled as validated releases. Public check results and hashes are in [evidence/public-validation.json](evidence/public-validation.json). Local toolchains, downloaded manufacturer PDFs, private task input and corrupted output are excluded from publication.
 
-The independent physical-connectivity audit requires Shapely 2.1.2 (`python3 -m venv firmware/.venv`, then `firmware/.venv/bin/pip install shapely==2.1.2`). Run `bun run test:connectivity` after routing. Prototype.3 passed native DRC and shorts but this additional audit found an open VBUS_SENSE connection. Prototype.10 resolves that open and passes all four copper checks. The labels were cleaned up in prototype.11. Manufacturing approval remains blocked by the native through-hole stencil output and missing subtitle bullet glyphs; see the fabrication review package.
+The independent physical-connectivity audit requires Shapely 2.1.2 (`python3 -m venv firmware/.venv`, then `firmware/.venv/bin/pip install shapely==2.1.2`). Run `bun run test:connectivity` after routing. Prototype.3 passed native DRC and shorts but this additional audit found an open VBUS_SENSE connection. Prototype.10 resolves that open and passes all four copper checks. The labels were cleaned up in prototype.11. Prototype.12 fixed the terminal stencil output and bullet glyphs. Prototype.13 adds readable per-chip schematic notes. Internal checks pass; manufacturer acceptance remains pending.
 
 ## Current preview and manufacturing review
 
-![A0 routed board render](previews/A0-prototype.11/pcb.png)
+The schematic includes function and voltage/current notes beside all nine ICs. Enlarged MCU and converter symbols and separated USB/power sections support design review.
 
-[Schematic preview](previews/A0-prototype.11/schematic.svg) · [Manufacturing package and blockers](fabrication/A0-prototype.11/README.md). These are generated design views, not physical prototype photographs.
+![A0 routed board render](previews/A0-prototype.13/pcb.png)
+
+[Schematic preview](previews/A0-prototype.13/schematic.svg) · [Manufacturing package and blockers](fabrication/A0-prototype.13/README.md). These are generated design views, not physical prototype photographs.

@@ -49,7 +49,7 @@ def read_legend(path):
 
 
 if __name__ == '__main__':
-    folder = Path('fabrication/A0-prototype.12')
+    folder = Path('fabrication/A0-prototype.13')
     circuit_path = Path('dist/index/circuit.json')
     circuit = json.loads(circuit_path.read_text())
     pads = [pad for pad in circuit if pad['type'] in ['pcb_smtpad', 'pcb_plated_hole'] and not pad.get('is_covered_with_solder_mask')]

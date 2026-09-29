@@ -1,7 +1,8 @@
+import { SchematicNotes } from "./schematic-notes"
 import { FunctionalLabels, probeLabels } from "./silkscreen"
 import { DriverPower } from "./driver-power"
 import { TerminalFootprint } from "./terminal-footprint"
-import { passiveSchematicPosition } from "./schematic-layout"
+import { passiveSchematicPosition, mcuPinStyle } from "./schematic-layout"
 import { passiveComponents } from "./passive-components"
 import {
   RP2040Attributes,
@@ -27,6 +28,7 @@ export function CircuitParts() {
   return (
     <>
       <DriverPower />
+      <SchematicNotes />
       <FunctionalLabels />
       <net name="GND" isGroundNet />
       <net name="VBUS" isPowerNet nominalTraceWidth="0.5mm" />
@@ -37,7 +39,9 @@ export function CircuitParts() {
       <RP2040
         name="U1"
         pcbStyle={{ silkscreenTextVisibility: "hidden" }}
-        schHeight={5.8}
+        schHeight={8.7}
+        schPinStyle={mcuPinStyle}
+        schWidth={2.8}
         pinAttributes={RP2040Attributes}
         pcbX={-10}
         pcbY={0}
@@ -90,8 +94,8 @@ export function CircuitParts() {
         pcbX={-22}
         pcbY={-4.5}
         pcbRotation={90}
-        schX={-5.5}
-        schY={7}
+        schX={-6}
+        schY={6}
         connections={{
           pin1: "net.QSPI_CS",
           pin2: "net.QSPI_D1",
@@ -109,8 +113,8 @@ export function CircuitParts() {
         schHeight={0.6}
         pcbX={-27}
         pcbY={-10}
-        schX={-15 * 0.3}
-        schY={-5 * 0.3}
+        schX={-16}
+        schY={10}
         connections={{
           VIN: "net.V5",
           GND: "net.GND",
@@ -130,8 +134,8 @@ export function CircuitParts() {
         }}
         pcbX={-31}
         pcbY={0}
-        schX={-25 * 0.3}
-        schY={0 * 0.3}
+        schX={-16}
+        schY={0}
         connections={{
           pin1: "net.USB_DP",
           pin6: "net.USB_DP",
@@ -146,8 +150,8 @@ export function CircuitParts() {
         pcbX={-34}
         pcbY={-4}
         pcbRotation={90}
-        schX={-25 * 0.3}
-        schY={-6 * 0.3}
+        schX={-23}
+        schY={10}
         connections={{
           VIN: "net.FUSED_VBUS",
           GND: "net.GND",
@@ -168,8 +172,8 @@ export function CircuitParts() {
         }}
         pcbX={17}
         pcbY={-15}
-        schX={22 * 0.3}
-        schY={-10 * 0.3}
+        schX={16}
+        schY={-2}
         connections={{
           pin1: "net.LIMIT_MIN_WIRE",
           pin6: "net.LIMIT_MIN_WIRE",
@@ -185,8 +189,8 @@ export function CircuitParts() {
         pcbX={-40.5}
         pcbY={0}
         pcbRotation={270}
-        schX={-35 * 0.3}
-        schY={0 * 0.3}
+        schX={-23}
+        schY={0}
         connections={{
           EH1: "net.GND",
           EH2: "net.GND",
@@ -210,8 +214,8 @@ export function CircuitParts() {
         pinAttributes={{ pin1: { isPassive: true }, pin2: { isPassive: true } }}
         pcbX={-35}
         pcbY={-11}
-        schX={-35 * 0.3}
-        schY={-8 * 0.3}
+        schX={-23}
+        schY={5}
         connections={{ pin1: "net.VBUS", pin2: "net.FUSED_VBUS" }}
       />
       <ClockCrystal
@@ -219,8 +223,8 @@ export function CircuitParts() {
         pcbX={-2.9}
         pcbY={-3}
         pcbRotation={90}
-        schX={-15 * 0.3}
-        schY={-11 * 0.3}
+        schX={-4}
+        schY={-3.6}
         connections={{
           pin1: "net.XIN",
           pin3: "net.XTAL_OUT",
@@ -232,8 +236,8 @@ export function CircuitParts() {
         name="SW1"
         pcbX={-29}
         pcbY={14}
-        schX={-25 * 0.3}
-        schY={9 * 0.3}
+        schX={-8}
+        schY={3}
         internallyConnectedPins={[
           ["pin1", "pin2"],
           ["pin3", "pin4"],
@@ -249,8 +253,8 @@ export function CircuitParts() {
         name="SW2"
         pcbX={-29}
         pcbY={-19}
-        schX={-25 * 0.3}
-        schY={-13 * 0.3}
+        schX={-8}
+        schY={-3}
         internallyConnectedPins={[
           ["pin1", "pin2"],
           ["pin3", "pin4"],
@@ -276,8 +280,8 @@ export function CircuitParts() {
         schRotation={-90}
         pcbX={-21}
         pcbY={19}
-        schX={-8 * 0.3}
-        schY={15 * 0.3}
+        schX={-3}
+        schY={4.5}
         connections={{ anode: "net.LED_STATUS", cathode: "net.GND" }}
       />
       <OutputMosfet
