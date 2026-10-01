@@ -1,6 +1,6 @@
 # A0 engineering review
 
-Reviewed 2026-09-29 (local date). Schematic and BOM review supports proceeding to native routing. Physical performance remains unverified. Calculations below are design allocations, not measurements. See VALIDATION.md for the separate routing, fabrication and physical-test gates.
+Historical A0 review, 2026-09-29. Its placement/routing approval is withdrawn by the 2026-10-01 JLCPCB-only import audit; see VALIDATION.md. The reference-led redesign below is a proposal, not an implemented circuit. Physical performance remains unverified. Calculations below are design allocations, not measurements. See VALIDATION.md for the separate routing, fabrication and physical-test gates.
 
 ## References and selected driver
 
@@ -59,3 +59,32 @@ the schematic to keep symbols, labels and the notes clear of wires.
 The added flash supply range is 2.7–3.6 V ([Winbond W25Q16JV family](https://www.winbond.com/hq/product/code-storage-flash/qspi-nor/w25q-jv/?__locale=en&partNo=W25Q16JVBYIQ)); the fitted part remains W25Q16JVSSIQ. The 600 mA AP2112 rating is an IC rating ([Diodes](https://www.diodes.com/part/view/AP2112)), not permission to exceed the USB or thermal budget. The 1.5 A LM66100 rating ([TI](https://www.ti.com/product/LM66100)) likewise does not increase the board limit. The TPS63030 input range is 1.8–5.5 V ([TI](https://www.ti.com/product/TPS63030)); the board's required input and driver-current budget remain as documented above. References checked 2026-09-29. Other notes use the established design calculations and datasheets above.
 
 U1 and U7 use increased schematic pin spacing, with enough box width for their pin names. The USB footprint explicitly declares entry from its local negative-Y face, which rotates to the left board edge; this corrects model inference without changing copper or the connector position.
+
+
+## Combined controller/driver reference decision — 2026-10-01
+
+The user delegated reference and motor selection. Continue in this project; do not represent the existing DM542T controller as an onboard motor driver. No A1 circuit or manufacturing release has been implemented at this checkpoint.
+
+Primary reference: [joshr120/PD-Stepper](https://github.com/joshr120/PD-Stepper/tree/3c40073a0ec51653f6ea48c70f365bd7f9f3bdcc), schematic V1.1. Its [schematic](https://github.com/joshr120/PD-Stepper/blob/3c40073a0ec51653f6ea48c70f365bd7f9f3bdcc/PCB/PD%20Stepper%20V1.1%20Schematic.pdf) was downloaded, rendered and visually reviewed. It combines an ESP32-S3, TMC2209, CH224K and 3.3 V converter on four layers. GPL-3.0 license was reviewed; no CAD, firmware or routing has been copied. Our adaptation retains the RP2040 and two normally-closed limit inputs; its electrical and thermal performance will need independent validation.
+
+Selected reference motor: [STEPPERONLINE 17HS08-1004S](https://www.omc-stepperonline.com/nema-17-bipolar-1-8deg-16ncm-22-6oz-in-1a-3-7v-42x42x20mm-4-wires-17hs08-1004s), four-wire bipolar NEMA 17, 1 A/phase, 3.7 ohms/phase, 4.5 mH and 0.16 Nm holding torque according to the English product page and [manufacturer drawing](https://www.omc-stepperonline.com/download/17HS08-1004S.pdf), checked 2026-10-01. Pair black/green as winding A and red/blue as B, checking continuity before connection. This selection is a bench reference, not a guarantee of suitability for an unspecified mechanical load. Supplier stock was listed when checked; recheck before ordering.
+
+| Design choice | Implementation requirement |
+|---|---|
+| Motor power | Fixed 15 V nominal USB-C PD request; charger must explicitly offer 15 V at at least 2 A. Never request 20 V in this adaptation. |
+| Computer interface | Separate USB-C data/logic port, isolated from the motor PD VBUS; prevent backfeed between both ports. |
+| Driver | TMC2209-LA, JLCPCB C465949; STEP/DIR plus UART diagnostics/configuration. Use hardware enable pull-up and inhibit the bridge during reset or failed negotiation. |
+| Current target | Start with a conservative 0.7 A RMS sinusoidal setting (about 0.99 A peak), subject to sense/reference tolerances. Do not claim the IC headline current as a board rating. |
+| Power negotiation | CH224K, C970725. Hardware straps must request the chosen voltage independently of firmware startup timing. Validate PG behavior and rail voltage before enabling motion. |
+| Mechanics | Retain a separate 90 × 60 mm board and existing four-hole pattern for now; reference motor rear mounting is not adopted. Reassess thickness/stackup and cooling before layout. |
+| Schematic | Native A4 sheets with RP2040, logic power/USB, PD/protection, driver and limits separated as needed; each IC needs function/rating text. |
+
+The 15 V request is a nominal operating choice. A strict below-21-V ceiling is **not verified**: charger tolerance, hot-plug and regenerated motor energy require a reviewed protection circuit and measured transient limits. Do not use a TVS nominal voltage as its guaranteed clamp voltage. The input current limit, inrush, reverse-current blocking, brake/clamp energy capacity and capacitor ratings remain design work. A 30 W adapter budget is not a claim of 30 W motor output.
+
+For the chosen motor, two windings continuously carrying 1 A would dissipate approximately 7.4 W at nominal resistance. This is a winding-loss calculation, not total input power or validated thermal performance. Speed/torque at 15 V remains unmeasured; the manufacturer's published 24 V curve must not be relabeled for this design.
+
+The [TMC2209 datasheet, rev. 1.09](https://www.analog.com/media/en/technical-documentation/data-sheets/tmc2209_datasheet_rev1.09.pdf), takes precedence over the reference board: its 5VOUT capacitor recommendation is 2.2–4.7 µF, while the reference schematic shows 0.1 µF. Use the manufacturer requirement in the adaptation. Review the 22 nF charge-pump capacitor, local bulk capacitance, current-sense return paths and exposed-pad cooling before routing. The imported pin25 label `_NEG` represents the datasheet's unused `-` pin; it is not a negative supply. Imported pad29 is the exposed ground pad. These are mapping observations, not a completed component review.
+
+Fresh unmodified imports of C465949, C970725 and RP2040 C2040 were obtained in the isolated audit directory. Import success alone does not pass symbol, land-pattern, mask/paste or assembly validation. WCH's [official CH224 datasheet landing page](https://www.wch-ic.com/downloads/CH224DS1_PDF.html) was located, but the current manufacturer PDF has not yet been retrieved and fully reviewed. Do not finalize the PD circuit using only the third-party reference schematic.
+
+The old TPS2553 C55266 model remains a stage-2 blocker for the existing circuit. It is limited to a 5 V-class branch and must never be carried onto the new 15 V rail. The combined design can retire that branch after a complete replacement power architecture is reviewed; this does not validate the defective import or permit a hand-authored substitute. Other retained components also need fresh unmodified imports before their old custom symbol/footprint overrides can be removed.

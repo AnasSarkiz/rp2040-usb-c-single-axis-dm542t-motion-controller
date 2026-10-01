@@ -6,6 +6,8 @@ USB-C powers an RP2040 and connects a computer to one external STEPPERONLINE DM5
 
 All 85 fitted components have exact JLCPCB mappings in [BOM.md](BOM.md) and [bom.csv](bom.csv). These are sourced parts, not an approved assembly package.
 
+Research update, 2026-10-01: the requested USB-C-powered onboard-driver redesign is based on the reviewed PD-Stepper reference, targeting a TMC2209 and STEPPERONLINE 17HS08-1004S motor at 15 V nominal. This is a design proposal, not the circuit currently published here. The JLCPCB-only review found a defective C55266 import, so the previous schematic/placement approvals are withdrawn. See the reference decision in [DESIGN-REVIEW.md](DESIGN-REVIEW.md) and the blocker in [VALIDATION.md](VALIDATION.md). Do not apply 15 V to the existing A0 board.
+
 ## Wiring for the selected driver
 
 Target: **DM542T V4.0, manual revision 4.0, October 2020**. Set the driver's **S2 input-voltage selector to 5 V** before connecting it. The factory 24 V setting is incompatible with this controller. No compatibility claim is made for another DM542T revision or similarly named driver.
